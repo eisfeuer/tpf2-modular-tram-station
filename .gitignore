@@ -1,0 +1,5 @@
+environment.rb
+work/textures
+textures/*.dds
+textures/*.json
+work/*.blend1

@@ -1,0 +1,33 @@
+local Station = require('modutram_station')
+
+function data()
+    return { 
+        type = "STREET_STATION",
+        description = {
+            name = _("Bench"),			
+            description = _("A bench.")
+        },
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        updateFn = function(params)
+            local station = Station:new({}, params.modules)
+            local result = { }
+            
+            result.station = station
+
+            result.models = { station:get_models() }
+            result.slots = {}
+
+            result.terrainAlignmentLists = { {
+                type = "EQUAL",
+                faces =  { }
+            } }
+    
+            return result
+        end
+    }
+    
+    end
+    

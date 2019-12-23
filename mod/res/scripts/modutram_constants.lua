@@ -1,0 +1,3 @@
+return {
+    PLATFORM_SEGMENT_LENGTH = 18
+}
