@@ -12,12 +12,12 @@ function data()
             yearTo = 0
         },
         updateFn = function(params)
-            local station = Station:new({}, params.modules)
+            local station = Station:new({}, params.modules or {})
             local result = { }
             
             result.station = station
 
-            result.models = { station:get_models() }
+            result.models = station:get_models()
             result.slots = {}
 
             result.terrainAlignmentLists = { {

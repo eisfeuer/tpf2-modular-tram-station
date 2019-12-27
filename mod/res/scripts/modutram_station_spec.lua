@@ -11,11 +11,11 @@ describe('station', function ()
 
         it ('creates station with a platform', function ()
             local modules = {
-                Module.make_id({
+                [Module.make_id({
                     type = t.PLATFORM_DOUBLE,
                     grid_x = 0,
                     grid_y = 0
-                })
+                })] = 'a_module'
             }
 
             local station = Station:new({}, modules)
@@ -27,7 +27,7 @@ describe('station', function ()
     describe('is_empty', function ()
         it ('is empty when the station has no platforms or tracks', function ()
             local station1 = Station:new({}, {})
-            local station2 = Station:new({}, {Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})})
+            local station2 = Station:new({}, {[Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'a_module'})
 
             assert.is_true(station1:is_empty())
             assert.is_false(station2:is_empty())

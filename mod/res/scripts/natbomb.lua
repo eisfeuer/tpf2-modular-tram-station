@@ -26,7 +26,7 @@ function NatBomb.implode(digits, values)
     end
     local result = table.remove(values, 1)
     for i, digit in ipairs(digits) do
-        result = result << digit
+        result = result * 2 ^ digit -- result << digit
         result = result + (values[i] or 0) % (2 ^ digit)
     end
     return result
@@ -44,7 +44,7 @@ function NatBomb.explode(digits, id)
     local result = {}
     for k, digit in pairs(reverse_table(digits)) do
         table.insert(result, id % (2 ^ digit))
-        id = id >> digit
+        id = math.floor(id / (2 ^ digit)) -- id >> digit
     end
     table.insert(result, id)
     return reverse_table(result)

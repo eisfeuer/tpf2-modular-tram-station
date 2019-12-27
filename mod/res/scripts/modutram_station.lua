@@ -8,7 +8,7 @@ function Station:new (o, module_ids)
     o = o or {}
     o.columns = o.columns or ColumnCollection:new{}
     o.models = o.models or ModelCollection:new{}
-    for i, module_id in ipairs(module_ids) do
+    for module_id, module_name in pairs(module_ids) do
         o.columns:add(Module:new{id = module_id})
     end
     setmetatable(o, self)
