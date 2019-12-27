@@ -1,6 +1,8 @@
 local ModelCollection = require('modutram_model_collection')
 local ColumnCollection = require('modutram_column_collection')
 local Module = require('modutram_module')
+local SlotCollection = require('modutram_slot_collection')
+local ModelBuilder = require('modutram_model_builder')
 
 local Station = {}
 
@@ -8,6 +10,11 @@ function Station:new (o, module_ids)
     o = o or {}
     o.columns = o.columns or ColumnCollection:new{}
     o.models = o.models or ModelCollection:new{}
+    o.slots = o.slots or SlotCollection:new{}
+    o.builder = o.builder or ModelBuilder:new{
+        model_collection = o.models,
+        column_collection = o.columns
+    }
     for module_id, module_name in pairs(module_ids) do
         o.columns:add(Module:new{id = module_id})
     end
@@ -32,6 +39,10 @@ end
 
 function Station:get_column(index)
     return self.columns:get_column(index)
+end
+
+function Station:get_slots()
+    return self.slots:get_slots()
 end
 
 return Station

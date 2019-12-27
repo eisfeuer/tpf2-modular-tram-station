@@ -1,17 +1,20 @@
+local ColumnCollection = require('modutram_column_collection')
 local ModelCollection = require('modutram_model_collection')
 
-describe('ModelCollection', function ()
-    describe('new', function ()
-        it('creates empty model collection', function ()
-            local modelCollection = ModelCollection:new{}
-            assert.are.same({}, modelCollection.models)
-        end)
-    end)
+local ModelBuilder = require('modutram_model_builder')
 
-    describe('add', function ()
-        it('adds model to collection', function ()
+describe('ModelBuilder', function ()
+    describe('add_model', function ()
+        it ('adds a model to model collection', function ()
             local modelCollection = ModelCollection:new{}
-            modelCollection:add({
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_model({
                 id = 'path/to/model.mdl',
                 transf = {
                     1, 0, 0, 0,
@@ -20,6 +23,7 @@ describe('ModelCollection', function ()
                     0, 0, 0, 1,
                 }
             })
+
             assert.are.same({{
                 id = 'path/to/model.mdl',
                 transf = {

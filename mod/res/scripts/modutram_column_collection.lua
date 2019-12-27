@@ -1,4 +1,5 @@
 local Platform = require('modutram_platform')
+local Track = require('modutram_track')
 local t = require('modutram_types')
 
 local ColumnCollection = {}
@@ -20,9 +21,37 @@ local function is_platform_segment(segment)
     return false
 end
 
+local function is_track(segment)
+    local track_types = {
+        t.TRACK_UP_DOORS_LEFT,
+        t.TRACK_UP_DOORS_RIGHT,
+        t.TRACK_UP_CARGO_DOORS_LEFT,
+        t.TRACK_UP_CARGO_DOORS_RIGHT,
+        t.TRACK_DOWN_DOORS_LEFT,
+        t.TRACK_DOWN_DOORS_RIGHT,
+        t.TRACK_DOWN_CARGO_DOORS_LEFT,
+        t.TRACK_DOWN_CARGO_DOORS_RIGHT,
+        t.TRACK_DOUBLE_DOORS_LEFT,
+        t.TRACK_DOUBLE_DOORS_RIGHT,
+        t.TRACK_DOUBLE_CARGO_DOORS_LEFT,
+        t.TRACK_DOUBLE_CARGO_DOORS_RIGHT,
+    }
+    for index, platform_type in ipairs(track_types) do
+        if platform_type == segment.type then
+            return true
+        end
+    end
+    return false
+end
+
 local function create_column(segment)
     if is_platform_segment(segment) then
         return Platform:new{
+            id = segment.grid_x,
+            type = segment.type
+        }
+    elseif is_track(segment) then
+        return Track:new{
             id = segment.grid_x,
             type = segment.type
         }

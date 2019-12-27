@@ -8,4 +8,8 @@ function ModelCollection:new (o)
     return o
 end
 
+function ModelCollection:add(model)
+    table.insert(self.models, model)
+end
+
 return ModelCollection

@@ -44,6 +44,19 @@ describe('ColumnCollection', function ()
             assert.are.equal(2, #collection:get_column(0).segments)
             assert.are.equal(1, collection:get_column(0):find_segment(1).id)
         end)
+
+        it ('creates a new track', function ()
+            local collection = ColumnCollection:new{}
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+
+            assert.are.equal(0, collection:get_column(0).id)
+        end)
     end)
 
     describe('is_empty', function ()

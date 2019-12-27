@@ -1,0 +1,48 @@
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "passenger", },
+        },
+        description = {
+            name = _("Passenger platform"),
+            description = _("Platform for waiting passengers."),
+            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "eisfeuer_modutram_platform_double",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            result.station.builder:add_model({
+                id = 'modutram_platform_double_era_c.mdl',
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1,
+                }
+            })
+        end,
+        getModelsFn = function()
+            return {{
+                id = 'modutram_platform_double_era_c.mdl',
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

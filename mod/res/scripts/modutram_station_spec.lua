@@ -22,6 +22,19 @@ describe('station', function ()
             assert.are.equal(0, station:get_column(0).id)
             assert.are.equal(1, #station:get_column(0).segments)
         end)
+
+        it('creates station with a track', function ()
+            local modules = {
+                [Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })] = 'a_module'
+            }
+
+            local station = Station:new({}, modules)
+            assert.are.equal(0, station:get_column(0).id)
+        end)
     end)
 
     describe('is_empty', function ()
@@ -34,13 +47,20 @@ describe('station', function ()
         end)
     end)
 
-    describe('models', function ()
+    describe('get_models', function ()
         it('has a question mark when station is empty', function ()
             local station = Station:new({}, {})
             assert.are.same({{
                 id = 'asset/icon/marker_question.mdl',
                 transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 }
             }}, station:get_models())
+        end)
+    end)
+
+    describe('get_slots', function ()
+        it('gets slots', function ()
+            local station = Station:new({}, {})
+            assert.are.equal(6, #station:get_slots())
         end)
     end)
 end)
