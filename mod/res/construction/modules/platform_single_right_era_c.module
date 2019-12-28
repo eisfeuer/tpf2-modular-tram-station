@@ -7,7 +7,7 @@ function data()
             categories = { "passenger", },
         },
         description = {
-            name = _("Passenger platform"),
+            name = _("Passenger platform (Single Right)"),
             description = _("Platform for waiting passengers."),
             icon = "ui/construction/station/street/platform_passenger_era_a.tga"
         }, 
@@ -15,7 +15,7 @@ function data()
             yearFrom = 0,
             yearTo = 0
         },
-        type = "eisfeuer_modutram_platform_double",
+        type = "eisfeuer_modutram_platform_single_right",
         order = {
             value = 7,
         },
@@ -24,10 +24,10 @@ function data()
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             result.station.builder:add_model({
-                id = 'modutram_platform_double_rep_era_c.mdl',
+                id = 'modutram_platform_single_rep_era_c.mdl',
                 transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, -1, 0, 0,
                     0, 0, 1, 0,
                     0, 0, 0, 1,
                 }
@@ -35,10 +35,10 @@ function data()
         end,
         getModelsFn = function()
             return {{
-                id = 'modutram_platform_double_rep_era_c.mdl',
+                id = 'modutram_platform_single_rep_era_c.mdl',
                 transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, -1, 0, 0,
                     0, 0, 1, 0,
                     0, 0, 0, 1,
                 }

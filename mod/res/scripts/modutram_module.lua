@@ -1,7 +1,7 @@
 local NatBomb = require('natbomb')
 local t = require('modutram_types')
 
-local DIGIT_SPACES = {8, 7, 7, 6}
+local DIGIT_SPACES = {7, 7, 6, 4}
 
 local Module = {}
 

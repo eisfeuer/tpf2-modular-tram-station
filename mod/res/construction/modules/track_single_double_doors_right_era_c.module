@@ -4,10 +4,10 @@ function data()
             price = 20000,
         },
         category = {
-            categories = { "passenger", },
+            categories = { "track", },
         },
         description = {
-            name = _("Passenger platform"),
+            name = _("Track single up"),
             description = _("Platform for waiting passengers."),
             icon = "ui/construction/station/street/platform_passenger_era_a.tga"
         }, 
@@ -15,7 +15,7 @@ function data()
             yearFrom = 0,
             yearTo = 0
         },
-        type = "eisfeuer_modutram_platform_double",
+        type = "eisfeuer_modutram_track_double_doors_right",
         order = {
             value = 7,
         },
@@ -24,23 +24,40 @@ function data()
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             result.station.builder:add_model({
-                id = 'modutram_platform_double_rep_era_c.mdl',
+                id = 'modutram_track_single_rep_era_c.mdl',
                 transf = {
                     1, 0, 0, 0,
                     0, 1, 0, 0,
                     0, 0, 1, 0,
-                    0, 0, 0, 1,
+                    0, -1.5, 0, 1,
+                }
+            })
+            result.station.builder:add_model({
+                id = 'modutram_track_single_rep_era_c.mdl',
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 1.5, 0, 1,
                 }
             })
         end,
         getModelsFn = function()
             return {{
-                id = 'modutram_platform_double_rep_era_c.mdl',
+                id = 'modutram_track_single_rep_era_c.mdl',
                 transf = {
                     1, 0, 0, 0,
                     0, 1, 0, 0,
                     0, 0, 1, 0,
-                    0, 0, 0, 1,
+                    0, -1.5, 0, 1,
+                }
+            }, {
+                id = 'modutram_track_single_rep_era_c.mdl',
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 1.5, 0, 1,
                 }
             }}
         end

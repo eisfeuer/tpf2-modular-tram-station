@@ -14,12 +14,12 @@ describe('Module', function ()
                 asset_decoration_id = 3
             })
 
-            assert.are.equal(natbomb.implode({8, 7, 7, 6}, {t.TRACK_UP_DOORS_RIGHT, 3 +  64, 1 + 64, 2, 3}), id)
+            assert.are.equal(natbomb.implode({7, 7, 6, 4}, {t.TRACK_UP_DOORS_RIGHT, 3 +  64, 1 + 64, 2, 3}), id)
         end)
     end)
 
     describe('object', function ()
-        local moduleId = natbomb.implode({8, 7, 7, 6}, {t.TRACK_UP_DOORS_RIGHT, 3 +  64, 1 + 64, 2, 3})
+        local moduleId = natbomb.implode({7, 7, 6, 4}, {t.TRACK_UP_DOORS_RIGHT, 3 +  64, 1 + 64, 2, 3})
         local mod = Module:new{id = moduleId}
 
         it('has id', function ()

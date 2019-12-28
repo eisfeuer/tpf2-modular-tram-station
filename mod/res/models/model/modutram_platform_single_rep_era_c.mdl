@@ -1,0 +1,53 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 9, 1.65, 0.15},
+		bbMin = { -9, -1.65, -0.15},
+	},
+	collider = {
+		params = {
+			halfExtents = { 9, 0.15, 1.65, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "modutram/modutram_paving.mtl", "modutram/modutram_curb.mtl", "modutram/modutram_tactile_paving.mtl", },
+						mesh = "modutram/modutram_platform_era_c_side_rep_lod0.001_lod0.msh",
+						name = "platform_era_c_side_rep_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 481.04116821289,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "modutram/modutram_paving.mtl", "modutram/modutram_curb.mtl", "modutram/modutram_tactile_paving.mtl", },
+						mesh = "modutram/modutram_platform_era_c_side_rep_lod1.001_lod1.msh",
+						name = "platform_era_c_side_rep_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 481.04116821289,
+			visibleTo = 1443.1235351563,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end

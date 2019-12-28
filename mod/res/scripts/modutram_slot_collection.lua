@@ -10,59 +10,61 @@ local default_slots = {
         transf = Position:new{}:as_matrix(),
         type = "eisfeuer_modutram_platform_double",
         spacing = {
-            c.PLATFORM_DOUBLE_WIDTH / 2,
-            c.PLATFORM_DOUBLE_WIDTH / 2,
             c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH
+            c.PLATFORM_SEGMENT_LENGTH,
+            c.PLATFORM_DOUBLE_WIDTH / 2,
+            c.PLATFORM_DOUBLE_WIDTH / 2,
         }
     }, {
         id = Module.make_id({type = t.PLATFORM_LEFT}),
         transf = Position:new{}:as_matrix(),
         type = "eisfeuer_modutram_platform_single_left",
         spacing = {
-            c.PLATFORM_SINGLE_WIDTH,
-            c.PLATFORM_SINGLE_WIDTH,
             c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH
+            c.PLATFORM_SEGMENT_LENGTH,
+            c.PLATFORM_SINGLE_WIDTH,
+            c.PLATFORM_SINGLE_WIDTH,
         }
     }, {
         id = Module.make_id({type = t.PLATFORM_RIGHT}),
         transf = Position:new{}:as_matrix(),
         type = "eisfeuer_modutram_platform_single_right",
         spacing = {
-            c.PLATFORM_SINGLE_WIDTH,
-            c.PLATFORM_SINGLE_WIDTH,
             c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH
+            c.PLATFORM_SEGMENT_LENGTH,
+            c.PLATFORM_SINGLE_WIDTH,
+            c.PLATFORM_SINGLE_WIDTH,
         }
     }, {
         id = Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT}),
         transf = Position:new{}:as_matrix(),
         type = "eisfeuer_modutram_track_double_doors_right",
         spacing = {
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
             c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH
+            c.PLATFORM_SEGMENT_LENGTH,
+            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
+            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
         }
     }, {
         id = Module.make_id({type = t.TRACK_UP_DOORS_RIGHT}),
         transf = Position:new{}:as_matrix(),
         type = "eisfeuer_modutram_track_up_doors_right",
         spacing = {
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
             c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH }
+            c.PLATFORM_SEGMENT_LENGTH,
+            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
+            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
+        }
     }, {
         id = Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT}),
         transf = Position:new{}:as_matrix(),
         type = "eisfeuer_modutram_track_down_doors_right",
         spacing = {
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
             c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH }
+            c.PLATFORM_SEGMENT_LENGTH,
+            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
+            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
+        }
     }
 }
 
