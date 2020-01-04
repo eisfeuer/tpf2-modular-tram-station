@@ -1,6 +1,8 @@
 local Platform = require('modutram_platform')
 local t = require('modutram_types')
 local Module = require('modutram_module')
+local c = require('modutram_constants')
+local Track = require('modutram_track')
 
 describe('platform', function ()
     describe('new', function ()
@@ -189,6 +191,69 @@ describe('platform', function ()
         it('is not a track', function ()
             local platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_DOUBLE}
             assert.is_false(platform:is_track())
+        end)
+    end)
+
+    describe('is_double_platform', function ()
+        it('checks whether platform is a double platform', function ()
+            local platform1 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
+            local platform2 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_RIGHT}
+            local platform3 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_DOUBLE}
+
+            assert.is_false(platform1:is_double_platform())
+            assert.is_false(platform2:is_double_platform())
+            assert.is_true(platform3:is_double_platform())
+        end)
+    end)
+
+    describe('get_width', function ()
+        it('gets width', function ()
+            local platform1 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
+            local platform2 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_RIGHT}
+            local platform3 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_DOUBLE}
+
+            assert.are.equal(c.PLATFORM_SINGLE_WIDTH, platform1:get_width())
+            assert.are.equal(c.PLATFORM_SINGLE_WIDTH, platform2:get_width())
+            assert.are.equal(c.PLATFORM_DOUBLE_WIDTH, platform3:get_width())
+        end)
+    end)
+
+    describe('get_distance_to_neighbor', function ()
+        it('gets distance between single platform and single track', function ()
+            local track = Track:new{id = 1, x_pos = 12, type = t.TRACK_DOWN_CARGO_DOORS_RIGHT}
+            local track2 = Track:new{id = 1, x_pos = 12, type = t.TRACK_UP_DOORS_RIGHT}
+            local platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
+            local platform2 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_RIGHT}
+
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2, platform:get_distance_to_neighbor(track))
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2, platform:get_distance_to_neighbor(track2))
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2, platform2:get_distance_to_neighbor(track))
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2, platform2:get_distance_to_neighbor(track2))
+        end)
+
+        it('gets distance between double platform and single track', function ()
+            local track = Track:new{id = 1, x_pos = 12, type = t.TRACK_DOWN_CARGO_DOORS_RIGHT}
+            local track2 = Track:new{id = 1, x_pos = 12, type = t.TRACK_UP_DOORS_RIGHT}
+            local platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_DOUBLE}
+
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, platform:get_distance_to_neighbor(track))
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, platform:get_distance_to_neighbor(track2))
+        end)
+
+        it('gets distance between double platform and double track', function ()
+            local track = Track:new{id = 1, x_pos = 12, type = t.TRACK_DOUBLE_DOORS_RIGHT}
+            local platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_DOUBLE}
+
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TWO_TRACKS / 2, platform:get_distance_to_neighbor(track))
+        end)
+
+        it('gets distance between single platform and double track', function ()
+            local track = Track:new{id = 1, x_pos = 12, type = t.TRACK_DOUBLE_DOORS_RIGHT}
+            local platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
+            local platform2 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_RIGHT}
+
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TWO_TRACKS / 2, platform:get_distance_to_neighbor(track))
+            assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TWO_TRACKS / 2, platform2:get_distance_to_neighbor(track))
         end)
     end)
 end)

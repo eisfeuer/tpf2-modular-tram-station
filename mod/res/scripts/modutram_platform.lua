@@ -1,4 +1,6 @@
 local Segment = require('modutram_segment')
+local t = require('modutram_types')
+local c = require('modutram_constants')
 
 local Platform = {}
 
@@ -61,6 +63,24 @@ end
 
 function Platform:is_track()
     return false
+end
+
+function Platform:is_double_platform()
+    return self.type == t.PLATFORM_DOUBLE
+end
+
+function Platform:get_width()
+    if self:is_double_platform() then
+        return c.PLATFORM_DOUBLE_WIDTH
+    end
+    return c.PLATFORM_SINGLE_WIDTH
+end
+
+function Platform:get_distance_to_neighbor(track)
+    if not track:is_track() then
+        error('platform neighbor must be a track')
+    end
+    return self:get_width() / 2 + track:get_distance_from_center_to_platform_edge()
 end
 
 return Platform

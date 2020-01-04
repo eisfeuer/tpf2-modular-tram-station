@@ -3,6 +3,9 @@ local Module = require('modutram_module')
 local c = require('modutram_constants')
 local t = require('modutram_types')
 local Position = require('modutram_position')
+local SlotCollection = require('modutram_slot_collection')
+local Platform = require('modutram_platform')
+local Track = require('modutram_Track')
 
 describe('SlotBuilder', function ()
     describe('platform_double', function ()
@@ -116,6 +119,252 @@ describe('SlotBuilder', function ()
                 Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT}),
                 Position:new{}:as_matrix()
             ))
+        end)
+    end)
+
+    describe('platform by type', function ()
+        it('creates platform by type', function ()
+            local expected =
+            assert.are.same(SlotBuilder.platform_double(
+                Module.make_id({type = t.PLATFORM_DOUBLE}),
+                Position:new{}:as_matrix()
+            ), SlotBuilder.platform_by_type(
+                t.PLATFORM_DOUBLE,
+                Module.make_id({type = t.PLATFORM_DOUBLE}),
+                Position:new{}:as_matrix()
+            ))
+
+            assert.are.same(SlotBuilder.platform_single_left(
+                Module.make_id({type = t.PLATFORM_LEFT}),
+                Position:new{}:as_matrix()
+            ), SlotBuilder.platform_by_type(
+                t.PLATFORM_LEFT,
+                Module.make_id({type = t.PLATFORM_LEFT}),
+                Position:new{}:as_matrix()
+            ))
+
+            assert.are.same(SlotBuilder.platform_single_right(
+                Module.make_id({type = t.PLATFORM_RIGHT}),
+                Position:new{}:as_matrix()
+            ), SlotBuilder.platform_by_type(
+                t.PLATFORM_RIGHT,
+                Module.make_id({type = t.PLATFORM_RIGHT}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+    end)
+
+    describe('add_neighbor_slots_to_collection', function ()
+        it('creates slots for all possible left neighbors of a double platform an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Platform:new{type = t.PLATFORM_DOUBLE, id = -1, x_pos = -20},
+                c.LEFT
+            )
+            assert.are.same({
+                SlotBuilder.track_double_doors_right(
+                    Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+                SlotBuilder.track_up_doors_right(
+                    Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_UP_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible right neighbors of a double platform an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Platform:new{type = t.PLATFORM_DOUBLE, id = 1, x_pos = 20},
+                c.RIGHT
+            )
+            assert.are.same({
+                SlotBuilder.track_double_doors_right(
+                    Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+                SlotBuilder.track_down_doors_right(
+                    Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOWN_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible left neighbors of a single left platform an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Platform:new{type = t.PLATFORM_LEFT, id = -1, x_pos = -20},
+                c.LEFT
+            )
+            assert.are.same({
+                SlotBuilder.track_double_doors_right(
+                    Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_LEFT})}:as_matrix()
+                ),
+                SlotBuilder.track_up_doors_right(
+                    Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_UP_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_LEFT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible right neighbors of a single left platform an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Platform:new{type = t.PLATFORM_LEFT, id = 1, x_pos = 20},
+                c.RIGHT
+            )
+            assert.are.same({
+                SlotBuilder.track_up_doors_right(
+                    Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_UP_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_LEFT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible left neighbors of a single right platform an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Platform:new{type = t.PLATFORM_RIGHT, id = -1, x_pos = -20},
+                c.LEFT
+            )
+            assert.are.same({
+                SlotBuilder.track_down_doors_right(
+                    Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOWN_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_RIGHT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible right neighbors of a single right platform an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Platform:new{type = t.PLATFORM_RIGHT, id = 1, x_pos = 20},
+                c.RIGHT
+            )
+            assert.are.same({
+                SlotBuilder.track_double_doors_right(
+                    Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_RIGHT})}:as_matrix()
+                ),
+                SlotBuilder.track_down_doors_right(
+                    Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOWN_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_RIGHT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible left neighbors of a double track an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT, id = -1, x_pos = -20},
+                c.LEFT
+            )
+            assert.are.same({
+                SlotBuilder.platform_double(
+                    Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+                SlotBuilder.platform_single_right(
+                    Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_RIGHT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible right neighbors of a double track an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT, id = 1, x_pos = 20},
+                c.RIGHT
+            )
+            assert.are.same({
+                SlotBuilder.platform_double(
+                    Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+                SlotBuilder.platform_single_left(
+                    Module.make_id({type = t.PLATFORM_LEFT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOUBLE_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_LEFT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible left neighbors of a up track an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Track:new{type = t.TRACK_UP_DOORS_RIGHT, id = -1, x_pos = -20},
+                c.LEFT
+            )
+            assert.are.same({
+                SlotBuilder.platform_single_left(
+                    Module.make_id({type = t.PLATFORM_LEFT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_UP_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_LEFT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible right neighbors of a up track an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Track:new{type = t.TRACK_UP_DOORS_RIGHT, id = 1, x_pos = 20},
+                c.RIGHT
+            )
+            assert.are.same({
+                SlotBuilder.platform_double(
+                    Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_UP_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+                SlotBuilder.platform_single_left(
+                    Module.make_id({type = t.PLATFORM_LEFT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_UP_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_LEFT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible left neighbors of a down track an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Track:new{type = t.TRACK_DOWN_DOORS_RIGHT, id = -1, x_pos = -20},
+                c.LEFT
+            )
+            assert.are.same({
+                SlotBuilder.platform_double(
+                    Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOWN_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_DOUBLE})}:as_matrix()
+                ),
+                SlotBuilder.platform_single_right(
+                    Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -2}),
+                    Position:new{x = -20 - Track:new{type = t.TRACK_DOWN_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_RIGHT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
+        end)
+
+        it('creates slots for all possible right neighbors of a down track an adds it to slot collection', function ()
+            local slotCollection = SlotCollection:new{}
+            SlotBuilder.add_neighbor_slots_to_collection(
+                slotCollection,
+                Track:new{type = t.TRACK_DOWN_DOORS_RIGHT, id = 1, x_pos = 20},
+                c.RIGHT
+            )
+            assert.are.same({
+                SlotBuilder.platform_single_right(
+                    Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 2}),
+                    Position:new{x = 20 + Track:new{type = t.TRACK_DOWN_DOORS_RIGHT}:get_distance_to_neighbor(Platform:new{type = t.PLATFORM_RIGHT})}:as_matrix()
+                ),
+            }, slotCollection.slots)
         end)
     end)
 end)

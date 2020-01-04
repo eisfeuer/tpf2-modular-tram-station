@@ -1,6 +1,7 @@
 local ColumnCollection = require('modutram_column_collection')
 local Module = require('modutram_module')
 local t = require('modutram_types')
+local c = require('modutram_constants')
 
 describe('ColumnCollection', function ()
     describe('new', function ()
@@ -22,6 +23,42 @@ describe('ColumnCollection', function ()
             )
 
             assert.are.equal(0, collection:get_column(0):find_segment(0).id)
+        end)
+
+        it('creates a new platform and calculates position', function ()
+            local collection = ColumnCollection:new{}
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_UP_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 1,
+                    grid_y = 0
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_LEFT,
+                    grid_x = -1,
+                    grid_y = 0
+                })}
+            )
+
+            collection:calculate_x_positions()
+
+            assert.are.equal(-1, collection:get_column(-1).id)
+            assert.are.equal(-c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, collection:get_column(-1).x_pos)
+
+            assert.are.equal(0, collection:get_column(0).id)
+            assert.are.equal(0, collection:get_column(0).x_pos)
+
+            assert.are.equal(1, collection:get_column(1).id)
+            assert.are.equal(c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, collection:get_column(1).x_pos)
         end)
 
         it('adds segment to platform', function ()
@@ -56,6 +93,44 @@ describe('ColumnCollection', function ()
             )
 
             assert.are.equal(0, collection:get_column(0).id)
+        end)
+
+        it ('creates a new track and calculates x position', function ()
+            local collection = ColumnCollection:new{}
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = 1,
+                    grid_y = 0
+                })}
+            )
+
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_UP_DOORS_RIGHT,
+                    grid_x = -1,
+                    grid_y = 0
+                })}
+            )
+
+            collection:calculate_x_positions()
+
+            assert.are.equal(-1, collection:get_column(-1).id)
+            assert.are.equal(-c.PLATFORM_DOUBLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, collection:get_column(-1).x_pos)
+
+            assert.are.equal(0, collection:get_column(0).id)
+            assert.are.equal(0, collection:get_column(0).x_pos)
+
+            assert.are.equal(1, collection:get_column(1).id)
+            assert.are.equal(c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS / 2, collection:get_column(1).x_pos)
         end)
     end)
 

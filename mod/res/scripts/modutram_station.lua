@@ -18,6 +18,8 @@ function Station:new (o, module_ids)
     for module_id, module_name in pairs(module_ids) do
         o.columns:add(Module:new{id = module_id})
     end
+    o.columns:calculate_x_positions()
+    o.slots:import_from_column_collection(o.columns)
     setmetatable(o, self)
     self.__index = self
     return o

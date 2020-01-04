@@ -3,69 +3,15 @@ local Module = require('modutram_module')
 local c = require('modutram_constants')
 local t = require('modutram_types')
 local Position = require('modutram_position')
+local SlotBuilder = require('modutram_slot_builder')
 
 local default_slots = {
-    {
-        id = Module.make_id({type = t.PLATFORM_DOUBLE}),
-        transf = Position:new{}:as_matrix(),
-        type = "eisfeuer_modutram_platform_double",
-        spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_DOUBLE_WIDTH / 2,
-            c.PLATFORM_DOUBLE_WIDTH / 2,
-        }
-    }, {
-        id = Module.make_id({type = t.PLATFORM_LEFT}),
-        transf = Position:new{}:as_matrix(),
-        type = "eisfeuer_modutram_platform_single_left",
-        spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SINGLE_WIDTH,
-            c.PLATFORM_SINGLE_WIDTH,
-        }
-    }, {
-        id = Module.make_id({type = t.PLATFORM_RIGHT}),
-        transf = Position:new{}:as_matrix(),
-        type = "eisfeuer_modutram_platform_single_right",
-        spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SINGLE_WIDTH,
-            c.PLATFORM_SINGLE_WIDTH,
-        }
-    }, {
-        id = Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT}),
-        transf = Position:new{}:as_matrix(),
-        type = "eisfeuer_modutram_track_double_doors_right",
-        spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
-        }
-    }, {
-        id = Module.make_id({type = t.TRACK_UP_DOORS_RIGHT}),
-        transf = Position:new{}:as_matrix(),
-        type = "eisfeuer_modutram_track_up_doors_right",
-        spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-        }
-    }, {
-        id = Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT}),
-        transf = Position:new{}:as_matrix(),
-        type = "eisfeuer_modutram_track_down_doors_right",
-        spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-        }
-    }
+    SlotBuilder.platform_double(Module.make_id({type = t.PLATFORM_DOUBLE}), Position:new{}:as_matrix()),
+    SlotBuilder.platform_single_left(Module.make_id({type = t.PLATFORM_LEFT}), Position:new{}:as_matrix()),
+    SlotBuilder.platform_single_right(Module.make_id({type = t.PLATFORM_RIGHT}), Position:new{}:as_matrix()),
+    SlotBuilder.track_double_doors_right(Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT}), Position:new{}:as_matrix()),
+    SlotBuilder.track_up_doors_right(Module.make_id({type = t.TRACK_UP_DOORS_RIGHT}), Position:new{}:as_matrix()),
+    SlotBuilder.track_down_doors_right(Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT}), Position:new{}:as_matrix())
 }
 
 function SlotCollection:new (o)
@@ -74,6 +20,66 @@ function SlotCollection:new (o)
     setmetatable(o, self)
     self.__index = self
     return o
+end
+
+function SlotCollection:import_platform(platform, position)
+    local max, min = platform:slot_range()
+    for i = min, max do
+        table.insert(self.slots, SlotBuilder.platform_by_type(
+            platform.type,
+            Module.make_id({type = platform.type, grid_x = platform.id, grid_y = i}),
+            Position:new{x = position, y = i * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+        ))
+    end
+end
+
+function SlotCollection:import_track(track, position)
+    if track.type == t.TRACK_DOWN_DOORS_RIGHT then
+        table.insert(self.slots, SlotBuilder.track_down_doors_right(
+            Module.make_id({type = track.type, grid_x = track.id, grid_y = 0}),
+            Position:new{x = position, y = 0}:as_matrix()
+        ))
+    elseif track.type == t.TRACK_UP_DOORS_RIGHT then
+        table.insert(self.slots, SlotBuilder.track_up_doors_right(
+            Module.make_id({type = track.type, grid_x = track.id, grid_y = 0}),
+            Position:new{x = position, y = 0}:as_matrix()
+        ))
+    elseif track.type == t.TRACK_DOUBLE_DOORS_RIGHT then
+        table.insert(self.slots, SlotBuilder.track_double_doors_right(
+            Module.make_id({type = track.type, grid_x = track.id, grid_y = 0}),
+            Position:new{x = position, y = 0}:as_matrix()
+        ))
+    end
+end
+
+local function import_half_from_column_collection(self, column_collection, direction)
+    local current_column = column_collection:get_column(0)
+
+    local index = direction
+    while column_collection:get_column(index) do
+        current_column = column_collection:get_column(index)
+        if current_column:is_platform() then
+            self:import_platform(current_column, current_column.x_pos)
+        elseif current_column:is_track() then
+            self:import_track(current_column, current_column.x_pos)
+        end
+        index = index + direction
+    end
+
+    SlotBuilder.add_neighbor_slots_to_collection(self, current_column, direction)
+end
+
+function SlotCollection:import_from_column_collection(column_collection)
+    local current_column = column_collection:get_column(0)
+    if column_collection:get_column(0) then
+        if current_column:is_platform() then
+            self:import_platform(current_column, current_column.x_pos)
+        elseif current_column:is_track() then
+            self:import_track(current_column, current_column.x_pos)
+        end
+        import_half_from_column_collection(self, column_collection, c.LEFT)
+        import_half_from_column_collection(self, column_collection, c.RIGHT)
+    end
 end
 
 function SlotCollection:is_empty()

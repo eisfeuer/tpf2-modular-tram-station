@@ -1,6 +1,7 @@
 local Station = require('modutram_station')
 local t = require('modutram_types')
 local Module = require('modutram_module')
+local c = require('modutram_constants')
 
 describe('station', function ()
     describe('new', function ()
@@ -34,6 +35,66 @@ describe('station', function ()
 
             local station = Station:new({}, modules)
             assert.are.equal(0, station:get_column(0).id)
+        end)
+
+        it('creates station with a platform a two tracks', function ()
+            local modules = {
+                [Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 0
+                })] = 'a_module',
+                [Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = -1,
+                    grid_y = 0
+                })] = 'a_module',
+                [Module.make_id({
+                    type = t.TRACK_DOWN_DOORS_RIGHT,
+                    grid_x = 1,
+                    grid_y = 0
+                })] = 'a_module'
+            }
+
+            local station = Station:new({}, modules)
+
+            assert.are.equal(-1, station:get_column(-1).id)
+            assert.are.equal(0, station:get_column(0).id)
+            assert.are.equal(1, station:get_column(1).id)
+
+            assert.are.equal(-c.PLATFORM_DOUBLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, station:get_column(-1).x_pos)
+            assert.are.equal(0, station:get_column(0).x_pos)
+            assert.are.equal(c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, station:get_column(1).x_pos)
+        end)
+
+        it('creates station with a track and two platforms', function ()
+            local modules = {
+                [Module.make_id({
+                    type = t.TRACK_UP_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })] = 'a_module',
+                [Module.make_id({
+                    type = t.PLATFORM_LEFT,
+                    grid_x = -1,
+                    grid_y = 0
+                })] = 'a_module',
+                [Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 1,
+                    grid_y = 0
+                })] = 'a_module'
+            }
+
+            local station = Station:new({}, modules)
+
+            assert.are.equal(-1, station:get_column(-1).id)
+            assert.are.equal(0, station:get_column(0).id)
+            assert.are.equal(1, station:get_column(1).id)
+
+            assert.are.equal(-c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, station:get_column(-1).x_pos)
+            assert.are.equal(0, station:get_column(0).x_pos)
+            assert.are.equal(c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, station:get_column(1).x_pos)
         end)
     end)
 

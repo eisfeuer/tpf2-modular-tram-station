@@ -64,6 +64,18 @@ local function add_to_column(column, segment)
     end
 end
 
+local function calc_x_positions(self, direction)
+    local position = 0
+
+    local i = direction
+    while self:get_column(i) do
+        local distance = self:get_column(i):get_distance_to_neighbor(self:get_column(i - direction))
+        position = position + distance * direction
+        self:get_column(i).x_pos = position
+        i = i + direction
+    end
+end
+
 function ColumnCollection:new(o)
     o = o or {}
     o.columns = o.columns or {}
@@ -89,6 +101,14 @@ end
 
 function ColumnCollection:is_empty()
     return self:get_column(0) == nil
+end
+
+function ColumnCollection:calculate_x_positions()
+    if self:get_column(0) then
+        self:get_column(0).x_pos = 0
+        calc_x_positions(self, 1)
+        calc_x_positions(self, -1)
+    end
 end
 
 return ColumnCollection
