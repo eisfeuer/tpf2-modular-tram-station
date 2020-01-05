@@ -1,6 +1,7 @@
 local Platform = require('modutram_platform')
 local Track = require('modutram_track')
 local t = require('modutram_types')
+local c = require('modutram_constants')
 
 local ColumnCollection = {}
 
@@ -106,8 +107,56 @@ end
 function ColumnCollection:calculate_x_positions()
     if self:get_column(0) then
         self:get_column(0).x_pos = 0
-        calc_x_positions(self, 1)
-        calc_x_positions(self, -1)
+        calc_x_positions(self, c.RIGHT)
+        calc_x_positions(self, c.LEFT)
+    end
+end
+
+local function calc_track_segment_range_for_track(track, left_neighbor_platform, right_neighbor_platform)
+    if track:is_track() then
+        local top_left = 0
+        local top_right = 0
+        local btm_left = 0
+        local btm_right = 0
+        if left_neighbor_platform and left_neighbor_platform:is_platform() then
+            top_left = left_neighbor_platform.top_segment_id
+            btm_left = left_neighbor_platform.btm_segment_id
+        end
+        if right_neighbor_platform and right_neighbor_platform:is_platform() then
+            top_right = right_neighbor_platform.top_segment_id
+            btm_right = right_neighbor_platform.btm_segment_id
+        end
+        track.top_segment_id = math.max(top_left, top_right)
+        track.btm_segment_id = math.min(btm_left, btm_right)
+    end
+end
+
+function ColumnCollection:calculate_track_segment_range()
+    if self:get_column(0) then
+        local i = -2
+        local current_column = self:get_column(0)
+        local left_neighbor = self:get_column(-1)
+        local right_neighbor = self:get_column(1)
+        repeat
+            calc_track_segment_range_for_track(current_column, left_neighbor, right_neighbor)
+            right_neighbor = current_column
+            current_column = left_neighbor
+            left_neighbor = self:get_column(i)
+            i = i - 1
+        until current_column == nil
+
+        i = 3
+        current_column = self:get_column(1)
+        left_neighbor = self:get_column(0)
+        right_neighbor = self:get_column(2)
+
+        while current_column do
+            calc_track_segment_range_for_track(current_column, left_neighbor, right_neighbor)
+            left_neighbor = current_column
+            current_column = right_neighbor
+            right_neighbor = self:get_column(i)
+            i = i + 1
+        end
     end
 end
 

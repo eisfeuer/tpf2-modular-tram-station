@@ -19,6 +19,7 @@ function Station:new (o, module_ids)
         o.columns:add(Module:new{id = module_id})
     end
     o.columns:calculate_x_positions()
+    o.columns:calculate_track_segment_range()
     o.slots:import_from_column_collection(o.columns)
     setmetatable(o, self)
     self.__index = self

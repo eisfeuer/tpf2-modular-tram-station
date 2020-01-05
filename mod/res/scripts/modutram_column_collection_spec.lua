@@ -134,6 +134,97 @@ describe('ColumnCollection', function ()
         end)
     end)
 
+    describe('calculate_track_segment_range', function ()
+        local collection = ColumnCollection:new{}
+        it('it has one segment when track has no neighbors', function ()
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_DOWN_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+
+            collection:calculate_track_segment_range()
+
+            assert.are.equal(0, collection:get_column(0).top_segment_id)
+            assert.are.equal(0, collection:get_column(0).btm_segment_id)
+        end)
+
+        it('it has segment range of neightbor platform when track has only one neightbor platform', function ()
+            local collection = ColumnCollection:new{}
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 1
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_DOWN_DOORS_RIGHT,
+                    grid_x = 1,
+                    grid_y = 0
+                })}
+            )
+
+            collection:calculate_track_segment_range()
+
+            assert.are.equal(1, collection:get_column(1).top_segment_id)
+            assert.are.equal(0, collection:get_column(1).btm_segment_id)
+        end)
+
+        it('it has segment range of maximum top and bottom of both neighbors', function ()
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 1
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = -1,
+                    grid_y = 0
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = -2,
+                    grid_y = 0
+                })}
+            )
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = -2,
+                    grid_y = -1
+                })}
+            )
+
+            collection:calculate_track_segment_range()
+
+            assert.are.equal(0, collection:get_column(-1).top_segment_id)
+            assert.are.equal(-1, collection:get_column(-1).btm_segment_id)
+        end)
+    end)
+
     describe('is_empty', function ()
         local collection = ColumnCollection:new{}
         assert.is_true(collection:is_empty())

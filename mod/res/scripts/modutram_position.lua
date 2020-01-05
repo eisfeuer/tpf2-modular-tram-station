@@ -20,4 +20,13 @@ function Position:as_matrix()
     }
 end
 
+function Position:add_to_matrix(matrix)
+    return {
+        matrix[1], matrix[2], matrix[3], matrix[4],
+        matrix[5], matrix[6], matrix[7], matrix[8],
+        matrix[9], matrix[10], matrix[11], matrix[12],
+        matrix[13] + self.x, matrix[14] + self.y, matrix[15] + self.z, matrix[16]
+    }
+end
+
 return Position

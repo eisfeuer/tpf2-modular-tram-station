@@ -21,4 +21,31 @@ describe('Position', function ()
             }, pos:as_matrix())
         end)
     end)
+
+    describe('add_to_matrix', function ()
+        it('adds position to given matrix', function ()
+            local pos = Position:new{x = 1, y = 2, z = -2}
+            local origin_matrix = {
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                1, 2, 3, 1
+            }
+
+            local result_matrix = pos:add_to_matrix(origin_matrix)
+
+            assert.are.same({
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                1, 2, 3, 1
+            }, origin_matrix)
+            assert.are.same({
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                2, 4, 1, 1
+            }, result_matrix)
+        end)
+    end)
 end)
