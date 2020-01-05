@@ -25,12 +25,7 @@ function data()
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             result.station.builder:add_model({
                 id = 'modutram_track_single_rep_era_c.mdl',
-                transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, 0, 1,
-                }
+                transf = transform
             })
         end,
         getModelsFn = function()

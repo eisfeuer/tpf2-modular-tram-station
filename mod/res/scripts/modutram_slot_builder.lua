@@ -23,10 +23,10 @@ function SlotBuilder.platform_double(id, transf)
         transf = transf,
         type = "eisfeuer_modutram_platform_double",
         spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
             c.PLATFORM_DOUBLE_WIDTH / 2,
             c.PLATFORM_DOUBLE_WIDTH / 2,
+            c.PLATFORM_SEGMENT_LENGTH / 2,
+            c.PLATFORM_SEGMENT_LENGTH / 2,
         }
     }
 end
@@ -37,10 +37,10 @@ function SlotBuilder.platform_single_left(id, transf)
         transf = transf,
         type = "eisfeuer_modutram_platform_single_left",
         spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SINGLE_WIDTH,
-            c.PLATFORM_SINGLE_WIDTH,
+            c.PLATFORM_SINGLE_WIDTH / 2,
+            c.PLATFORM_SINGLE_WIDTH / 2,
+            c.PLATFORM_SEGMENT_LENGTH / 2,
+            c.PLATFORM_SEGMENT_LENGTH / 2,
         }
     }
 end
@@ -51,10 +51,10 @@ function SlotBuilder.platform_single_right(id, transf)
         transf = transf,
         type = "eisfeuer_modutram_platform_single_right",
         spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SINGLE_WIDTH,
-            c.PLATFORM_SINGLE_WIDTH,
+            c.PLATFORM_SINGLE_WIDTH / 2,
+            c.PLATFORM_SINGLE_WIDTH / 2,
+            c.PLATFORM_SEGMENT_LENGTH / 2,
+            c.PLATFORM_SEGMENT_LENGTH / 2,
         }
     }
 end
@@ -65,10 +65,10 @@ function SlotBuilder.track_double_doors_right(id, transf)
         transf = transf,
         type = "eisfeuer_modutram_track_double_doors_right",
         spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
+            (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
+            (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
+            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
+            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
         }
     }
 end
@@ -79,10 +79,10 @@ function SlotBuilder.track_up_doors_right(id, transf)
         transf = transf,
         type = "eisfeuer_modutram_track_up_doors_right",
         spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
+            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
         }
     }
 end
@@ -93,10 +93,10 @@ function SlotBuilder.track_down_doors_right(id, transf)
         transf = transf,
         type = "eisfeuer_modutram_track_down_doors_right",
         spacing = {
-            c.PLATFORM_SEGMENT_LENGTH,
-            c.PLATFORM_SEGMENT_LENGTH,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-            2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
+            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
         }
     }
 end

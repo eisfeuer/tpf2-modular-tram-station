@@ -601,7 +601,7 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 4, grid_y = 0}),
                     Position:new{x = c.PLATFORM_SINGLE_WIDTH + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 4 + c.PLATFORM_DOUBLE_WIDTH}:as_matrix()
-                ),
+                )
             }, slotCollection:get_slots())
         end)
     end)
@@ -625,67 +625,12 @@ describe('SlotCollection', function ()
         it('generates all track and platform slots on center when slots are empty', function ()
             local collection = SlotCollection:new{}
             assert.are.same({
-                {
-                    id = Module.make_id({type = t.PLATFORM_DOUBLE}),
-                    transf = Position:new{}:as_matrix(),
-                    type = "eisfeuer_modutram_platform_double",
-                    spacing = {
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_DOUBLE_WIDTH / 2,
-                        c.PLATFORM_DOUBLE_WIDTH / 2,
-                    }
-                }, {
-                    id = Module.make_id({type = t.PLATFORM_LEFT}),
-                    transf = Position:new{}:as_matrix(),
-                    type = "eisfeuer_modutram_platform_single_left",
-                    spacing = {
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SINGLE_WIDTH,
-                        c.PLATFORM_SINGLE_WIDTH,
-                    }
-                }, {
-                    id = Module.make_id({type = t.PLATFORM_RIGHT}),
-                    transf = Position:new{}:as_matrix(),
-                    type = "eisfeuer_modutram_platform_single_right",
-                    spacing = {
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SINGLE_WIDTH,
-                        c.PLATFORM_SINGLE_WIDTH,
-                    }
-                }, {
-                    id = Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT}),
-                    transf = Position:new{}:as_matrix(),
-                    type = "eisfeuer_modutram_track_double_doors_right",
-                    spacing = {
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
-                        2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS,
-                    }
-                }, {
-                    id = Module.make_id({type = t.TRACK_UP_DOORS_RIGHT}),
-                    transf = Position:new{}:as_matrix(),
-                    type = "eisfeuer_modutram_track_up_doors_right",
-                    spacing = {
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-                        2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-                    }
-                }, {
-                    id = Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT}),
-                    transf = Position:new{}:as_matrix(),
-                    type = "eisfeuer_modutram_track_down_doors_right",
-                    spacing = {
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        c.PLATFORM_SEGMENT_LENGTH,
-                        2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-                        2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM,
-                    }
-                }
+                SlotBuilder.platform_double(Module.make_id({type = t.PLATFORM_DOUBLE}), Position:new{}:as_matrix()),
+                SlotBuilder.platform_single_left(Module.make_id({type = t.PLATFORM_LEFT}), Position:new{}:as_matrix()),
+                SlotBuilder.platform_single_right(Module.make_id({type = t.PLATFORM_RIGHT}), Position:new{}:as_matrix()),
+                SlotBuilder.track_double_doors_right(Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT}), Position:new{}:as_matrix()),
+                SlotBuilder.track_up_doors_right(Module.make_id({type = t.TRACK_UP_DOORS_RIGHT}), Position:new{}:as_matrix()),
+                SlotBuilder.track_down_doors_right(Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT}), Position:new{}:as_matrix()),
             }, collection:get_slots())
         end)
     end)
