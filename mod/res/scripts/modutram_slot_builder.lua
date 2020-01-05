@@ -101,6 +101,48 @@ function SlotBuilder.track_down_doors_right(id, transf)
     }
 end
 
+function SlotBuilder.street_connection_in(id, transf)
+    return {
+        id = id,
+        transf = transf,
+        type = "eisfeuer_modutram_street_connection_in",
+        spacing = {
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            0,
+            c.PLATFORM_SEGMENT_LENGTH,
+        }
+    }
+end
+
+function SlotBuilder.street_connection_out(id, transf)
+    return {
+        id = id,
+        transf = transf,
+        type = "eisfeuer_modutram_street_connection_out",
+        spacing = {
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+            0,
+            c.PLATFORM_SEGMENT_LENGTH,
+        }
+    }
+end
+
+function SlotBuilder.street_connection_double(id, transf)
+    return {
+        id = id,
+        transf = transf,
+        type = "eisfeuer_modutram_street_connection_double",
+        spacing = {
+            (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
+            (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
+            0,
+            c.PLATFORM_SEGMENT_LENGTH,
+        }
+    }
+end
+
 local function get_neighbor_slot_id(type, column, direction)
     return Module.make_id({type = type, grid_x = column.id + direction, grid_y = 0})
 end

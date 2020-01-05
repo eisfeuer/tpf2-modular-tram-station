@@ -35,19 +35,43 @@ end
 
 function SlotCollection:import_track(track, position)
     if track.type == t.TRACK_DOWN_DOORS_RIGHT then
+        table.insert(self.slots, SlotBuilder.street_connection_out(
+            Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = track.id, grid_y = -1}),
+            Position:new{x = position, y = (track.btm_segment_id - 0.5) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+        ))
         table.insert(self.slots, SlotBuilder.track_down_doors_right(
             Module.make_id({type = track.type, grid_x = track.id, grid_y = 0}),
             Position:new{x = position, y = 0}:as_matrix()
         ))
+        table.insert(self.slots, SlotBuilder.street_connection_in(
+            Module.make_id({type = t.STREET_CONNECTION_IN, grid_x = track.id, grid_y = 1}),
+            Position:new{x = position, y = (track.top_segment_id + 0.5) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+        ))
     elseif track.type == t.TRACK_UP_DOORS_RIGHT then
+        table.insert(self.slots, SlotBuilder.street_connection_in(
+            Module.make_id({type = t.STREET_CONNECTION_IN, grid_x = track.id, grid_y = -1}),
+            Position:new{x = position, y = (track.btm_segment_id - 0.5) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+        ))
         table.insert(self.slots, SlotBuilder.track_up_doors_right(
             Module.make_id({type = track.type, grid_x = track.id, grid_y = 0}),
             Position:new{x = position, y = 0}:as_matrix()
         ))
+        table.insert(self.slots, SlotBuilder.street_connection_out(
+            Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = track.id, grid_y = 1}),
+            Position:new{x = position, y = (track.top_segment_id + 0.5) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+        ))
     elseif track.type == t.TRACK_DOUBLE_DOORS_RIGHT then
+        table.insert(self.slots, SlotBuilder.street_connection_double(
+            Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = track.id, grid_y = -1}),
+            Position:new{x = position, y = (track.btm_segment_id - 0.5) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+        ))
         table.insert(self.slots, SlotBuilder.track_double_doors_right(
             Module.make_id({type = track.type, grid_x = track.id, grid_y = 0}),
             Position:new{x = position, y = 0}:as_matrix()
+        ))
+        table.insert(self.slots, SlotBuilder.street_connection_double(
+            Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = track.id, grid_y = 1}),
+            Position:new{x = position, y = (track.top_segment_id + 0.5) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
         ))
     end
 end

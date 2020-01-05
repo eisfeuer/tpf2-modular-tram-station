@@ -122,6 +122,63 @@ describe('SlotBuilder', function ()
         end)
     end)
 
+    describe('street_connection_in', function ()
+        it('creates slot', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.STREET_CONNECTION_IN}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_street_connection_in",
+                spacing = {
+                    c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+                    c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+                    0,
+                    c.PLATFORM_SEGMENT_LENGTH,
+                }
+            }, SlotBuilder.street_connection_in(
+                Module.make_id({type = t.STREET_CONNECTION_IN}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+    end)
+
+    describe('street_connection_out', function ()
+        it('creates slot', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.STREET_CONNECTION_OUT}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_street_connection_out",
+                spacing = {
+                    c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+                    c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
+                    0,
+                    c.PLATFORM_SEGMENT_LENGTH,
+                }
+            }, SlotBuilder.street_connection_out(
+                Module.make_id({type = t.STREET_CONNECTION_OUT}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+    end)
+
+    describe('street_connection_double', function ()
+        it('creates slot', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.STREET_CONNECTION_DOUBLE}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_street_connection_double",
+                spacing = {
+                    (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
+                    (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
+                    0,
+                    c.PLATFORM_SEGMENT_LENGTH,
+                }
+            }, SlotBuilder.street_connection_double(
+                Module.make_id({type = t.STREET_CONNECTION_DOUBLE}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+    end)
+
     describe('platform by type', function ()
         it('creates platform by type', function ()
             local expected =
