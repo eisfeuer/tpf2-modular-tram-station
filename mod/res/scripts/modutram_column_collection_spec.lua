@@ -95,6 +95,20 @@ describe('ColumnCollection', function ()
             assert.are.equal(0, collection:get_column(0).id)
         end)
 
+        it ('ignores other types', function ()
+            local collection = ColumnCollection:new{}
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.STREET_CONNECTION_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 0
+                })}
+            )
+
+            assert.are.equal(nil, collection:get_column(0))
+            assert.is_true(collection:is_empty())
+        end)
+
         it ('creates a new track and calculates x position', function ()
             local collection = ColumnCollection:new{}
             collection:add(

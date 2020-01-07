@@ -131,8 +131,8 @@ describe('SlotBuilder', function ()
                 spacing = {
                     c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
                     c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
-                    0,
-                    c.PLATFORM_SEGMENT_LENGTH,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                    1,
                 }
             }, SlotBuilder.street_connection_in(
                 Module.make_id({type = t.STREET_CONNECTION_IN}),
@@ -150,8 +150,8 @@ describe('SlotBuilder', function ()
                 spacing = {
                     c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
                     c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
-                    0,
-                    c.PLATFORM_SEGMENT_LENGTH,
+                    1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
                 }
             }, SlotBuilder.street_connection_out(
                 Module.make_id({type = t.STREET_CONNECTION_OUT}),
@@ -169,8 +169,8 @@ describe('SlotBuilder', function ()
                 spacing = {
                     (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
                     (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
-                    0,
-                    c.PLATFORM_SEGMENT_LENGTH,
+                    1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
                 }
             }, SlotBuilder.street_connection_double(
                 Module.make_id({type = t.STREET_CONNECTION_DOUBLE}),

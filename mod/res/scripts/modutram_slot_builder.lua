@@ -109,8 +109,8 @@ function SlotBuilder.street_connection_in(id, transf)
         spacing = {
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
-            0,
-            c.PLATFORM_SEGMENT_LENGTH,
+            c.PLATFORM_SEGMENT_LENGTH - 1,
+            1,
         }
     }
 end
@@ -123,8 +123,8 @@ function SlotBuilder.street_connection_out(id, transf)
         spacing = {
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
-            0,
-            c.PLATFORM_SEGMENT_LENGTH,
+            1,
+            c.PLATFORM_SEGMENT_LENGTH - 1,
         }
     }
 end
@@ -137,8 +137,8 @@ function SlotBuilder.street_connection_double(id, transf)
         spacing = {
             (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
             (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
-            0,
-            c.PLATFORM_SEGMENT_LENGTH,
+            1,
+            c.PLATFORM_SEGMENT_LENGTH - 1,
         }
     }
 end

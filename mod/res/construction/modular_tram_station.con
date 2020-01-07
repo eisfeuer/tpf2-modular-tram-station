@@ -19,6 +19,7 @@ function data()
 
             result.models = station:get_models()
             result.slots = station:get_slots()
+            result.edgeLists = {}
 
             result.terrainAlignmentLists = { {
                 type = "EQUAL",

@@ -8,6 +8,13 @@ local Platform = require('modutram_platform')
 
 local SlotCollection = require('modutram_slot_collection')
 
+local FLIPPED_IDENTITY_MATRIX = {
+    -1, 0, 0, 0,
+    0, -1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1,
+}
+
 describe('SlotCollection', function ()
     local identity_matrix = {
         1, 0, 0, 0,
@@ -372,7 +379,7 @@ describe('SlotCollection', function ()
             assert.are.same({
                 SlotBuilder.street_connection_in(
                     Module.make_id({type = t.STREET_CONNECTION_IN, grid_x = 0, grid_y = -1}),
-                    Position:new{x = 0, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = 0, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5 - 1}:as_matrix()
                 ),
                 SlotBuilder.track_up_doors_right(
                     Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0}),
@@ -380,7 +387,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_out(
                     Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = 0, grid_y = 1}),
-                    Position:new{x = 0, y = c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = 0, y = c.PLATFORM_SEGMENT_LENGTH * 0.5 + 1}:as_matrix()
                 ),
                 SlotBuilder.platform_single_left(
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = -1, grid_y = 0}),
@@ -414,7 +421,7 @@ describe('SlotCollection', function ()
             assert.are.same({
                 SlotBuilder.street_connection_out(
                     Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = 0, grid_y = -1}),
-                    Position:new{x = 0, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = 0, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5 - 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
                 ),
                 SlotBuilder.track_down_doors_right(
                     Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0}),
@@ -422,7 +429,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_in(
                     Module.make_id({type = t.STREET_CONNECTION_IN, grid_x = 0, grid_y = 1}),
-                    Position:new{x = 0, y = c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = 0, y = c.PLATFORM_SEGMENT_LENGTH * 0.5 + 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
                 ),
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = -1, grid_y = 0}),
@@ -456,7 +463,7 @@ describe('SlotCollection', function ()
             assert.are.same({
                 SlotBuilder.street_connection_double(
                     Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = 0, grid_y = -1}),
-                    Position:new{x = 0, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = 0, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5 - 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
                 ),
                 SlotBuilder.track_double_doors_right(
                     Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = 0, grid_y = 0}),
@@ -464,7 +471,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_double(
                     Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = 0, grid_y = 1}),
-                    Position:new{x = 0, y = c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = 0, y = c.PLATFORM_SEGMENT_LENGTH * 0.5 + 1}:as_matrix()
                 ),
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = -1, grid_y = 0}),
@@ -585,7 +592,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_double(
                     Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = -1, grid_y = -1}),
-                    Position:new{x = -c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, y = -c.PLATFORM_SEGMENT_LENGTH * 1.5}:as_matrix()
+                    Position:new{x = -c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, y = -c.PLATFORM_SEGMENT_LENGTH * 1.5 - 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
                 ),
                 SlotBuilder.track_double_doors_right(
                     Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -593,7 +600,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_double(
                     Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = -1, grid_y = 1}),
-                    Position:new{x = -c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, y = c.PLATFORM_SEGMENT_LENGTH * 1.5}:as_matrix()
+                    Position:new{x = -c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, y = c.PLATFORM_SEGMENT_LENGTH * 1.5 + 1}:as_matrix()
                 ),
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -2, grid_y = -1}),
@@ -613,7 +620,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_in(
                     Module.make_id({type = t.STREET_CONNECTION_IN, grid_x = 1, grid_y = -1}),
-                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, y = -c.PLATFORM_SEGMENT_LENGTH * 1.5}:as_matrix()
+                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, y = -c.PLATFORM_SEGMENT_LENGTH * 1.5 - 1}:as_matrix()
                 ),
                 SlotBuilder.track_up_doors_right(
                     Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 1, grid_y = 0}),
@@ -621,7 +628,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_out(
                     Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = 1, grid_y = 1}),
-                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, y = c.PLATFORM_SEGMENT_LENGTH * 1.5}:as_matrix()
+                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, y = c.PLATFORM_SEGMENT_LENGTH * 1.5 + 1}:as_matrix()
                 ),
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = -1}),
@@ -641,7 +648,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_out(
                     Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = 3, grid_y = -1}),
-                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 3 + c.PLATFORM_DOUBLE_WIDTH, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5}:as_matrix()
+                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 3 + c.PLATFORM_DOUBLE_WIDTH, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5 - 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
                 ),
                 SlotBuilder.track_down_doors_right(
                     Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 3, grid_y = 0}),
@@ -649,7 +656,7 @@ describe('SlotCollection', function ()
                 ),
                 SlotBuilder.street_connection_in(
                     Module.make_id({type = t.STREET_CONNECTION_IN, grid_x = 3, grid_y = 1}),
-                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 3 + c.PLATFORM_DOUBLE_WIDTH, y = c.PLATFORM_SEGMENT_LENGTH * 1.5}:as_matrix()
+                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 3 + c.PLATFORM_DOUBLE_WIDTH, y = c.PLATFORM_SEGMENT_LENGTH * 1.5 + 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
                 ),
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 4, grid_y = 0}),

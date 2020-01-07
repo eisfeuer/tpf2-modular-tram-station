@@ -86,10 +86,12 @@ function ColumnCollection:new(o)
 end
 
 function ColumnCollection:add(segment)
-    if not self:get_column(segment.grid_x) then
-        self:set_column(segment.grid_x, create_column(segment))
+    if is_platform_segment(segment) or is_track(segment) then
+        if not self:get_column(segment.grid_x) then
+            self:set_column(segment.grid_x, create_column(segment))
+        end
+        add_to_column(self:get_column(segment.grid_x), segment)
     end
-    add_to_column(self:get_column(segment.grid_x), segment)
 end
 
 function ColumnCollection:get_column(index)
