@@ -4,12 +4,32 @@ local c = require('modutram_constants')
 
 local Platform = {}
 
+local function create_path_model_transformation(direction, x_pos, platform_width)
+    return {
+        -direction, 0, 0, 0,
+        0, -direction, 0, 0,
+        0, 0, 1, 0,
+        x_pos + (platform_width / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM) * direction, 0, 0, 1
+    }
+end
+
 function Platform:new (o)
     o = o or {}
     o.segments = o.segments or {}
+
     if not o.x_pos then
         o.x_pos = 0
     end
+
+    if o.type == t.PLATFORM_LEFT then
+        o.left_path_model_transformation = create_path_model_transformation(c.LEFT, o.x_pos, c.PLATFORM_SINGLE_WIDTH)
+    elseif o.type == t.PLATFORM_RIGHT then
+        o.right_path_model_transformation = create_path_model_transformation(c.RIGHT, o.x_pos, c.PLATFORM_SINGLE_WIDTH)
+    elseif o.type == t.PLATFORM_DOUBLE then
+        o.left_path_model_transformation = create_path_model_transformation(c.LEFT, o.x_pos, c.PLATFORM_DOUBLE_WIDTH)
+        o.right_path_model_transformation = create_path_model_transformation(c.RIGHT, o.x_pos, c.PLATFORM_DOUBLE_WIDTH)
+    end
+
     setmetatable(o, self)
     self.__index = self
     return o

@@ -6,7 +6,7 @@ local Track = require('modutram_track')
 
 describe('platform', function ()
     describe('new', function ()
-        local platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_SINGLE_LEFT}
+        local platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_LEFT}
 
         it('has id', function ()
             assert.are.equal(3, platform.id)
@@ -17,12 +17,12 @@ describe('platform', function ()
         end)
 
         it('has zero x position when x position is missing', function ()
-            local zero_x_platform = Platform:new{id = 3, type = t.PLATFORM_SINGLE_LEFT}
+            local zero_x_platform = Platform:new{id = 3, type = t.PLATFORM_LEFT}
             assert.are.equal(0, zero_x_platform.x_pos)
         end)
 
         it('has type', function ()
-            assert.are.equal(t.PLATFORM_SINGLE_LEFT, platform.type)
+            assert.are.equal(t.PLATFORM_LEFT, platform.type)
         end)
 
         it('has no segments', function ()
@@ -35,6 +35,39 @@ describe('platform', function ()
 
         it('has no bottom street connection', function ()
             assert.are.equal(nil, platform.street_btm)
+        end)
+
+        it('has initial transformation matrix for path models #katze', function ()
+            assert.are.same({
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                30 + (c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM) * -1, 0, 0, 1
+            }, platform.left_path_model_transformation)
+            assert.are.equal(nil, platform.right_path_model_transformation)
+
+            local double_platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_DOUBLE}
+            assert.are.same({
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                30 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.PLATFORM_DOUBLE_WIDTH / 2, 0, 0, 1
+            }, double_platform.left_path_model_transformation)
+            assert.are.same({
+                -1, 0, 0, 0,
+                0, -1, 0, 0,
+                0, 0, 1, 0,
+                30 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, 0, 0, 1
+            }, double_platform.right_path_model_transformation)
+
+            local right_platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_RIGHT}
+            assert.are.equal(nil, right_platform.left_path_model_transformation)
+            assert.are.same({
+                -1, 0, 0, 0,
+                0, -1, 0, 0,
+                0, 0, 1, 0,
+                30 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2, 0, 0, 1
+            }, right_platform.right_path_model_transformation)
         end)
     end)
 
