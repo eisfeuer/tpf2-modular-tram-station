@@ -103,4 +103,17 @@ function Platform:get_distance_to_neighbor(track)
     return self:get_width() / 2 + track:get_distance_from_center_to_platform_edge()
 end
 
+function Platform:set_height(height)
+    if self.type ~= t.PLATFORM_LEFT then
+        self.right_path_model_transformation[11] = height
+    end
+    if self.type ~= t.PLATFORM_RIGHT then
+        self.left_path_model_transformation[11] = height
+    end
+end
+
+function Platform:get_ideal_segment_count()
+    return self.top_segment_id - self.btm_segment_id + 1
+end
+
 return Platform

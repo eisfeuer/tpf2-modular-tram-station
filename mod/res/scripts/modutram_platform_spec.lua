@@ -37,7 +37,7 @@ describe('platform', function ()
             assert.are.equal(nil, platform.street_btm)
         end)
 
-        it('has initial transformation matrix for path models #katze', function ()
+        it('has initial transformation matrix for path models', function ()
             assert.are.same({
                 1, 0, 0, 0,
                 0, 1, 0, 0,
@@ -239,6 +239,39 @@ describe('platform', function ()
         end)
     end)
 
+    describe('get_segment_count', function ()
+        it('returns the count of segments', function ()
+            local platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_DOUBLE}
+            local segmentModule = Module:new({id = Module.make_id({
+                type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1
+            })})
+            local segmentModule2 = Module:new({id = Module.make_id({
+                type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 0
+            })})
+            local segmentModule3 = Module:new({id = Module.make_id({
+                type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 2
+            })})
+            local segmentModule4 = Module:new({id = Module.make_id({
+                type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = -2
+            })})
+
+            platform:add_segment(segmentModule)
+            platform:add_segment(segmentModule2)
+            platform:add_segment(segmentModule3)
+            platform:add_segment(segmentModule4)
+
+            assert.are.equal(5, platform:get_ideal_segment_count())
+        end)
+    end)
+
     describe('get_width', function ()
         it('gets width', function ()
             local platform1 = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
@@ -249,6 +282,19 @@ describe('platform', function ()
             assert.are.equal(c.PLATFORM_SINGLE_WIDTH, platform2:get_width())
             assert.are.equal(c.PLATFORM_DOUBLE_WIDTH, platform3:get_width())
         end)
+    end)
+
+    describe('set_height', function ()
+        local double_platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_DOUBLE}
+        double_platform:set_height(0.2)
+        local left_platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
+        left_platform:set_height(0.4)
+
+        assert.are.equal(0.2, double_platform.left_path_model_transformation[11])
+        assert.are.equal(0.2, double_platform.right_path_model_transformation[11])
+
+        assert.are.equal(0.4, left_platform.left_path_model_transformation[11])
+        assert.are.equal(nil, left_platform.right_path_model_transformation)
     end)
 
     describe('get_distance_to_neighbor', function ()
