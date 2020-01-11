@@ -85,4 +85,12 @@ describe('Track', function ()
             assert.are.equal(c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TWO_TRACKS / 2, track:get_distance_to_neighbor(platform2))
         end)
     end)
+
+    describe('set_x_position', function ()
+        it('sets x position', function ()
+            local track = Track:new{id = 1, x_pos = 12, type = t.TRACK_DOUBLE_DOORS_RIGHT}
+            track:set_x_position(20)
+            assert.are.equal(20, track.x_pos)
+        end)
+    end)
 end)

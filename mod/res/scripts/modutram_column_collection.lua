@@ -72,7 +72,7 @@ local function calc_x_positions(self, direction)
     while self:get_column(i) do
         local distance = self:get_column(i):get_distance_to_neighbor(self:get_column(i - direction))
         position = position + distance * direction
-        self:get_column(i).x_pos = position
+        self:get_column(i):set_x_position(position)
         i = i + direction
     end
 end
@@ -108,7 +108,7 @@ end
 
 function ColumnCollection:calculate_x_positions()
     if self:get_column(0) then
-        self:get_column(0).x_pos = 0
+        self:get_column(0):set_x_position(0)
         calc_x_positions(self, c.RIGHT)
         calc_x_positions(self, c.LEFT)
     end

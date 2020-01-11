@@ -37,4 +37,8 @@ function Track:get_distance_to_neighbor(platform)
     return platform:get_distance_to_neighbor(self)
 end
 
+function Track:set_x_position(x_pos)
+    self.x_pos = x_pos
+end
+
 return Track

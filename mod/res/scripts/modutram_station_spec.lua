@@ -8,6 +8,7 @@ describe('station', function ()
         it ('creates empty station', function ()
             local station = Station:new({}, {})
             assert.are.same({}, station.columns.columns)
+            assert.are.same({}, station.terminal_groups)
         end)
 
         it ('creates station with a platform', function ()

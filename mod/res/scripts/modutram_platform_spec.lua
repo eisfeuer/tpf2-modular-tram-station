@@ -4,6 +4,11 @@ local Module = require('modutram_module')
 local c = require('modutram_constants')
 local Track = require('modutram_track')
 
+local function round_to_5_digits(number)
+    local factor = 10 ^ 5
+    return math.floor(number * factor + 0.5) / factor
+end
+
 describe('platform', function ()
     describe('new', function ()
         local platform = Platform:new{id = 3, x_pos = 30, type = t.PLATFORM_LEFT}
@@ -295,6 +300,28 @@ describe('platform', function ()
 
         assert.are.equal(0.4, left_platform.left_path_model_transformation[11])
         assert.are.equal(nil, left_platform.right_path_model_transformation)
+    end)
+
+    describe('set_x_position', function ()
+        it ('sets x position and recalculates position matrixes', function ()
+            local double_platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_DOUBLE}
+            double_platform:set_x_position(20)
+            assert.are.equal(20, double_platform.x_pos)
+            assert.are.equal(round_to_5_digits(20 - c.PLATFORM_DOUBLE_WIDTH/2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM), round_to_5_digits(double_platform.left_path_model_transformation[13]))
+            assert.are.equal(20 + c.PLATFORM_DOUBLE_WIDTH/2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, double_platform.right_path_model_transformation[13])
+
+            local left_platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_LEFT}
+            left_platform:set_x_position(20)
+            assert.are.equal(20, left_platform.x_pos)
+            assert.are.equal(nil, left_platform.right_path_model_transformation)
+            assert.are.equal(round_to_5_digits(20 - c.PLATFORM_SINGLE_WIDTH/2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM), round_to_5_digits(left_platform.left_path_model_transformation[13]))
+
+            local right_platform = Platform:new{id = 0, x_pos = 0, type = t.PLATFORM_RIGHT}
+            right_platform:set_x_position(20)
+            assert.are.equal(20, right_platform.x_pos)
+            assert.are.equal(nil, right_platform.left_path_model_transformation)
+            assert.are.equal(round_to_5_digits(20 + c.PLATFORM_SINGLE_WIDTH/2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM), round_to_5_digits(right_platform.right_path_model_transformation[13]))
+        end)
     end)
 
     describe('get_distance_to_neighbor', function ()

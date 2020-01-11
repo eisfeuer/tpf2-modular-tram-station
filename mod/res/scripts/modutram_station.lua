@@ -8,12 +8,14 @@ local Station = {}
 
 function Station:new (o, module_ids)
     o = o or {}
+    o.terminal_groups = o.terminal_groups or {}
     o.columns = o.columns or ColumnCollection:new{}
     o.models = o.models or ModelCollection:new{}
     o.slots = o.slots or SlotCollection:new{}
     o.builder = o.builder or ModelBuilder:new{
         model_collection = o.models,
-        column_collection = o.columns
+        column_collection = o.columns,
+        terminal_groups = o.terminal_groups
     }
     for module_id, module_name in pairs(module_ids) do
         o.columns:add(Module:new{id = module_id})

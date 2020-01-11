@@ -4,12 +4,16 @@ local c = require('modutram_constants')
 
 local Platform = {}
 
-local function create_path_model_transformation(direction, x_pos, platform_width)
+local function get_path_model_x_position(direction, platform_x_position, platform_width)
+    return platform_x_position + (platform_width / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM) * direction
+end
+
+local function create_path_model_transformation(direction, platform_x_position, platform_width)
     return {
         -direction, 0, 0, 0,
         0, -direction, 0, 0,
         0, 0, 1, 0,
-        x_pos + (platform_width / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM) * direction, 0, 0, 1
+        get_path_model_x_position(direction, platform_x_position, platform_width), 0, 0, 1
     }
 end
 
@@ -114,6 +118,18 @@ end
 
 function Platform:get_ideal_segment_count()
     return self.top_segment_id - self.btm_segment_id + 1
+end
+
+function Platform:set_x_position(x_pos)
+    self.x_pos = x_pos
+    if self.type == t.PLATFORM_LEFT then
+        self.left_path_model_transformation[13] = get_path_model_x_position(c.LEFT, x_pos, c.PLATFORM_SINGLE_WIDTH)
+    elseif self.type == t.PLATFORM_RIGHT then
+        self.right_path_model_transformation[13] = get_path_model_x_position(c.RIGHT, x_pos, c.PLATFORM_SINGLE_WIDTH)
+    elseif self.type == t.PLATFORM_DOUBLE then
+        self.left_path_model_transformation[13] = get_path_model_x_position(c.LEFT, x_pos, c.PLATFORM_DOUBLE_WIDTH)
+        self.right_path_model_transformation[13] = get_path_model_x_position(c.RIGHT, x_pos, c.PLATFORM_DOUBLE_WIDTH)
+    end
 end
 
 return Platform
