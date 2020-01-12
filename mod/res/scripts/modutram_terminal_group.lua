@@ -31,11 +31,11 @@ function TerminalGroup:as_terminal_group_item()
     local stop_terminal_position = get_stop_terminal_position_from_platform(self.platform)
     local stop_terminal = get_stop_terminal(self)
 
+    table.insert(terminals, {model_collection_position, stop_terminal.terminal_position})
     for i = 0, self.platform:get_ideal_segment_count() - 1 do
-        if i == stop_terminal_position then
-            table.insert(terminals, {model_collection_position + i, stop_terminal.terminal_position})
-        else
-            table.insert(terminals, {model_collection_position + i, self.waiting_area_only_terminal.terminal_position})
+        if i ~= stop_terminal_position then
+            model_collection_position = model_collection_position + 1
+            table.insert(terminals, {model_collection_position, self.waiting_area_only_terminal.terminal_position})
         end
     end
     return {
@@ -58,15 +58,15 @@ function TerminalGroup:add_to_model_collection(model_collection)
     local stop_terminal_position = self.platform.btm_segment_id + get_stop_terminal_position_from_platform(self.platform)
     local stop_terminal = get_stop_terminal(self)
 
+    model_collection:add({
+        id = stop_terminal.model,
+        transf = get_path_model_tranformation(self, stop_terminal_position)
+    })
     for i = self.track.btm_segment_id, self.track.top_segment_id do
         local is_terminal = i >= self.platform.btm_segment_id and i <= self.platform.top_segment_id
+
         if is_terminal then
-            if i == stop_terminal_position then
-                model_collection:add({
-                    id = stop_terminal.model,
-                    transf = get_path_model_tranformation(self, i)
-                })
-            else
+            if i ~= stop_terminal_position then
                 model_collection:add({
                     id = self.waiting_area_only_terminal.model,
                     transf = get_path_model_tranformation(self, i)

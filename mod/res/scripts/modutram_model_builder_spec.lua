@@ -192,11 +192,11 @@ describe('ModelBuilder', function ()
                         0, 0, 0, 1,
                     }
                 }, {
-                    id = c.PLATFORM_PATH_MODELS.tram.waiting_area_only_terminal.model,
-                    transf = Position:new{y = -c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.right_path_model_transformation)
-                }, {
                     id = c.PLATFORM_PATH_MODELS.tram.stop_mid_terminal.model,
                     transf = Position:new{y = 0}:add_to_matrix(platform.right_path_model_transformation)
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.tram.waiting_area_only_terminal.model,
+                    transf = Position:new{y = -c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.right_path_model_transformation)
                 }, {
                     id = c.PLATFORM_PATH_MODELS.tram.waiting_area_only_terminal.model,
                     transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.right_path_model_transformation)

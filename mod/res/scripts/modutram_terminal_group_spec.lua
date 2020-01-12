@@ -134,8 +134,8 @@ describe('TerminalGroup', function ()
             assert.are.same({
                 tag = platform.id,
                 terminals = {
-                    {1, 2},
-                    {2, 1},
+                    {1, 1},
+                    {2, 2},
                     {3, 2},
                 }
             }, terminal_group:as_terminal_group_item())
@@ -240,11 +240,11 @@ describe('TerminalGroup', function ()
                         id = 'model.mdl',
                         transf = Position:new{}:as_matrix()
                     }, {
-                        id = 'models/waiting_area_only_terminal.mdl',
-                        transf = Position:new{y = -c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
-                    }, {
                         id = 'models/stop_mid_terminal.mdl',
                         transf = Position:new{}:add_to_matrix(platform.left_path_model_transformation)
+                    }, {
+                        id = 'models/waiting_area_only_terminal.mdl',
+                        transf = Position:new{y = -c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
                     }, {
                         id = 'models/waiting_area_only_terminal.mdl',
                         transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
