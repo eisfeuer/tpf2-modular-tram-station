@@ -1,4 +1,5 @@
 local c = require('modutram_constants')
+local distance_between_path_and_center = (c.PLATFORM_DOUBLE_WIDTH - c.PLATFORM_SINGLE_WIDTH) / 2
 
 function data()
     return {
@@ -28,30 +29,19 @@ function data()
             transportNetworkProvider = {
                 laneLists = {{
                     nodes = {
-                        { { 0.0, -9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
-                        { { 0.0, 9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
-                    },
-                    transportModes = {"TRAM"},
-                    speedLimit = 30
-                }, {
-                    nodes = {
-                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, -9.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
-                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, 0.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
+                        { { -distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
+                        { { -distance_between_path_and_center, c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
 
-                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, 0.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
-                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, 9.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
+                        { { distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
+                        { { distance_between_path_and_center, c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
+
+                        { { -distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {distance_between_path_and_center * 2, 0.0, 0.0}, 3 },
+                        { { distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {distance_between_path_and_center * 2, 0.0, 0.0}, 3 },
                     },
                     transportModes = {"PERSON"}
                 }},
                 runways = { },
-                terminals = {
-                    {
-                        order = 2,
-                        personEdges = { 1, 2, },
-                        personNodes = { 4, },
-                        vehicleNode = 0,
-                    },
-                },
+                terminals = {},
             }
         },
         version = 1,

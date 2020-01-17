@@ -13,25 +13,8 @@ function data()
         },
         updateFn = function(params)
             local station = Station:new({}, params.modules or {})
-            local result = { }
-            
-            result.station = station
-
-            result.models = station:get_models()
-            result.slots = station:get_slots()
-            result.edgeLists = {}
-
-            result.terrainAlignmentLists = { {
-                type = "EQUAL",
-                faces =  { }
-            } }
-    
-            result.terminateConstructionHook = function()	
-                print(require('inspect').inspect(result.models))
-            end
-            return result
+            return station:get_data()
         end
-    }
-    
-    end
+    }    
+end
     

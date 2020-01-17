@@ -3,6 +3,7 @@ local ColumnCollection = require('modutram_column_collection')
 local Module = require('modutram_module')
 local SlotCollection = require('modutram_slot_collection')
 local ModelBuilder = require('modutram_model_builder')
+local PassengerPathBuilder = require('modutram_passenger_path_builder')
 
 local Station = {}
 
@@ -48,6 +49,38 @@ end
 
 function Station:get_slots()
     return self.slots:get_slots()
+end
+
+function Station:get_data()
+    local result = { }
+            
+    result.station = self
+
+    result.models = self:get_models()
+    result.slots = self:get_slots()
+    result.edgeLists = {}
+    result.terminalGroups = self.terminal_groups
+
+    result.terrainAlignmentLists = { {
+        type = "EQUAL",
+        faces =  { }
+    } }
+
+    result.terminateConstructionHook = function()	
+        local passenger_path_builder = PassengerPathBuilder:new{
+            column_collection = self.columns,
+            passenger_path_models = {
+                vertical_single_platform = 'station/tram/path/passenger_vertical_single_platform.mdl',
+                vertical_double_platform = 'station/tram/path/passenger_vertical_double_platform_btm.mdl',
+                horizontal_single_track = 'station/tram/path/passenger_horizontal_single_track.mdl',
+                horizontal_double_track = 'station/tram/path/passenger_horizontal_double_track.mdl'
+            }
+        }
+
+        passenger_path_builder:add_bottom_part_to_model_collection(self.models)
+        -- print(require('inspect').inspect(result.models))
+    end
+    return result
 end
 
 return Station

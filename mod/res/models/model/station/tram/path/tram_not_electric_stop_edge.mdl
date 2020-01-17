@@ -1,3 +1,5 @@
+local c = require('modutram_constants')
+
 function data()
     return {
         boundingInfo = {
@@ -30,8 +32,25 @@ function data()
                         { { 0.0, 9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
                     },
                     transportModes = {"TRAM"},
-                    speedLimit = 8.4
-                }}
+                    speedLimit = 30
+                }, {
+                    nodes = {
+                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, -9.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
+                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, 0.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
+
+                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, 0.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
+                        { { c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE, 9.0, 0.0}, {0.0, 9.0, 0.0}, 3 },
+                    },
+                    transportModes = {"PERSON"}
+                }},
+                runways = { },
+                terminals = {
+                    {
+                        order = 0,
+                        personEdges = { 1, 2, },
+                        personNodes = { 4, },
+                    },
+                },
             }
         },
         version = 1,
