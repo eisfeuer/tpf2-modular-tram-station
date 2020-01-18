@@ -47,7 +47,7 @@ local function get_start_position(column_collection)
     return nil
 end
 
-function PassengerPathBuilder:add_bottom_part_to_model_collection(model_collection)
+local function place_path_models(self, model_collection, handle_placing, handle_placing_last_platform, get_crosswalk_y_position)
     local start_position = get_start_position(self.column_collection)
     if start_position then
         local i = start_position
@@ -66,34 +66,79 @@ function PassengerPathBuilder:add_bottom_part_to_model_collection(model_collecti
                     track = current_track
                 }
                 
-                crosswalk_pathing:add_bottom_left_vertical_pathes_to_model_collection(
-                    model_collection,
-                    get_vertical_path_model(left_platform, self.passenger_path_models),
-                    last_crossway_position
-                )
-                crosswalk_pathing:add_bottom_crosswalk_to_model_collection(
-                    model_collection,
-                    get_track_crosswalk_path_model(current_track, self.passenger_path_models)
-                )
+                handle_placing(model_collection, left_platform, current_track, last_crossway_position, crosswalk_pathing)
 
                 i = i + 2
                 current_track = self.column_collection:get_column(i)
 
-                last_crossway_position = crosswalk_pathing:get_bottom_crosswalk_y_position()
+                last_crossway_position = get_crosswalk_y_position(crosswalk_pathing)
                 left_platform = right_platform
                 right_platform = self.column_collection:get_column(i + 1)
             end
-            
+
             if left_platform and last_crossway_position then
-                for i = left_platform.btm_segment_id - 1, last_crossway_position, -1 do
-                    model_collection:add({
-                        id = get_vertical_path_model(left_platform, self.passenger_path_models),
-                        transf = Position:new{x = left_platform.x_pos, y = (i - 1) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
-                    })
-                end
+                handle_placing_last_platform(left_platform, last_crossway_position)
             end
         end
     end
+end
+
+function PassengerPathBuilder:add_bottom_part_to_model_collection(model_collection)
+    place_path_models(
+        self,
+        model_collection,
+        function (model_collection, left_platform, current_track, last_crossway_position, crosswalk_pathing)
+            crosswalk_pathing:add_bottom_left_vertical_pathes_to_model_collection(
+                model_collection,
+                get_vertical_path_model(left_platform, self.passenger_path_models),
+                last_crossway_position
+            )
+            crosswalk_pathing:add_bottom_crosswalk_to_model_collection(
+                model_collection,
+                get_track_crosswalk_path_model(current_track, self.passenger_path_models)
+            )
+        end,
+        function (last_platform, last_crossway_position)
+            for i = last_platform.btm_segment_id - 1, last_crossway_position, -1 do
+                model_collection:add({
+                    id = get_vertical_path_model(last_platform, self.passenger_path_models),
+                    transf = Position:new{x = last_platform.x_pos, y = (i - 1) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+                })
+            end
+        end,
+        function (crosswalk_pathing)
+            return crosswalk_pathing:get_bottom_crosswalk_y_position()
+        end
+    )                
+end
+
+function PassengerPathBuilder:add_top_part_to_model_collection(model_collection)
+    place_path_models(
+        self,
+        model_collection,
+        function (model_collection, left_platform, current_track, last_crossway_position, crosswalk_pathing)
+            crosswalk_pathing:add_top_left_vertical_pathes_to_model_collection(
+                model_collection,
+                get_vertical_path_model(left_platform, self.passenger_path_models),
+                last_crossway_position
+            )
+            crosswalk_pathing:add_top_crosswalk_to_model_collection(
+                model_collection,
+                get_track_crosswalk_path_model(current_track, self.passenger_path_models)
+            )
+        end,
+        function (last_platform, last_crossway_position)
+            for i = last_platform.top_segment_id + 1, last_crossway_position, 1 do
+                model_collection:add({
+                    id = get_vertical_path_model(last_platform, self.passenger_path_models),
+                    transf = Position:new{x = last_platform.x_pos, y = (i + 1) * c.PLATFORM_SEGMENT_LENGTH}:as_matrix()
+                })
+            end
+        end,
+        function (crosswalk_pathing)
+            return crosswalk_pathing:get_top_crosswalk_y_position()
+        end
+    )
 end
 
 return PassengerPathBuilder
