@@ -181,7 +181,6 @@ describe('SlotBuilder', function ()
 
     describe('platform by type', function ()
         it('creates platform by type', function ()
-            local expected =
             assert.are.same(SlotBuilder.platform_double(
                 Module.make_id({type = t.PLATFORM_DOUBLE}),
                 Position:new{}:as_matrix()
@@ -206,6 +205,122 @@ describe('SlotBuilder', function ()
             ), SlotBuilder.platform_by_type(
                 t.PLATFORM_RIGHT,
                 Module.make_id({type = t.PLATFORM_RIGHT}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+    end)
+
+    describe('platform_entrance_general', function ()
+        it ('creates top right single platform entrance slots', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_TOP}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_platform_entrance",
+                spacing = {
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                }
+            }, SlotBuilder.platform_entrance_general(
+                t.PLATFORM_RIGHT,
+                'top',
+                Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_TOP}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+
+        it ('creates bottom right single platform entrance slots', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_BTM}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_platform_entrance",
+                spacing = {
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                    1,
+                }
+            }, SlotBuilder.platform_entrance_general(
+                t.PLATFORM_RIGHT,
+                'btm',
+                Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_BTM}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+
+        it ('creates top left single platform entrance slots', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_TOP}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_platform_entrance",
+                spacing = {
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                }
+            }, SlotBuilder.platform_entrance_general(
+                t.PLATFORM_LEFT,
+                'top',
+                Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_TOP}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+
+        it ('creates bottom left single platform entrance slots', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_BTM}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_platform_entrance",
+                spacing = {
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SINGLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                    1,
+                }
+            }, SlotBuilder.platform_entrance_general(
+                t.PLATFORM_LEFT,
+                'btm',
+                Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_BTM}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+
+        it ('creates top double platform entrance slots', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_platform_entrance",
+                spacing = {
+                    c.PLATFORM_DOUBLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_DOUBLE_WIDTH / 2 - 0.1,
+                    1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                }
+            }, SlotBuilder.platform_entrance_general(
+                t.PLATFORM_DOUBLE,
+                'top',
+                Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP}),
+                Position:new{}:as_matrix()
+            ))
+        end)
+
+        it ('creates bottom double platform entrance slots', function ()
+            assert.are.same({
+                id = Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM}),
+                transf = Position:new{}:as_matrix(),
+                type = "eisfeuer_modutram_platform_entrance",
+                spacing = {
+                    c.PLATFORM_DOUBLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_DOUBLE_WIDTH / 2 - 0.1,
+                    c.PLATFORM_SEGMENT_LENGTH - 1,
+                    1,
+                }
+            }, SlotBuilder.platform_entrance_general(
+                t.PLATFORM_DOUBLE,
+                'btm',
+                Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM}),
                 Position:new{}:as_matrix()
             ))
         end)

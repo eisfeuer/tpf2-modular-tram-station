@@ -143,6 +143,42 @@ function SlotBuilder.street_connection_double(id, transf)
     }
 end
 
+local function get_horizontal_platform_entrance_spcings(platform_type)
+    if platform_type == t.PLATFORM_DOUBLE then
+        return c.PLATFORM_DOUBLE_WIDTH / 2 - 0.1
+    end
+    return c.PLATFORM_SINGLE_WIDTH / 2 - 0.1
+end
+
+local function get_top_platform_entrance_spacing(entrance_place)
+    if entrance_place == 'btm' then
+        return c.PLATFORM_SEGMENT_LENGTH - 1
+    end
+    return 1
+end
+
+local function get_bottom_platform_entrance_spacing(entrance_place)
+    if entrance_place == 'btm' then
+        return 1
+    end
+    return c.PLATFORM_SEGMENT_LENGTH - 1
+end
+
+function SlotBuilder.platform_entrance_general(platform_type, entrance_place, id, transf)
+    return {
+        id = id,
+        transf = transf,
+        type = 'eisfeuer_modutram_platform_entrance',
+        spacing = {
+            get_horizontal_platform_entrance_spcings(platform_type),
+            get_horizontal_platform_entrance_spcings(platform_type),
+            get_top_platform_entrance_spacing(entrance_place),
+            get_bottom_platform_entrance_spacing(entrance_place)
+        }
+    }
+
+end
+
 local function get_neighbor_slot_id(type, column, direction)
     return Module.make_id({type = type, grid_x = column.id + direction, grid_y = 0})
 end

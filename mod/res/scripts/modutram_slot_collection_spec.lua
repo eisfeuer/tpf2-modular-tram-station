@@ -53,6 +53,12 @@ describe('SlotCollection', function ()
             collection:import_platform(platform, 1)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_BTM, grid_x = 0, grid_y = -1}),
+                    Position:new{x = 1, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 0, grid_y = -1}),
                     Position:new{x = 1, y = -18}:as_matrix()
@@ -68,6 +74,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 0, grid_y = 2}),
                     Position:new{x = 1, y = 36}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_TOP, grid_x = 0, grid_y = 2}),
+                    Position:new{x = 1, y = 28}:as_matrix()
                 ),
             }, collection:get_slots())
         end)
@@ -88,6 +100,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_BTM, grid_x = 0, grid_y = -1}),
+                    Position:new{x = 0, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 0, grid_y = -1}),
                     Position:new{x = 0, y = -18}:as_matrix()
@@ -99,6 +117,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 0, grid_y = 1}),
                     Position:new{x = 0, y = 18}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_TOP, grid_x = 0, grid_y = 1}),
+                    Position:new{x = 0, y = 10}:as_matrix()
                 ),
                 SlotBuilder.track_down_doors_right(
                     Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -136,6 +160,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_BTM, grid_x = 0, grid_y = -1}),
+                    Position:new{x = 0, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 0, grid_y = -1}),
                     Position:new{x = 0, y = -18}:as_matrix()
@@ -151,6 +181,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 0, grid_y = 2}),
                     Position:new{x = 0, y = 36}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_TOP, grid_x = 0, grid_y = 2}),
+                    Position:new{x = 0, y = 28}:as_matrix()
                 ),
                 SlotBuilder.track_down_doors_right(
                     Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -181,6 +217,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_LEFT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_BTM, grid_x = 0, grid_y = -1}),
+                    Position:new{x = 0, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_single_left(
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = 0, grid_y = -1}),
                     Position:new{x = 0, y = -18}:as_matrix()
@@ -192,6 +234,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_left(
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = 0, grid_y = 1}),
                     Position:new{x = 0, y = 18}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_LEFT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_TOP, grid_x = 0, grid_y = 1}),
+                    Position:new{x = 0, y = 10}:as_matrix()
                 ),
                 SlotBuilder.track_double_doors_right(
                     Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -229,6 +277,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_LEFT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_BTM, grid_x = 0, grid_y = -2}),
+                    Position:new{x = 0, y = -28}:as_matrix()
+                ),
                 SlotBuilder.platform_single_left(
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = 0, grid_y = -2}),
                     Position:new{x = 0, y = -36}:as_matrix()
@@ -244,6 +298,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_left(
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = 0, grid_y = 1}),
                     Position:new{x = 0, y = 18}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_LEFT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_TOP, grid_x = 0, grid_y = 1}),
+                    Position:new{x = 0, y = 10}:as_matrix()
                 ),
                 SlotBuilder.track_double_doors_right(
                     Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -274,6 +334,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_DOUBLE,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM, grid_x = 0, grid_y = -1}),
+                    Position:new{x = 0, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = -1}),
                     Position:new{x = 0, y = -18}:as_matrix()
@@ -285,6 +351,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 1}),
                     Position:new{x = 0, y = 18}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_DOUBLE,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP, grid_x = 0, grid_y = 1}),
+                    Position:new{x = 0, y = 10}:as_matrix()
                 ),
                 SlotBuilder.track_double_doors_right(
                     Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -327,6 +399,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_DOUBLE,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM, grid_x = 0, grid_y = -1}),
+                    Position:new{x = 0, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = -1}),
                     Position:new{x = 0, y = -18}:as_matrix()
@@ -342,6 +420,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 2}),
                     Position:new{x = 0, y = 36}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_DOUBLE,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP, grid_x = 0, grid_y = 2}),
+                    Position:new{x = 0, y = 28}:as_matrix()
                 ),
                 SlotBuilder.track_double_doors_right(
                     Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = -1, grid_y = 0}),
@@ -570,6 +654,12 @@ describe('SlotCollection', function ()
             slotCollection:import_from_column_collection(columnCollection)
 
             assert.are.same({
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_LEFT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_BTM, grid_x = 0, grid_y = -2}),
+                    Position:new{x = 0, y = -28}:as_matrix()
+                ),
                 SlotBuilder.platform_single_left(
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = 0, grid_y = -2}),
                     Position:new{x = 0, y = -36}:as_matrix()
@@ -590,6 +680,12 @@ describe('SlotCollection', function ()
                     Module.make_id({type = t.PLATFORM_LEFT, grid_x = 0, grid_y = 2}),
                     Position:new{x = 0, y = 36}:as_matrix()
                 ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_LEFT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_LEFT_TOP, grid_x = 0, grid_y = 2}),
+                    Position:new{x = 0, y = 28}:as_matrix()
+                ),
                 SlotBuilder.street_connection_double(
                     Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = -1, grid_y = -1}),
                     Position:new{x = -c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, y = -c.PLATFORM_SEGMENT_LENGTH * 1.5 - 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
@@ -602,6 +698,12 @@ describe('SlotCollection', function ()
                     Module.make_id({type = t.STREET_CONNECTION_DOUBLE, grid_x = -1, grid_y = 1}),
                     Position:new{x = -c.PLATFORM_SINGLE_WIDTH / 2 - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_TWO_TRACKS / 2, y = c.PLATFORM_SEGMENT_LENGTH * 1.5 + 1}:as_matrix()
                 ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_BTM, grid_x = -2, grid_y = -1}),
+                    Position:new{x = -c.PLATFORM_SINGLE_WIDTH - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 2 - c.DISTANCE_BETWEEN_TWO_TRACKS, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -2, grid_y = -1}),
                     Position:new{x = -c.PLATFORM_SINGLE_WIDTH - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 2 - c.DISTANCE_BETWEEN_TWO_TRACKS, y = -18}:as_matrix()
@@ -613,6 +715,12 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -2, grid_y = 1}),
                     Position:new{x = -c.PLATFORM_SINGLE_WIDTH - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 2 - c.DISTANCE_BETWEEN_TWO_TRACKS, y = 18}:as_matrix()
+                ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_RIGHT,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_SINGLE_RIGHT_TOP, grid_x = -2, grid_y = 1}),
+                    Position:new{x = -c.PLATFORM_SINGLE_WIDTH - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 2 - c.DISTANCE_BETWEEN_TWO_TRACKS, y = 10}:as_matrix()
                 ),
                 SlotBuilder.track_down_doors_right(
                     Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -3, grid_y = 0}),
@@ -630,6 +738,12 @@ describe('SlotCollection', function ()
                     Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = 1, grid_y = 1}),
                     Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM, y = c.PLATFORM_SEGMENT_LENGTH * 1.5 + 1}:as_matrix()
                 ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_DOUBLE,
+                    'btm',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM, grid_x = 2, grid_y = -1}),
+                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + 2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, y = -10}:as_matrix()
+                ),
                 SlotBuilder.platform_double(
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = -1}),
                     Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + 2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, y = -18}:as_matrix()
@@ -646,6 +760,12 @@ describe('SlotCollection', function ()
                     Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = 2}),
                     Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + 2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, y = 36}:as_matrix()
                 ),
+                SlotBuilder.platform_entrance_general(
+                    t.PLATFORM_DOUBLE,
+                    'top',
+                    Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP, grid_x = 2, grid_y = 2}),
+                    Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + 2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.PLATFORM_DOUBLE_WIDTH / 2, y = 28}:as_matrix()
+                ),
                 SlotBuilder.street_connection_out(
                     Module.make_id({type = t.STREET_CONNECTION_OUT, grid_x = 3, grid_y = -1}),
                     Position:new{x = c.PLATFORM_SINGLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 3 + c.PLATFORM_DOUBLE_WIDTH, y = -c.PLATFORM_SEGMENT_LENGTH * 0.5 - 1}:add_to_matrix(FLIPPED_IDENTITY_MATRIX)
@@ -661,7 +781,7 @@ describe('SlotCollection', function ()
                 SlotBuilder.platform_single_right(
                     Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 4, grid_y = 0}),
                     Position:new{x = c.PLATFORM_SINGLE_WIDTH + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM * 4 + c.PLATFORM_DOUBLE_WIDTH}:as_matrix()
-                )
+                ),
             }, slotCollection:get_slots())
         end)
     end)

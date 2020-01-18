@@ -78,7 +78,7 @@ function Station:get_data()
         }
 
         passenger_path_builder:add_bottom_part_to_model_collection(self.models)
-        -- print(require('inspect').inspect(result.models))
+        passenger_path_builder:add_top_part_to_model_collection(self.models)
     end
     return result
 end

@@ -228,7 +228,7 @@ describe('PassengerPathBuilder', function ()
             assert.are.same({}, model_collection.models)
         end)
 
-        it ('adds top path models to model collection 1 #hund', function ()
+        it ('adds top path models to model collection 1', function ()
             local column_collection = setup_scenario_1(1)
             local model_collection = ModelCollection:new{}
 
@@ -267,7 +267,7 @@ describe('PassengerPathBuilder', function ()
             }, model_collection.models)
         end)
 
-        it ('adds top path models to model collection 2 #katze', function ()
+        it ('adds top path models to model collection 2', function ()
             local column_collection = setup_scenario_2(1)
             local model_collection = ModelCollection:new{}
 
