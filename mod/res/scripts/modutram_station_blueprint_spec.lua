@@ -339,6 +339,382 @@ describe('StationBlueprint', function ()
 
         end)
 
+        -- || [ || [ || [] || ] || ] ||
+        describe('pattern 2', function ()
+        
+            it('creates template with one double platform with track 1', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 2,
+                    modules = modules,
+                    platforms_left = 0,
+                    platforms_right = 0,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'platform_double.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 1, grid_y = 0})] = 'track_down.module'
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it('creates template with one double platform with track 2', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 2,
+                    modules = modules,
+                    platforms_left = 1,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'platform_double.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 1, grid_y = 0})] = 'track_down.module'
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it ('creates template with two single platforms left and single platform right', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 2,
+                    modules = modules,
+                    platforms_left = 2,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -3, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -2, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'platform_double.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 1, grid_y = 0})] = 'track_down.module'
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it ('creates template with three single platforms left and single platform right', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 2,
+                    modules = modules,
+                    platforms_left = 3,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -5, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -4, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -3, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -2, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'platform_double.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 1, grid_y = 0})] = 'track_down.module'
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it ('creates big station', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 2,
+                    modules = modules,
+                    platforms_left = 3,
+                    platforms_right = 4,
+                    segments_per_platform = 1
+                }
+
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -5, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -4, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -3, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -2, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'platform_double.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 1, grid_y = 0})] = 'track_down.module',
+                        [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 2, grid_y = 0})] = 'platform_right.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 3, grid_y = 0})] = 'track_down.module',
+                        [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 4, grid_y = 0})] = 'platform_right.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 5, grid_y = 0})] = 'track_down.module',
+                        [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 6, grid_y = 0})] = 'platform_right.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 7, grid_y = 0})] = 'track_down.module'
+                        
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+        end)
+
+        -- || [ || [ || [ || [
+        describe('pattern 3', function ()
+        
+            it('creates template with one double platform with track 1', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 3,
+                    modules = modules,
+                    platforms_left = 0,
+                    platforms_right = 0,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it('creates template with one double platform with track 2', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 3,
+                    modules = modules,
+                    platforms_left = 0,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it('creates template with two single platforms', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 3,
+                    modules = modules,
+                    platforms_left = 1,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -1, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it ('creates template with two single platforms left and single platform right', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 3,
+                    modules = modules,
+                    platforms_left = 2,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -4, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -3, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -1, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it ('creates template with three single platforms left and single platform right', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 3,
+                    modules = modules,
+                    platforms_left = 3,
+                    platforms_right = 1,
+                    segments_per_platform = 1
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -6, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -5, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -4, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -3, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -1, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+
+            it ('creates big station', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 3,
+                    modules = modules,
+                    platforms_left = 3,
+                    platforms_right = 4,
+                    segments_per_platform = 1
+                }
+
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -6, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -5, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -4, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -3, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = -1, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 2, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 3, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 4, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 5, grid_y = 0})] = 'platform_left.module',
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = 6, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 7, grid_y = 0})] = 'platform_left.module',
+                        
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+        end)
+
+        -- ] || ] || ] || ] ||
+            describe('pattern 4', function ()
+        
+                it('creates template with one double platform with track 1', function ()
+                    local station_blueprint = StationBlueprint:new{
+                        platform_placing_pattern = 4,
+                        modules = modules,
+                        platforms_left = 0,
+                        platforms_right = 0,
+                        segments_per_platform = 1
+                    }
+                    assert.are.same(
+                        {
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_down.module',
+                        },
+                        station_blueprint:create_template()
+                    )
+                end)
+    
+                it('creates template with one double platform with track 2', function ()
+                    local station_blueprint = StationBlueprint:new{
+                        platform_placing_pattern = 4,
+                        modules = modules,
+                        platforms_left = 1,
+                        platforms_right = 0,
+                        segments_per_platform = 1
+                    }
+                    assert.are.same(
+                        {
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_down.module',
+                        },
+                        station_blueprint:create_template()
+                    )
+                end)
+    
+                it('creates template with two single platforms', function ()
+                    local station_blueprint = StationBlueprint:new{
+                        platform_placing_pattern = 4,
+                        modules = modules,
+                        platforms_left = 1,
+                        platforms_right = 1,
+                        segments_per_platform = 1
+                    }
+                    assert.are.same(
+                        {
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 2, grid_y = 0})] = 'track_down.module',
+                        },
+                        station_blueprint:create_template()
+                    )
+                end)
+    
+                it ('creates template with two single platforms left and single platform right', function ()
+                    local station_blueprint = StationBlueprint:new{
+                        platform_placing_pattern = 4,
+                        modules = modules,
+                        platforms_left = 2,
+                        platforms_right = 1,
+                        segments_per_platform = 1
+                    }
+                    assert.are.same(
+                        {
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -3, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 2, grid_y = 0})] = 'track_down.module',
+                        },
+                        station_blueprint:create_template()
+                    )
+                end)
+    
+                it ('creates template with three single platforms left and single platform right', function ()
+                    local station_blueprint = StationBlueprint:new{
+                        platform_placing_pattern = 4,
+                        modules = modules,
+                        platforms_left = 3,
+                        platforms_right = 1,
+                        segments_per_platform = 1
+                    }
+                    assert.are.same(
+                        {
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -5, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -4, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -3, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 2, grid_y = 0})] = 'track_down.module',
+                        },
+                        station_blueprint:create_template()
+                    )
+                end)
+    
+                it ('creates big station', function ()
+                    local station_blueprint = StationBlueprint:new{
+                        platform_placing_pattern = 4,
+                        modules = modules,
+                        platforms_left = 3,
+                        platforms_right = 4,
+                        segments_per_platform = 1
+                    }
+    
+                    assert.are.same(
+                        {
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -5, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -4, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -3, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = -2, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 1, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 2, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 3, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 4, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 5, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 6, grid_y = 0})] = 'track_down.module',
+                            [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = 7, grid_y = 0})] = 'platform_right.module',
+                            [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 8, grid_y = 0})] = 'track_down.module',
+                            
+                        },
+                        station_blueprint:create_template()
+                    )
+                end)
+            end)
+
     end)
 
 end)
