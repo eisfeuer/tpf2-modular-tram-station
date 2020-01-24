@@ -12,6 +12,14 @@ function StationBlueprint:new(o)
 end
 
 local function add_single_track_to_template(self, track_grid_x, direction, template)
+    if direction == c.RIGHT then
+        template[Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_up_doors_right
+    else
+        template[Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_down_doors_right
+    end
+end
+
+local function add_single_track_to_at_double_platform_template(self, track_grid_x, direction, template)
     if direction == c.LEFT then
         template[Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_up_doors_right
     else
@@ -50,7 +58,7 @@ local function create_template_from_pattern_0(self, platforms, direction, curren
     local current_track_grid_x = current_platform_grid_x - 1
 
     if platforms < 1 then
-        add_single_track_to_template(self, current_track_grid_x * direction, direction, template)
+        add_single_track_to_at_double_platform_template(self, current_track_grid_x * direction, direction, template)
         return
     end
 
@@ -70,6 +78,22 @@ local function create_template_from_pattern_0(self, platforms, direction, curren
     create_template_from_pattern_0(self, platforms - 2, direction, current_platform_grid_x + 2, template)
 end
 
+local function create_template_from_pattern_1(self, platforms, direction, current_platform_grid_x, template)
+    if platforms <= 0 then
+        return
+    end
+
+    local current_track_grid_x = current_platform_grid_x - 1
+
+    if current_track_grid_x > 0 then
+        add_single_track_to_template(self, current_track_grid_x * direction, direction, template)
+    end
+
+    add_single_platform_to_template(self, current_platform_grid_x * direction, direction, template)
+
+    create_template_from_pattern_1(self, platforms - 1, direction, current_platform_grid_x + 2, template)
+end
+
 function StationBlueprint:create_template()
     local template = {}
 
@@ -80,6 +104,14 @@ function StationBlueprint:create_template()
         end
         if self.platforms_right > 0 then
             create_template_from_pattern_0(self, self.platforms_right, c.RIGHT, 1, template)
+        end
+    elseif self.platform_placing_pattern == 1 then
+        add_double_track_to_template(self, 0, template)
+        if self.platforms_left > 0 then
+            create_template_from_pattern_1(self, self.platforms_left, c.LEFT, 1, template)
+        end
+        if self.platforms_right > 0 then
+            create_template_from_pattern_1(self, self.platforms_right, c.RIGHT, 1, template)
         end
     end
 
