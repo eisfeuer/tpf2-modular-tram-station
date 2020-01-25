@@ -251,4 +251,27 @@ describe('ColumnCollection', function ()
         )
         assert.is_false(collection:is_empty())
     end)
+
+    describe('get_left_outer_column_grid_x', function ()
+        local column_collection = ColumnCollection:new{}
+
+        column_collection:add(Module:new{id = Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -3, grid_y = 0})})
+
+        column_collection:add(Module:new{id = Module.make_id({type = t.PLATFORM_LEFT, grid_x = -2, grid_y = 0})})
+        column_collection:add(Module:new{id = Module.make_id({type = t.PLATFORM_LEFT, grid_x = -2, grid_y = 1})})
+
+        column_collection:add(Module:new{id = Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})})
+
+        column_collection:add(Module:new{id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})})
+
+        column_collection:add(Module:new{id = Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = 1, grid_y = 0})})
+
+        column_collection:add(Module:new{id = Module.make_id({type = t.PLATFORM_LEFT, grid_x = 2, grid_y = 0})})
+        column_collection:add(Module:new{id = Module.make_id({type = t.PLATFORM_LEFT, grid_x = 2, grid_y = -1})})
+
+        column_collection:calculate_track_segment_range()
+        column_collection:calculate_x_positions()
+
+        assert.are.equal(-3, column_collection:get_left_outer_column_grid_x())
+    end)
 end)

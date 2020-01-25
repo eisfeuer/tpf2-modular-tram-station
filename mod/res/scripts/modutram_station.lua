@@ -4,6 +4,7 @@ local Module = require('modutram_module')
 local SlotCollection = require('modutram_slot_collection')
 local ModelBuilder = require('modutram_model_builder')
 local PassengerPathBuilder = require('modutram_passenger_path_builder')
+local TerrainAlignment = require('modutram_terrain_alignment')
 
 local Station = {}
 
@@ -52,6 +53,8 @@ function Station:get_slots()
 end
 
 function Station:get_data()
+    local terrain_alignment_polygon = TerrainAlignment.create_terrain_polygon_for(self.columns)
+
     local result = { }
             
     result.station = self
@@ -61,10 +64,8 @@ function Station:get_data()
     result.edgeLists = {}
     result.terminalGroups = self.terminal_groups
 
-    result.terrainAlignmentLists = { {
-        type = "EQUAL",
-        faces =  { }
-    } }
+    result.terrainAlignmentLists = { TerrainAlignment.create_terrain_alignment_list_from_polygon(terrain_alignment_polygon) }
+    result.groundFaces = { TerrainAlignment.create_ground_faces_from_polygon(terrain_alignment_polygon, "industry_floor_high_priority.gtex.lua",  "pedestrian_connection_border.lua") }
 
     result.terminateConstructionHook = function()	
         local passenger_path_builder = PassengerPathBuilder:new{

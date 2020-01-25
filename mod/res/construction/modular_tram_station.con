@@ -1,16 +1,81 @@
 local Station = require('modutram_station')
+local Blueprint = require('modutram_station_blueprint')
+
+local function get_station_base_modules(params)
+    return {
+        platform_left = 'modules/platform_single_right_era_c.module',
+        platform_right = 'modules/platform_single_left_era_c.module',
+        platform_double = 'modules/platform_double_era_c.module',
+        track_up_doors_right = 'modules/track_single_up_doors_right_era_c.module',
+        track_down_doors_right = 'modules/track_single_down_doors_right_era_c.module',
+        track_double_doors_right = 'modules/track_single_double_doors_right_era_c.module'
+    }
+end
 
 function data()
     return { 
-        type = "STREET_STATION",
+        type = 'STREET_STATION',
         description = {
-            name = _("Bench"),			
-            description = _("A bench.")
+            name = _('Modular Tram Station'),			
+            description = _('Base Set.')
         },
         availability = {
             yearFrom = 0,
             yearTo = 0
         },
+        constructionTemplates = {
+            {
+                type = 'DYNAMIC',
+                constructionType = 'STREET_STATION',
+                availability = {
+                    yearFrom = 0,
+                    yearTo = 0
+                },
+                description = {
+                    name = _('Modular Tram Station'),
+                    description = _('Base Set.'),
+                    icon = 'ui/construction/station/street/passenger_era_a.tga'
+                },
+                data = {
+                    params = {
+                        {
+                            key = 'modutram_platform_placing_pattern',
+                            name = _('modutram_platform_placing_pattern'),
+                            values = { _('0'), _('1'), _('2'), _('3'), _('4') },
+                            defaultIndex = 0,
+                        },
+                        {
+                            key = 'modutram_platforms_left',
+                            name = _('modutram_platforms_left'),
+                            values = { _('0'), _('1'), _('2'), _('3'), ('4'), _('5') },
+                            defaultIndex = 1,
+                        },
+                        {
+                            key = 'modutram_platforms_right',
+                            name = _('modutram_platforms_right'),
+                            values = { _('0'), _('1'), _('2'), _('3'), ('4'), _('5') },
+                            defaultIndex = 1,
+                        },
+                        {
+                            key = 'modutram_platform_length',
+                            name = _('modutram_platform_length'),
+                            values = { _('18m'), _('36m'), _('54m'), _('72m'), _('90m') },
+                            defaultIndex = 2,
+                        },
+                    }
+                }
+            }
+        },
+        createTemplateFn = function(params)
+            local blueprint = Blueprint:new{
+                platform_placing_pattern = params.modutram_platform_placing_pattern,
+                modules = get_station_base_modules(params),
+                platforms_left = params.modutram_platforms_left,
+                platforms_right = params.modutram_platforms_right,
+                segments_per_platform = params.modutram_platform_length + 1
+            }
+            return blueprint:create_template()
+        end,
         updateFn = function(params)
             local station = Station:new({}, params.modules or {})
             return station:get_data()

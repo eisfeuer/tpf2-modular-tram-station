@@ -162,4 +162,14 @@ function ColumnCollection:calculate_track_segment_range()
     end
 end
 
+function ColumnCollection:get_left_outer_column_grid_x()
+    local i = 0
+    local last_i = 0
+    while self:get_column(i) do
+        last_i = i
+        i = i - 1        
+    end
+    return last_i
+end
+
 return ColumnCollection
