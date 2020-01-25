@@ -62,7 +62,7 @@ function TerminalGroup:add_to_model_collection(model_collection)
         id = stop_terminal.model,
         transf = get_path_model_tranformation(self, stop_terminal_position)
     })
-    for i = self.track.btm_segment_id, self.track.top_segment_id do
+    for i = self.track.btm_segment_id - 1, self.track.top_segment_id + 1 do
         local is_terminal = i >= self.platform.btm_segment_id and i <= self.platform.top_segment_id
 
         if is_terminal then

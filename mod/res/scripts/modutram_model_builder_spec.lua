@@ -86,6 +86,22 @@ describe('ModelBuilder', function ()
                         1, 0, 0, 0,
                         0, 1, 0, 0,
                         0, 0, 1, 0,
+                        x_pos, -c.PLATFORM_SEGMENT_LENGTH * 2, 0, 1,
+                    }
+                }, {
+                    id = 'path/to/model2.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        x_pos + 3, -c.PLATFORM_SEGMENT_LENGTH * 2 + 2, 1, 1,
+                    }
+                },{
+                    id = 'path/to/model.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
                         x_pos, -c.PLATFORM_SEGMENT_LENGTH, 0, 1,
                     }
                 }, {
@@ -127,6 +143,22 @@ describe('ModelBuilder', function ()
                         0, 1, 0, 0,
                         0, 0, 1, 0,
                         x_pos + 3, c.PLATFORM_SEGMENT_LENGTH + 2, 1, 1,
+                    }
+                }, {
+                    id = 'path/to/model.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        x_pos, 2 * c.PLATFORM_SEGMENT_LENGTH, 0, 1,
+                    }
+                }, {
+                    id = 'path/to/model2.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        x_pos + 3, 2 * c.PLATFORM_SEGMENT_LENGTH + 2, 1, 1,
                     }
                 }
             }, modelCollection.models)
@@ -202,7 +234,13 @@ describe('ModelBuilder', function ()
                     transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.right_path_model_transformation)
                 }, {
                     id = c.PLATFORM_PATH_MODELS.tram.vehicle_lane_without_terminal.model,
+                    transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH * -2}:add_to_matrix(platform.right_path_model_transformation)
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.tram.vehicle_lane_without_terminal.model,
                     transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH * 2}:add_to_matrix(platform.right_path_model_transformation)
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.tram.vehicle_lane_without_terminal.model,
+                    transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH * 3}:add_to_matrix(platform.right_path_model_transformation)
                 }
             }, modelCollection.models)
         end)

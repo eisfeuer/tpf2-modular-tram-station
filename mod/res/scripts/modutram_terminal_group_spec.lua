@@ -190,10 +190,16 @@ describe('TerminalGroup', function ()
                         transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
                     }, {
                         id = 'tram_path.mdl',
+                        transf = Position:new{y = -2 * c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
+                    }, {
+                        id = 'tram_path.mdl',
                         transf = Position:new{y = -c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
                     }, {
                         id = 'tram_path.mdl',
                         transf = Position:new{y = 2 * c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
+                    }, {
+                        id = 'tram_path.mdl',
+                        transf = Position:new{y = 3 * c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
                     }
                 }, model_collection.models)
             end)
@@ -250,7 +256,13 @@ describe('TerminalGroup', function ()
                         transf = Position:new{y = c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
                     }, {
                         id = 'tram_path.mdl',
+                        transf = Position:new{y = -2 * c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
+                    }, {
+                        id = 'tram_path.mdl',
                         transf = Position:new{y = 2 * c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
+                    }, {
+                        id = 'tram_path.mdl',
+                        transf = Position:new{y = 3 * c.PLATFORM_SEGMENT_LENGTH}:add_to_matrix(platform.left_path_model_transformation)
                     }
                 }, model_collection.models)
             end)

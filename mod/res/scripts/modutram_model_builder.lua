@@ -21,7 +21,7 @@ function ModelBuilder:add_segment_models_for_tram_track(module_id, models)
     local track_module = Module:new{ id = module_id }
     local track = self.column_collection:get_column(track_module.grid_x)
     if track:is_track() then
-        for i = track.btm_segment_id, track.top_segment_id do
+        for i = track.btm_segment_id - 1, track.top_segment_id + 1 do
             for j, model in ipairs(models) do
                 local pos = Position:new({x = track.x_pos, y = i * c.PLATFORM_SEGMENT_LENGTH})
                 self:add_model({

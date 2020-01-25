@@ -8,9 +8,9 @@ function data()
         },
         collider = {
             params = {
-                halfExtents = { 9, 1.2, 2.4120001792908, },
+                halfExtents = { 0.1, 0.1, 0.1 },
             },
-            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, },
             type = "BOX",
         },
         lods = {
