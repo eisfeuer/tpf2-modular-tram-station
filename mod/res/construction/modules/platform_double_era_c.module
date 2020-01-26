@@ -27,6 +27,7 @@ function data()
                 id = 'modutram_platform_double_rep_era_c.mdl',
                 transf = transform
             })
+            result.station.slots:make_asset_slot(slotId, 1, transform):move(0, 0, 1.15):add_to_slots()
         end,
         getModelsFn = function()
             return {{

@@ -814,4 +814,23 @@ describe('SlotCollection', function ()
             }, collection:get_slots())
         end)
     end)
+
+    describe('make_asset_slot', function ()
+        it('makes new asset slot for asset', function ()
+            local slot_collection = SlotCollection:new{}
+            local segment_id = Module:make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = 1})
+            local transformation_matrix = {
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                1, 2, 4, 1
+            }
+
+            local asset_slot = slot_collection:make_asset_slot(segment_id, 5, transformation_matrix)
+            assert.are.equal(slot_collection, asset_slot.slot_collection)
+            assert.are.equal(segment_id, asset_slot.segment_id)
+            assert.are.same(transformation_matrix, asset_slot.transformation)
+            assert.are.equal(5, asset_slot.asset_id)
+        end)
+    end)
 end)

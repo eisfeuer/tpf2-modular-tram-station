@@ -38,5 +38,7 @@ return {
             stop_mid_terminal = { model = 'station/tram/path/tram_and_bus_stop_mid.mdl', terminal_position = 0 },
             vehicle_lane_without_terminal = { model = 'station/tram/path/tram_and_bus_lanes_only.mdl', terminal_position = 0 },
         }
-    }
+    },
+    DEFAULT_ASSET_SLOT_TYPE = 'g_decoration',
+    DEFAULT_ASSET_SLOT_SPACING = {0.1 ,0.1, 0.1, 0.1}
 }

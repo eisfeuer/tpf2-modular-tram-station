@@ -4,6 +4,7 @@ local c = require('modutram_constants')
 local t = require('modutram_types')
 local Position = require('modutram_position')
 local SlotBuilder = require('modutram_slot_builder')
+local AssetSlot = require('modutram_asset_slot')
 
 local FLIPPED_IDENTITY_MATRIX = {
     -1, 0, 0, 0,
@@ -141,6 +142,10 @@ function SlotCollection:import_from_column_collection(column_collection)
         import_half_from_column_collection(self, column_collection, c.LEFT)
         import_half_from_column_collection(self, column_collection, c.RIGHT)
     end
+end
+
+function SlotCollection:make_asset_slot(segment_id, asset_id, segment_pivot)
+    return AssetSlot:new{slot_collection = self, segment_id = segment_id, asset_id = asset_id, transformation = segment_pivot}
 end
 
 function SlotCollection:is_empty()
