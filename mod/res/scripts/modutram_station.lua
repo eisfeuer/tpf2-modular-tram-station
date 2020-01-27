@@ -84,4 +84,26 @@ function Station:get_data()
     return result
 end
 
+function Station:is_top_segment_of_a_platform(segment_id)
+    local mod = Module:new{id = segment_id}
+    local platform = self.columns:get_column(mod.grid_x)
+
+    if not platform or not platform:is_platform() then
+        return false
+    end
+
+    return mod.grid_y == platform.top_segment_id
+end
+
+function Station:is_bottom_segment_of_a_platform(segment_id)
+    local mod = Module:new{id = segment_id}
+    local platform = self.columns:get_column(mod.grid_x)
+
+    if not platform or not platform:is_platform() then
+        return false
+    end
+
+    return mod.grid_y == platform.btm_segment_id
+end
+
 return Station

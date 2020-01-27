@@ -125,4 +125,40 @@ describe('station', function ()
             assert.are.equal(6, #station:get_slots())
         end)
     end)
+
+    describe('is_top_segment_of_a_platform', function ()
+        it ('checks whether given segment id comes from a segment which is on top of a platform', function ()
+            local top_segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 1})
+            local mid_segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})
+            local btm_segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = -1})
+
+            local station = Station:new({}, { 
+                [top_segment_id] = 'a_module.module',
+                [mid_segment_id] = 'a_module.module',
+                [btm_segment_id] = 'a_module.module'
+            })
+
+            assert.is_true(station:is_top_segment_of_a_platform(top_segment_id))
+            assert.is_false(station:is_top_segment_of_a_platform(mid_segment_id))
+            assert.is_false(station:is_top_segment_of_a_platform(btm_segment_id))
+        end)
+
+        describe('is_bottom_segment_of_a_platform', function ()
+            it ('checks whether given segment id comes from a segment which is at the bottom of a platform', function ()
+                local top_segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 1})
+                local mid_segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})
+                local btm_segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = -1})
+    
+                local station = Station:new({}, { 
+                    [top_segment_id] = 'a_module.module',
+                    [mid_segment_id] = 'a_module.module',
+                    [btm_segment_id] = 'a_module.module'
+                })
+    
+                assert.is_false(station:is_bottom_segment_of_a_platform(top_segment_id))
+                assert.is_false(station:is_bottom_segment_of_a_platform(mid_segment_id))
+                assert.is_true(station:is_bottom_segment_of_a_platform(btm_segment_id))
+            end)
+        end)
+    end)
 end)
