@@ -6,6 +6,7 @@ local c = require('modutram_constants')
 
 function StationBlueprint:new(o)
     o = o or {}
+    o.platform_decoration_functions = {}
     setmetatable(o, self)
     self.__index = self
     return o
@@ -37,6 +38,7 @@ local function add_single_platform_to_template_inner(self, platform_grid_x, dire
         platform_segments = self.segments_per_platform,
         platform_segment_module = platform_module
     }
+    platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
     platform_blueprint:add_to_template(template)
 end
 
@@ -50,6 +52,7 @@ local function add_single_platform_to_template_outer(self, platform_grid_x, dire
         platform_segments = self.segments_per_platform,
         platform_segment_module = platform_module
     }
+    platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
     platform_blueprint:add_to_template(template)
 end
 
@@ -64,6 +67,7 @@ local function add_double_platform_to_template(self, platform_grid_x, template)
         platform_segments = self.segments_per_platform,
         platform_segment_module = self.modules.platform_double
     }
+    platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
     platform_blueprint:add_to_template(template)
 end
 
@@ -120,6 +124,10 @@ local function create_template_from_pattern_2(self, platforms, direction, curren
     create_template_from_pattern_2(self, platforms - 1, direction, current_platform_grid_x + 2, template)
 end
 
+function StationBlueprint:decorate_platforms(decoration_function)
+    table.insert(self.platform_decoration_functions, decoration_function)
+end
+
 function StationBlueprint:create_template()
     local template = {}
 
@@ -160,6 +168,7 @@ function StationBlueprint:create_template()
                 platform_segments = self.segments_per_platform,
                 platform_segment_module = self.modules.platform_left
             }
+            platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
             platform_blueprint:add_to_template(template)
         end
     -- ] || ] || ] || ] ||
@@ -174,6 +183,7 @@ function StationBlueprint:create_template()
                 platform_segments = self.segments_per_platform,
                 platform_segment_module = self.modules.platform_right
             }
+            platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
             platform_blueprint:add_to_template(template)
         end
     end

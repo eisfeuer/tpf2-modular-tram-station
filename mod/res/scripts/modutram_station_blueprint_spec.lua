@@ -717,4 +717,36 @@ describe('StationBlueprint', function ()
 
     end)
 
+    describe('decorate_platforms', function ()
+        it ('decorates station platform segments', function ()
+            local station_blueprint = StationBlueprint:new{
+                platform_placing_pattern = 1,
+                modules = modules,
+                platforms_left = 1,
+                platforms_right = 1,
+                segments_per_platform = 1
+            }
+
+            station_blueprint:decorate_platforms(function (segment_blueprint)
+                segment_blueprint:add_asset(1, t.ASSET_SHELTER, 'shelter.module')
+            end)
+            station_blueprint:decorate_platforms(function (segment_blueprint)
+                segment_blueprint:add_asset(2, t.ASSET_DECORATION, 'deco.module')
+            end)
+
+            assert.are.same(
+                {
+                    [Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_double.module',
+                    [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                    [Module.make_id({type = t.ASSET_SHELTER, grid_x = -1, grid_y = 0, asset_id = 1})] = 'shelter.module',
+                    [Module.make_id({type = t.ASSET_DECORATION, grid_x = -1, grid_y = 0, asset_id = 2})] = 'deco.module',
+                    [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                    [Module.make_id({type = t.ASSET_SHELTER, grid_x = 1, grid_y = 0, asset_id = 1})] = 'shelter.module',
+                    [Module.make_id({type = t.ASSET_DECORATION, grid_x = 1, grid_y = 0, asset_id = 2})] = 'deco.module',
+                },
+                station_blueprint:create_template()
+            )
+        end)
+    end)
+
 end)

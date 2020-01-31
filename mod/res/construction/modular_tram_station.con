@@ -1,5 +1,6 @@
 local Station = require('modutram_station')
 local Blueprint = require('modutram_station_blueprint')
+local t = require('modutram_types')
 
 local function get_station_base_modules(params)
     return {
@@ -74,6 +75,13 @@ function data()
                 platforms_right = params.modutram_platforms_right,
                 segments_per_platform = params.modutram_platform_length + 1
             }
+
+            blueprint:decorate_platforms(function(segment_blueprint)
+                if segment_blueprint:is_platform_type(t.PLATFORM_DOUBLE) then
+                    segment_blueprint:add_asset(1, t.ASSET_DECORATION, 'modules/assets/lamp_era_a.module')
+                end
+            end)
+
             return blueprint:create_template()
         end,
         updateFn = function(params)
