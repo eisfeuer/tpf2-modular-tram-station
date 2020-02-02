@@ -1,3 +1,5 @@
+local t = require('modutram_types')
+
 function data()
     return {
         cost = {
@@ -27,6 +29,16 @@ function data()
                 id = 'modutram_platform_double_rep_era_c.mdl',
                 transf = transform
             })
+
+            -- Shelters
+            result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(-0.9, 0, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(0.9, 0, 1.15):rotate(180):add_to_slots()
+            if not result.station:is_top_segment_of_a_platform(slotId) then
+                result.station.slots:make_asset_slot(slotId, 3, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(-0.9, 9, 1.15):add_to_slots()
+                result.station.slots:make_asset_slot(slotId, 4, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(0.9, 9, 1.15):rotate(180):add_to_slots()
+            end
+
+            -- Lamps
             result.station.slots:make_asset_slot(slotId, 1, transform):move(0, -9, 1.15):add_to_slots()
             result.station.slots:make_asset_slot(slotId, 2, transform):move(0, 0, 1.15):add_to_slots()
             if result.station:is_top_segment_of_a_platform(slotId) then

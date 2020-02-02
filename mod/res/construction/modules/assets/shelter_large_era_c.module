@@ -1,0 +1,188 @@
+local SHELTER_SEGMENT_WIDTH = 1.3
+
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "shelters", },
+        },
+        description = {
+            name = _("shelter"),
+            description = _("shelter era a"),
+            icon = "ui/models/station/bus/small_new.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "g_shelter",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_r_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 2.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 1.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 1.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 2.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_l_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'station/road/streetstation/asset/shelter_era_c_r_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 2.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 1.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 1.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 2.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_l_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }
+            }
+        end
+    }
+end

@@ -4,7 +4,7 @@ function data()
             price = 1000,
         },
         category = {
-            categories = { "lamps", },
+            categories = { "fences", },
         },
         description = {
             name = _("Lamp"),
@@ -24,25 +24,27 @@ function data()
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             addModelFn(
-                'asset/lamp_old.mdl',
+                'street/street_light_eu_a.mdl',
                 {
-                    1, 0, 0, 0,
                     0, 1, 0, 0,
+                    -1, 0, 0, 0,
                     0, 0, 1, 0,
                     0, 0, -1, 1
                 }
             )
         end,
         getModelsFn = function()
-            return {{
-                id = 'asset/lamp_old.mdl',
-                transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, -1, 1,
+            return {
+                {
+                    id = 'street/street_light_eu_a.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
                 }
-            }}
+            }
         end
     }
 end

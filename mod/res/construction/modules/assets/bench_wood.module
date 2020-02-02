@@ -1,0 +1,50 @@
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "benches", },
+        },
+        description = {
+            name = _("Bench"),
+            description = _("Wooden Bench"),
+            icon = "ui/construction/asset/default_multi_lamp.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "g_decoration",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, -1, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
+                }
+            }
+        end
+    }
+end
