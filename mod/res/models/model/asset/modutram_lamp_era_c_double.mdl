@@ -1,12 +1,12 @@
 function data()
 return {
 	boundingInfo = {
-		bbMax = { 0.070000000298023, 0.037832446396351, 3.1499998569489, },
-		bbMin = { -0.070000000298023, -0.52499997615814, -0.10000014305115, },
+		bbMax = { 0.070000000298023, 0.52499997615814, 3.1499998569489, },
+		bbMin = { -0.070000045001507, -0.52499997615814, -0.10000014305115, },
 	},
 	collider = {
 		params = {
-			halfExtents = { 0.070000000298023, 0.28141620755196, 1.625, },
+			halfExtents = { 0.070000022649765, 0.52499997615814, 1.625, },
 		},
 		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 		type = "BOX",
@@ -17,8 +17,8 @@ return {
 				children = {
 					{
 						materials = { "asset/modutram_accessories.mtl", },
-						mesh = "asset/modular_tram_station/modutram_lamp_era_c_lod0.msh",
-						name = "lamp_era_c_lod0",
+						mesh = "asset/modular_tram_station/modutram_lamp_era_c_double_lod0.msh",
+						name = "lamp_era_c_double_lod0",
 						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 					},
 				},
@@ -27,7 +27,7 @@ return {
 			},
 			static = false,
 			visibleFrom = 0,
-			visibleTo = 255.12045288086,
+			visibleTo = 338.91372680664,
 		},
 	},
 	metadata = { },
