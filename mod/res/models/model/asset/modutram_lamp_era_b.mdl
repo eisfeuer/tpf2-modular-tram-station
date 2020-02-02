@@ -1,0 +1,87 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.19917660951614, 0.19917652010918, 2.1771445274353, },
+		bbMin = { -0.19917641580105, -0.19917665421963, -0.19999998807907, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.19917652010918, 0.19917657971382, 1.1885722875595, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_accessories.mtl", },
+						mesh = "asset/modular_tram_station/modutram_lamp_era_b_lod0.msh",
+						name = "lamp_era_b_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 6.8846621513367,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_accessories.mtl", },
+						mesh = "asset/modular_tram_station/modutram_lamp_era_b_lod1.msh",
+						name = "lamp_era_b_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 6.8846621513367,
+			visibleTo = 20.653985977173,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_accessories.mtl", },
+						mesh = "asset/modular_tram_station/modutram_lamp_era_b_lod2.msh",
+						name = "lamp_era_b_lod2",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 20.653985977173,
+			visibleTo = 61.96195602417,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_accessories.mtl", },
+						mesh = "asset/modular_tram_station/modutram_lamp_era_b_lod3.msh",
+						name = "lamp_era_b_lod3",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 61.96195602417,
+			visibleTo = 185.88586425781,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
