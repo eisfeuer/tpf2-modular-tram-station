@@ -9,7 +9,7 @@ function data()
                 fadeOutEndDist = 20000,
                 fadeOutStartDist = 10000,
             },
-            map_albedo = {
+            map_albedo_opacity = {
                 fileName = "modutram_accessories_albedo_opacity.dds",
                 type = "TWOD",
                 wrapS = "REPEAT",
@@ -41,7 +41,7 @@ function data()
                 twoSided = false,
             },
         },
-        type = "PHYSICAL_TRANSPARENT_NRML_MAP",
+        type = "PHYS_TRANSPARENT_NRML_MAP",
     }
     end
     
