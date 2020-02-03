@@ -1,0 +1,70 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.03000020980835, 3.0290591716766, 1.0988944768906, },
+		bbMin = { -0.03000009059906, -3.0300002098083, -0.22000001370907, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.030000150203705, 3.0295295715332, 0.6594472527504, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_fences.mtl", },
+						mesh = "asset/modular_tram_station/modutram_fence_6m_era_a_lod0.msh",
+						name = "fence_6m_era_a_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 57.898300170898,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_fences.mtl", },
+						mesh = "asset/modular_tram_station/modutram_fence_6m_era_a_lod1.msh",
+						name = "fence_6m_era_a_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 57.898300170898,
+			visibleTo = 173.6949005127,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_fences.mtl", },
+						mesh = "asset/modular_tram_station/modutram_fence_6m_era_a_lod2.msh",
+						name = "fence_6m_era_a_lod2",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 173.6949005127,
+			visibleTo = 521.08471679688,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end

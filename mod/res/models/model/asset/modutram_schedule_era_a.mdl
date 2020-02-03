@@ -1,0 +1,36 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0, 0.17000000178814, 0.18147918581963, },
+		bbMin = { -0.024999998509884, -0.17000000178814, -0.10999999940395, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.012499999254942, 0.17000000178814, 0.14573958516121, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_ads_and_schedules.mtl", },
+						mesh = "asset/modular_tram_station/modutram_schedule_era_a_lod0.msh",
+						name = "schedule_era_a_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 69.063499450684,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
