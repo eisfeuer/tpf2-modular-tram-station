@@ -1,0 +1,36 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.050000037997961, 0.59249973297119, 2.1200001239777, },
+		bbMin = { -0.050000034272671, -0.59249973297119, 0.37000003457069, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.050000034272671, 0.59249973297119, 0.87500005960464, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_ads_and_schedules.mtl", },
+						mesh = "asset/modular_tram_station/modutram_city_light_poster_3_lod0.msh",
+						name = "city_light_poster_3_lod0",
+						transf = { 7.5497894158616e-08, -1, 0, 0, 1, 7.5497894158616e-08, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 295.39126586914,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
