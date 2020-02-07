@@ -26,8 +26,8 @@ function data()
             addModelFn(
                 'asset/bench_new.mdl',
                 {
-                    0, 1, 0, 0,
-                    -1, 0, 0, 0,
+                    0, -1, 0, 0,
+                    1, 0, 0, 0,
                     0, 0, 1, 0,
                     0, 0, -1, 1
                 }
@@ -38,8 +38,8 @@ function data()
                 {
                     id = 'asset/bench_new.mdl',
                     transf = {
-                        0, 1, 0, 0,
-                        -1, 0, 0, 0,
+                        0, -1, 0, 0,
+                        1, 0, 0, 0,
                         0, 0, 1, 0,
                         0, 0, -1, 1,
                     }

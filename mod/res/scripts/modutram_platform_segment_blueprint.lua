@@ -28,4 +28,16 @@ function PlatformSegmentBlueprint:is_bottom_platform_segment()
     return self:get_current_segment() == self.start_segment
 end
 
+function PlatformSegmentBlueprint:get_total_segment_count()
+    return (self.end_segment - self.start_segment) + 1
+end
+
+function PlatformSegmentBlueprint:has_even_segment_count()
+    return self:get_total_segment_count() % 2 == 0
+end
+
+function PlatformSegmentBlueprint:has_odd_segment_count()
+    return not self:has_even_segment_count()
+end
+
 return PlatformSegmentBlueprint

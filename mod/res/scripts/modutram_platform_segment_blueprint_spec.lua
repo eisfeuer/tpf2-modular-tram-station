@@ -117,4 +117,127 @@ describe('PlatformSegmentBlueprint', function ()
             assert.are.equal(1, segment_blueprint:get_current_segment())
         end)
     end)
+
+    describe('get_total_segment_count', function ()
+        it ('returns count of all segments', function ()
+            local segment_blueprint_1 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -1,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+    
+            local segment_blueprint_2 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -2,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+    
+            local segment_blueprint_3 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = 0,
+                end_segment = 0,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+    
+            assert.are.equal(4, segment_blueprint_1:get_total_segment_count())
+            assert.are.equal(5, segment_blueprint_2:get_total_segment_count())
+            assert.are.equal(1, segment_blueprint_3:get_total_segment_count())
+        end)
+    end)
+
+    describe('has_even_segment_count', function ()
+        it ('checks whether segment count is even', function ()
+            local segment_blueprint_1 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -1,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+    
+            local segment_blueprint_2 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -2,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+
+            local segment_blueprint_3 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = 0,
+                end_segment = 0,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+
+            assert.is_true(segment_blueprint_1:has_even_segment_count())
+            assert.is_false(segment_blueprint_2:has_even_segment_count())
+            assert.is_false(segment_blueprint_3:has_even_segment_count())
+        end)
+    end)
+
+    describe('has_odd_segment_count', function ()
+        it ('checks whether segment count is odd', function ()
+            local segment_blueprint_1 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -1,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+    
+            local segment_blueprint_2 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -2,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+
+            local segment_blueprint_3 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = 0,
+                end_segment = 0,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+
+            assert.is_false(segment_blueprint_1:has_odd_segment_count())
+            assert.is_true(segment_blueprint_2:has_odd_segment_count())
+            assert.is_true(segment_blueprint_3:has_odd_segment_count())
+        end)
+    end)
 end)

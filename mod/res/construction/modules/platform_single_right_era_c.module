@@ -1,3 +1,6 @@
+local t = require('modutram_types')
+local FENCE_6M_SPACING = {0.02, 0.02, 2.99, 2.99}
+
 function data()
     return {
         cost = {
@@ -27,6 +30,30 @@ function data()
                 id = 'modutram_platform_single_rep_era_c.mdl',
                 transf = transform
             })
+
+            -- Shelters
+            result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(1.8, 0, 1.15):rotate(180):add_to_slots()
+            if not result.station:is_top_segment_of_a_platform(slotId) then
+                result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(1.8, 9, 1.15):rotate(180):add_to_slots()
+            end
+
+            -- Fences
+            result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_FENCE_6M, 'g_fence_6m'):with_spacing(FENCE_6M_SPACING):move(1.5, -6, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_FENCE_6M, 'g_fence_6m'):with_spacing(FENCE_6M_SPACING):move(1.5, 0, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 3, transform):of_type(t.ASSET_FENCE_6M, 'g_fence_6m'):with_spacing(FENCE_6M_SPACING):move(1.5, 6, 1.15):rotate(180):add_to_slots()
+
+            -- Lamps
+            result.station.slots:make_asset_slot(slotId, 1, transform):move(1.2, -9, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 2, transform):move(1.2, 0, 1.15):rotate(180):add_to_slots()
+            if result.station:is_top_segment_of_a_platform(slotId) then
+                result.station.slots:make_asset_slot(slotId, 3, transform):move(1.2, 9, 1.15):rotate(180):add_to_slots()
+            end
+
+            -- Other Decoration Between Lamps
+            result.station.slots:make_asset_slot(slotId, 4, transform):move(1.2, -6, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 5, transform):move(1.2, -3, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 6, transform):move(1.2, 3, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 7, transform):move(1.2, 6, 1.15):rotate(180):add_to_slots()
         end,
         getModelsFn = function()
             return {{

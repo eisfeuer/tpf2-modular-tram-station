@@ -4,18 +4,18 @@ function data()
             price = 1000,
         },
         category = {
-            categories = { "benches", },
+            categories = { "fences", },
         },
         description = {
-            name = _("Bench"),
-            description = _("Art Nouveau"),
-            icon = "ui/construction/asset/default_multi_bench_old.tga"
+            name = _("Fence"),
+            description = _("6m Era C"),
+            icon = "ui/construction/asset/default_multi_lamp.tga"
         }, 
         availability = {
             yearFrom = 0,
             yearTo = 0
         },
-        type = "g_decoration",
+        type = "g_fence_6m",
         order = {
             value = 7,
         },
@@ -24,10 +24,10 @@ function data()
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             addModelFn(
-                'asset/bench_old.mdl',
+                'asset/modutram_fence_6m_era_c.mdl',
                 {
-                    0, -1, 0, 0,
                     1, 0, 0, 0,
+                    0, 1, 0, 0,
                     0, 0, 1, 0,
                     0, 0, -1, 1
                 }
@@ -36,10 +36,10 @@ function data()
         getModelsFn = function()
             return {
                 {
-                    id = 'asset/bench_old.mdl',
+                    id = 'asset/modutram_fence_6m_era_c.mdl',
                     transf = {
-                        0, -1, 0, 0,
                         1, 0, 0, 0,
+                        0, 1, 0, 0,
                         0, 0, 1, 0,
                         0, 0, -1, 1,
                     }

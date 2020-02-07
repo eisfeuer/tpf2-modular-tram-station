@@ -63,6 +63,24 @@ function data()
                             values = { _('18m'), _('36m'), _('54m'), _('72m'), _('90m') },
                             defaultIndex = 2,
                         },
+                        {
+                            key = 'modutram_fences',
+                            name = _('modutram_lamps'),
+                            values = { _('off'), _('era_a'), _('era_b'), _('era_c') },
+                            defaultIndex = 3,
+                        },
+                        {
+                            key = 'modutram_lamps',
+                            name = _('modutram_lamps'),
+                            values = { _('off'), _('era_a'), _('era_b'), _('era_c') },
+                            defaultIndex = 3,
+                        },
+                        {
+                            key = 'modutram_benches',
+                            name = _('modutram_benches'),
+                            values = { _('off'), _('era_a'), _('era_b'), _('era_c') },
+                            defaultIndex = 3,
+                        },
                     }
                 }
             }
@@ -77,8 +95,49 @@ function data()
             }
 
             blueprint:decorate_platforms(function(segment_blueprint)
-                if segment_blueprint:is_platform_type(t.PLATFORM_DOUBLE) then
-                    segment_blueprint:add_asset(1, t.ASSET_DECORATION, 'modules/assets/lamp_era_a.module')
+                -- Fences
+                if params.modutram_fences > 0 then
+                    local fence_modules = {
+                        'modules/assets/fence_6m_era_a.module',
+                        'modules/assets/fence_6m_era_b.module',
+                        'modules/assets/fence_6m_era_c.module'
+                    }
+
+                    segment_blueprint:add_asset(1, t.ASSET_FENCE_6M, fence_modules[params.modutram_fences])
+                    segment_blueprint:add_asset(2, t.ASSET_FENCE_6M, fence_modules[params.modutram_fences])
+                    segment_blueprint:add_asset(3, t.ASSET_FENCE_6M, fence_modules[params.modutram_fences])
+                end
+
+                -- Lamps
+                if params.modutram_lamps > 0 then
+                    local lamp_modules = {
+                        'modules/assets/lamp_era_a.module',
+                        'modules/assets/lamp_era_b.module',
+                        segment_blueprint:is_platform_type(t.PLATFORM_DOUBLE) and 'modules/assets/lamp_era_c_double.module' or 'modules/assets/lamp_era_c.module'
+                    }
+
+                    segment_blueprint:add_asset(1, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                    segment_blueprint:add_asset(2, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                    if segment_blueprint:is_top_platform_segment() then
+                        segment_blueprint:add_asset(3, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                    end
+                end
+
+                -- Benches
+                if params.modutram_benches > 0 then
+                    local bench_modules = {
+                        'modules/assets/bench_era_a.module',
+                        'modules/assets/bench_era_b.module',
+                        'modules/assets/bench_era_b.module'
+                    }
+
+                    if segment_blueprint:get_current_segment() < 0 then
+                        segment_blueprint:add_asset(6, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
+                        segment_blueprint:add_asset(7, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
+                    elseif segment_blueprint:get_current_segment() > (segment_blueprint:get_total_segment_count() + 1) % 2 then
+                        segment_blueprint:add_asset(4, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
+                        segment_blueprint:add_asset(5, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
+                    end
                 end
             end)
 
