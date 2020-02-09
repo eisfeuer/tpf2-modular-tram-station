@@ -1,0 +1,50 @@
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "fences", },
+        },
+        description = {
+            name = _("Splash Guard"),
+            description = _("1.2m Era C"),
+            icon = "ui/construction/asset/default_multi_lamp.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "g_fence_6m",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'asset/modutram_splash_guard_120cm_era_c.mdl',
+                {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, -1, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'asset/modutram_splash_guard_120cm_era_c.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
+                }
+            }
+        end
+    }
+end

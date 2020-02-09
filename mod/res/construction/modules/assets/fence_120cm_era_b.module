@@ -1,0 +1,50 @@
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "fences", },
+        },
+        description = {
+            name = _("Fence"),
+            description = _("1.2m Era B"),
+            icon = "ui/construction/asset/default_multi_lamp.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "g_fence_120cm",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'asset/modutram_fence_120cm_era_b.mdl',
+                {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, -1, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'asset/modutram_fence_120cm_era_b.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
+                }
+            }
+        end
+    }
+end

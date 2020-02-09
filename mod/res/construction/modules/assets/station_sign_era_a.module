@@ -1,0 +1,50 @@
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "signs", },
+        },
+        description = {
+            name = _("Station Sign"),
+            description = _("Art Nouveau"),
+            icon = "ui/construction/asset/default_multi_bench_old.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "eisfeuer_modutram_station_sign",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'station/rail/asset/era_a_station_name.mdl',
+                {
+                    0, -1, 0, 0,
+                    1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, -2.05, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'station/rail/asset/era_a_station_name.mdl',
+                    transf = {
+                        0, -1, 0, 0,
+                        1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -2.05, 1,
+                    }
+                }
+            }
+        end
+    }
+end

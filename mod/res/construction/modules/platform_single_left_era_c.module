@@ -2,6 +2,7 @@ local Matrix = require('modutram_matrix')
 local t = require('modutram_types')
 
 local FENCE_6M_SPACING = {0.02, 0.02, 2.99, 2.99}
+local FENCE_120CM_SPACING = {0.02, 0.02, 0.599, 0.599}
 
 function data()
     return {
@@ -39,10 +40,27 @@ function data()
                 result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(-1.8, 9, 1.15):add_to_slots()
             end
 
-            -- Fences
+            -- Fences 6m
             result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_FENCE_6M, 'g_fence_6m'):with_spacing(FENCE_6M_SPACING):move(-1.5, -6, 1.15):add_to_slots()
             result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_FENCE_6M, 'g_fence_6m'):with_spacing(FENCE_6M_SPACING):move(-1.5, 0, 1.15):add_to_slots()
             result.station.slots:make_asset_slot(slotId, 3, transform):of_type(t.ASSET_FENCE_6M, 'g_fence_6m'):with_spacing(FENCE_6M_SPACING):move(-1.5, 6, 1.15):add_to_slots()
+
+            -- Fences 120cm
+            result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -8.4, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -7.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 3, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -6.0, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 4, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -4.8, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 5, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -3.6, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 6, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -2.4, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 7, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, -1.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 8, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 0.0, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 9, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 1.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 10, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 2.4, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 11, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 3.6, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 12, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 4.8, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 13, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 6.0, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 14, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 7.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 15, transform):of_type(t.ASSET_FENCE_120CM, 'g_fence_120cm'):with_spacing(FENCE_120CM_SPACING):move(-1.5, 8.4, 1.15):add_to_slots()
 
             -- Lamps
             result.station.slots:make_asset_slot(slotId, 1, transform):move(-1.2, -9, 1.15):add_to_slots()
@@ -56,6 +74,20 @@ function data()
             result.station.slots:make_asset_slot(slotId, 5, transform):move(-1.2, -3, 1.15):add_to_slots()
             result.station.slots:make_asset_slot(slotId, 6, transform):move(-1.2, 3, 1.15):add_to_slots()
             result.station.slots:make_asset_slot(slotId, 7, transform):move(-1.2, 6, 1.15):add_to_slots()
+
+            -- Stop Signs and Destination Display
+            result.station.slots:make_asset_slot(slotId, 8, transform):move(-0.6, -8.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 9, transform):move(-0.6, 0, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 10, transform):move(-0.6, 8.2, 1.15):add_to_slots()
+
+            -- Station Signs
+            result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_STATION_SIGN, 'eisfeuer_modutram_station_sign')
+                :move(-1.5, -4.5, 2.2):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_STATION_SIGN, 'eisfeuer_modutram_station_sign')
+                :move(-1.5, 4.5, 2.2):add_to_slots()
+
+
+
         end,
         getModelsFn = function()
             return {{
