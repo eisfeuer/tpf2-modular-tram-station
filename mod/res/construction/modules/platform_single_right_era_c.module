@@ -28,7 +28,7 @@ function data()
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             result.station.builder:add_model({
-                id = 'station/tram/modutram_single_double_rep_era_c.mdl',
+                id = 'station/tram/modutram_platform_single_rep_era_c.mdl',
                 transf = transform
             })
 
@@ -86,7 +86,7 @@ function data()
         end,
         getModelsFn = function()
             return {{
-                id = 'station/tram/modutram_single_double_rep_era_c.mdl',
+                id = 'station/tram/modutram_platform_single_rep_era_c.mdl',
                 transf = {
                     0, -1, 0, 0,
                     1, 0, 0, 0,
