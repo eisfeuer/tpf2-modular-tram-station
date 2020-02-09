@@ -16,7 +16,7 @@ return {
 			node = {
 				children = {
 					{
-						materials = { "modutram/modutram_paving.mtl", "modutram/modutram_curb.mtl", "modutram/modutram_tactile_paving.mtl", },
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl",},
 						mesh = "modutram/modutram_platform_era_c_side_rep_lod0.001_lod0.msh",
 						name = "platform_era_c_side_rep_lod0",
 						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
@@ -38,7 +38,7 @@ return {
 			node = {
 				children = {
 					{
-						materials = { "modutram/modutram_paving.mtl", "modutram/modutram_curb.mtl", "modutram/modutram_tactile_paving.mtl", },
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl",},
 						mesh = "modutram/modutram_platform_era_c_side_rep_lod1.001_lod1.msh",
 						name = "platform_era_c_side_rep_lod1",
 						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
