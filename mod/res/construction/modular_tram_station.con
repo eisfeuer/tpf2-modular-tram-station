@@ -305,7 +305,7 @@ function data()
                     local bench_modules = {
                         'modules/assets/bench_era_a.module',
                         'modules/assets/bench_era_b.module',
-                        'modules/assets/bench_era_c.module'
+                        'modules/assets/bench_era_b.module'
                     }
 
                     if segment_blueprint:get_current_segment() < 0 then

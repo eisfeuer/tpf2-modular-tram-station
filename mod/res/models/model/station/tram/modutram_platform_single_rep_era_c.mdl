@@ -1,12 +1,12 @@
 function data()
 return {
 	boundingInfo = {
-		bbMax = { 9, 1.65, 0.15},
-		bbMin = { -9, -1.65, -0.15},
+		bbMax = { 1.6500010490417, 8.9999990463257, 0.15000003576279, },
+		bbMin = { -1.6500002145767, -8.9999990463257, -0.15000002086163, },
 	},
 	collider = {
 		params = {
-			halfExtents = { 9, 0.15, 1.65, },
+			halfExtents = { 1.6500005722046, 8.9999990463257, 0.15000003576279, },
 		},
 		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 		type = "BOX",
@@ -16,40 +16,35 @@ return {
 			node = {
 				children = {
 					{
-						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl",},
-						mesh = "modutram/modutram_platform_era_c_side_rep_lod0.001_lod0.msh",
-						name = "platform_era_c_side_rep_lod0",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
-					},
-				},
-				name = "RootNode",
-				transf = {
-					0, 1, 0, 0,
-					1, 0, 0, 0,
-					0, 0, 1, 0,
-					0, 0, 0, 1,
-				},
-			},
-			static = false,
-			visibleFrom = 0,
-			visibleTo = 481.04116821289,
-		},
-		{
-			node = {
-				children = {
-					{
-						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl",},
-						mesh = "modutram/modutram_platform_era_c_side_rep_lod1.001_lod1.msh",
-						name = "platform_era_c_side_rep_lod1",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl", },
+						mesh = "station/tram/modular_tram_station/modutram_platform_single_rep_era_c_lod0.msh",
+						name = "platform_single_rep_era_c_lod0",
+						transf = { -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 					},
 				},
 				name = "RootNode",
 				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 			},
 			static = false,
-			visibleFrom = 481.04116821289,
-			visibleTo = 1443.1235351563,
+			visibleFrom = 0,
+			visibleTo = 481.041015625,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl", },
+						mesh = "station/tram/modular_tram_station/modutram_platform_single_rep_era_c_lod1.msh",
+						name = "platform_single_rep_era_c_lod1",
+						transf = { -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 481.041015625,
+			visibleTo = 1443.123046875,
 		},
 	},
 	metadata = { },
