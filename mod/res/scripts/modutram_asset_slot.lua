@@ -88,4 +88,16 @@ function AssetSlot:add_to_slots()
     table.insert(self.slot_collection.slots, self:as_slot())
 end
 
+function AssetSlot:catenary()
+    return self:of_type(t.ASSET_CATENARY, 'eisfeuer_modutram_catenary')
+end
+
+function AssetSlot:tram_tracks()
+    return self:of_type(t.ASSET_TRAM_TRACKS, 'eisfeuer_modutram_tram_tracks')
+end
+
+function AssetSlot:bus_lane()
+    return self:of_type(t.ASSET_BUS_LANE, 'eisfeuer_modutram_bus_lane')
+end
+
 return AssetSlot

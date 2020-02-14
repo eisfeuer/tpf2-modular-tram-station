@@ -161,4 +161,18 @@ describe('station', function ()
             end)
         end)
     end)
+
+    describe('module', function ()
+        it ('checks whether asset slot is occupied', function ()
+            local platform_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})
+            local platform_asset_id = Module.make_id({type = t.ASSET_SHELTER, grid_x = 0, grid_y = 0, asset_id = 1})
+
+            local station = Station:new({}, {
+                [platform_id] = 'platform.module',
+                [platform_asset_id] = 'shelter.module'
+            })
+
+            assert.is_true(station:module(platform_id):has_placed_asset_on_slot(t.ASSET_SHELTER, 1, 'shelter.module'))
+        end)
+    end)
 end)

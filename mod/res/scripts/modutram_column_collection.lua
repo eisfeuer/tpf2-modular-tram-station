@@ -2,6 +2,7 @@ local Platform = require('modutram_platform')
 local Track = require('modutram_track')
 local t = require('modutram_types')
 local c = require('modutram_constants')
+local AssetModuleCollection = require('modutram_asset_module_collection')
 
 local ColumnCollection = {}
 
@@ -80,17 +81,20 @@ end
 function ColumnCollection:new(o)
     o = o or {}
     o.columns = o.columns or {}
+    o.asset_modules = o.asset_modules or AssetModuleCollection:new{}
     setmetatable(o, self)
     self.__index = self
     return o
 end
 
-function ColumnCollection:add(segment)
+function ColumnCollection:add(segment, module_name)
     if is_platform_segment(segment) or is_track(segment) then
         if not self:get_column(segment.grid_x) then
             self:set_column(segment.grid_x, create_column(segment))
         end
         add_to_column(self:get_column(segment.grid_x), segment)
+    else
+        self.asset_modules:add_asset_module(segment, module_name)
     end
 end
 

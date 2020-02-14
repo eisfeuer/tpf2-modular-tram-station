@@ -151,4 +151,40 @@ describe('AssetSlot', function ()
         end)
     end)
 
+    describe('catenary', function ()
+        it ('change type to catenary', function ()
+            local slot_collection = SlotCollection:new{}
+            local segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = 1})
+            local asset_slot = AssetSlot:new{slot_collection = slot_collection, segment_id = segment_id, asset_id = 3}
+
+            local decorated_asset_slot = asset_slot:catenary()
+            assert.are.equal(t.ASSET_CATENARY, asset_slot.module_type)
+            assert.are.equal('eisfeuer_modutram_catenary', asset_slot.slot_type)
+        end)
+    end)
+
+    describe('tram_tracks', function ()
+        it ('change type to tram_tracks', function ()
+            local slot_collection = SlotCollection:new{}
+            local segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = 1})
+            local asset_slot = AssetSlot:new{slot_collection = slot_collection, segment_id = segment_id, asset_id = 3}
+
+            local decorated_asset_slot = asset_slot:tram_tracks()
+            assert.are.equal(t.ASSET_TRAM_TRACKS, asset_slot.module_type)
+            assert.are.equal('eisfeuer_modutram_tram_tracks', asset_slot.slot_type)
+        end)
+    end)
+
+    describe('bus_lane', function ()
+        it ('change type to bus_lane', function ()
+            local slot_collection = SlotCollection:new{}
+            local segment_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 2, grid_y = 1})
+            local asset_slot = AssetSlot:new{slot_collection = slot_collection, segment_id = segment_id, asset_id = 3}
+
+            local decorated_asset_slot = asset_slot:bus_lane()
+            assert.are.equal(t.ASSET_BUS_LANE, asset_slot.module_type)
+            assert.are.equal('eisfeuer_modutram_bus_lane', asset_slot.slot_type)
+        end)
+    end)
+
 end)

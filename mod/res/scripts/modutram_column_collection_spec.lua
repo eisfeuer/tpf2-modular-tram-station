@@ -8,6 +8,7 @@ describe('ColumnCollection', function ()
         it('creates empty collection', function ()
             local collection = ColumnCollection:new{}
             assert.are.same({}, collection.columns)
+            assert.are.same({}, collection.asset_modules.asset_modules)
         end)
     end)
 
@@ -145,6 +146,28 @@ describe('ColumnCollection', function ()
 
             assert.are.equal(1, collection:get_column(1).id)
             assert.are.equal(c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS / 2, collection:get_column(1).x_pos)
+        end)
+
+        it ('adds asset to asset module collection', function ()
+            local collection = ColumnCollection:new{}
+            local track_module = Module:new{id = Module.make_id({
+                type = t.TRACK_UP_DOORS_RIGHT,
+                grid_x = -1,
+                grid_y = 0
+            })}
+
+            collection:add(track_module)
+            collection:add(
+                Module:new{id = Module.make_id({
+                    type = t.ASSET_SHELTER,
+                    grid_x = -1,
+                    grid_y = 0,
+                    asset_id = 1
+                })},
+                'shelter.module'
+            )
+
+            assert.is_true(collection.asset_modules:is_placed_on_module(track_module, t.ASSET_SHELTER, 1, 'shelter.module'))
         end)
     end)
 

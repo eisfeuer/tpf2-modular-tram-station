@@ -5,6 +5,7 @@ local SlotCollection = require('modutram_slot_collection')
 local ModelBuilder = require('modutram_model_builder')
 local PassengerPathBuilder = require('modutram_passenger_path_builder')
 local TerrainAlignment = require('modutram_terrain_alignment')
+local ModuleInterface = require('modutram_module_interface')
 
 local Station = {}
 
@@ -20,7 +21,7 @@ function Station:new (o, module_ids)
         terminal_groups = o.terminal_groups
     }
     for module_id, module_name in pairs(module_ids) do
-        o.columns:add(Module:new{id = module_id})
+        o.columns:add(Module:new{id = module_id}, module_name)
     end
     o.columns:calculate_x_positions()
     o.columns:calculate_track_segment_range()
@@ -104,6 +105,13 @@ function Station:is_bottom_segment_of_a_platform(segment_id)
     end
 
     return mod.grid_y == platform.btm_segment_id
+end
+
+function Station:module(module_slot_id)
+    return ModuleInterface:new{
+        column_collection = self.columns,
+        column_module = Module:new{id = module_slot_id}
+    }
 end
 
 return Station
