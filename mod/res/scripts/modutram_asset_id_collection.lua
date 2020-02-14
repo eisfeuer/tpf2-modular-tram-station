@@ -8,7 +8,7 @@ function AssetIdCollection:new(o)
     return o
 end
 
-function AssetIdCollection:add_asset_id(asset_type, asset_id)
+function AssetIdCollection:add_asset_module(asset_type, asset_id, asset_module_name)
     if asset_id <= 0 then
         error('asset id MUST be geather than 0')
     end
@@ -17,29 +17,26 @@ function AssetIdCollection:add_asset_id(asset_type, asset_id)
         return
     end
 
-    if not self.asset_ids[asset_type] then
-        self.asset_ids[asset_type] = { asset_id }
+    if self.asset_ids[asset_type] then
+        self.asset_ids[asset_type][asset_id] = asset_module_name
     else
-        table.insert(self.asset_ids[asset_type], asset_id)
+        self.asset_ids[asset_type] = { [asset_id] = asset_module_name }
     end
 end
 
-function AssetIdCollection:has_asset_id(asset_type, asset_id)
-    if not self.asset_ids[asset_type] then
-        return false
-    end
-
-    for i, current_asset_id in ipairs(self.asset_ids[asset_type]) do
-        if current_asset_id == asset_id then
-            return true
-        end
-    end
-
-    return false
+function AssetIdCollection:find_asset_module(asset_type, asset_id)
+    return self.asset_ids[asset_type] and self.asset_ids[asset_type][asset_id]
 end
 
-function AssetIdCollection:has_asset(asset_module)
-    return self:has_asset_id(asset_module.type, asset_module.asset_id)
+function AssetIdCollection:has_asset_id(asset_type, asset_id, asset_module_name)
+    if asset_module_name then
+        return self:find_asset_module(asset_type, asset_id) == asset_module_name
+    end
+    return self:find_asset_module(asset_type, asset_id) ~= nil
+end
+
+function AssetIdCollection:has_asset(asset_module, asset_module_name)
+    return self:has_asset_id(asset_module.type, asset_module.asset_id, asset_module_name)
 end
 
 return AssetIdCollection
