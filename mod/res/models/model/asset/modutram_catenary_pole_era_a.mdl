@@ -1,0 +1,87 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.1799999922514, 0.1799999922514, 6.3130884170532, },
+		bbMin = { -0.1799999922514, -0.1799999922514, -0.40000057220459, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.1799999922514, 0.1799999922514, 3.3565444946289, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_pole_era_a_lod0.msh",
+						name = "catenary_pole_era_a_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 14.600678443909,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_pole_era_a_lod1.msh",
+						name = "catenary_pole_era_a_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 14.600678443909,
+			visibleTo = 43.8020362854,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_pole_era_a_lod2.msh",
+						name = "catenary_pole_era_a_lod2",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 43.8020362854,
+			visibleTo = 131.4061126709,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_pole_era_a_lod3.msh",
+						name = "catenary_pole_era_a_lod3",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 131.4061126709,
+			visibleTo = 394.21835327148,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
