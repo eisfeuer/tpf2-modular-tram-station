@@ -1,0 +1,70 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.037499889731407, 3.125, 6.4450006484985, },
+		bbMin = { -0.037500403821468, 0.096526086330414, 4.8112826347351, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.037500146776438, 1.5142369270325, 0.81685900688171, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_c.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_c_lod0.msh",
+						name = "catenary_suspension_era_c_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 48.16524887085,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_c.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_c_lod1.msh",
+						name = "catenary_suspension_era_c_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 48.16524887085,
+			visibleTo = 144.49574279785,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_c.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_c_lod2.msh",
+						name = "catenary_suspension_era_c_lod2",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 144.49574279785,
+			visibleTo = 433.48724365234,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
