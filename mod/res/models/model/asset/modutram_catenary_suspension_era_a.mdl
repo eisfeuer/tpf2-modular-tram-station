@@ -1,0 +1,87 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.040923621505499, 2.1897327899933, 5.8890061378479, },
+		bbMin = { -0.040927853435278, -0.020744442939758, 4.3083472251892, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.040925737470388, 1.1052386760712, 0.79032945632935, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_a_lod0.msh",
+						name = "catenary_suspension_era_a_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 5.1500000953674, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 14.401518821716,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_a_lod1.msh",
+						name = "catenary_suspension_era_a_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 5.1500000953674, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 14.401518821716,
+			visibleTo = 43.204555511475,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_a_lod2.msh",
+						name = "catenary_suspension_era_a_lod2",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 5.1500000953674, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 43.204555511475,
+			visibleTo = 129.61366271973,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/modutram_catenary_era_a.mtl", },
+						mesh = "asset/modular_tram_station/modutram_catenary_suspension_era_a_lod3.msh",
+						name = "catenary_suspension_era_a_lod3",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 5.1500000953674, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 129.61366271973,
+			visibleTo = 388.84100341797,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
