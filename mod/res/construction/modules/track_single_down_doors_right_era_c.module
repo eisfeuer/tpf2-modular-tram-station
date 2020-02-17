@@ -23,6 +23,8 @@ function data()
             passenger = true,
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            result.station.slots:make_asset_slot(slotId, 1, transform):catenary():move(0, 0, 1):add_to_slots()
+
             result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, -1)
             result.station.builder:add_segment_models_for_tram_track(slotId, {{
                 id = 'modutram_track_single_rep_era_c.mdl',

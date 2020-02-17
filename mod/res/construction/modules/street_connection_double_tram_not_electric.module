@@ -30,7 +30,7 @@ function data()
 				type = "STREET",
 				params = {
 					type = "standard/town_verysmall_new_tram.lua",
-					tramTrackType = "YES",
+					tramTrackType = "ELECTRIC",
 				},
 				edges = {
                     { modulesutil.mul(transform, {0, -1, 0, 1}), tng },

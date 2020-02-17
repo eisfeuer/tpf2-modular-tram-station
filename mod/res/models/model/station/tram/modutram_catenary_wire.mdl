@@ -1,0 +1,49 @@
+function data()
+    return {
+        boundingInfo = {
+            bbMax = { 0.05, 9, 4.9, },
+            bbMin = { -0.05, -9, 5.0, },
+        },
+        collider = {
+            params = {
+                halfExtents = { 0.05, 9, 0.05, },
+            },
+            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 4.95, 1, },
+            type = "BOX",
+        },
+        lods = {
+            {
+                node = {
+                    children = {
+                        {
+                            materials = { "asset/tram_pole.mtl", },
+                            mesh = "station/road/streetstation/era_a/cargo_path_ext_btm/tram_catenary_lod0.msh",
+                            name = "tram_catenary",
+                            transf = { 1.2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -9, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "asset/tram_pole.mtl", },
+                            mesh = "station/road/streetstation/era_a/cargo_path_ext_btm/tram_catenary_lod0.msh",
+                            name = "tram_catenary",
+                            transf = { 1.2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "asset/tram_pole.mtl", },
+                            mesh = "station/road/streetstation/era_a/cargo_path_ext_btm/tram_catenary_lod0.msh",
+                            name = "tram_catenary",
+                            transf = { 1.2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 0, 0, 1, },
+                        },
+                    },
+                    name = "RootNode",
+                    transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+                },
+                static = false,
+                visibleFrom = 0,
+                visibleTo = 601.24920654297,
+            },
+        },
+        metadata = { },
+        version = 1,
+    }
+    end
+    

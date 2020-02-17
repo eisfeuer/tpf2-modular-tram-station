@@ -32,11 +32,11 @@ function data()
 
             local catenary_components = {
                 {
-                    id = 'asset/modutram_catenary_pole_era_a.mdl',
+                    id = 'asset/tram_pole.mdl',
                     transf = {
-                        1, 0, 0, 0,
                         0, 1, 0, 0,
-                        0, 0, 1, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1.02, 0,
                         catenary_pole_position, 0, 0, 1
                     }
                 }, {
@@ -52,24 +52,24 @@ function data()
 
             if track_type ~= t.TRACK_UP_DOORS_RIGHT then
                 table.insert(catenary_components, {
-                    id = 'asset/modutram_catenary_suspension_era_a.mdl',
+                    id = 'asset/modutram_catenary_suspension_era_c.mdl',
                     transf = {
                         0, 1, 0, 0,
                         -1, 0, 0, 0,
                         0, 0, 1, 0,
-                        catenary_pole_position, 0, -0.2, 1
+                        catenary_pole_position, 0, 0, 1
                     }
                 })
             end
 
             if track_type ~= t.TRACK_DOWN_DOORS_RIGHT then
                 table.insert(catenary_components, {
-                    id = 'asset/modutram_catenary_suspension_era_a.mdl',
+                    id = 'asset/modutram_catenary_suspension_era_c.mdl',
                     transf = {
                         0, -1, 0, 0,
                         1, 0, 0, 0,
                         0, 0, 1, 0,
-                        catenary_pole_position, 0, -0.2, 1
+                        catenary_pole_position, 0, 0, 1
                     }
                 })
             end
@@ -91,15 +91,15 @@ function data()
         getModelsFn = function()
             return {
                 {
-                    id = 'asset/modutram_catenary_pole_era_a.mdl',
+                    id = 'asset/tram_pole.mdl',
                     transf = {
+                        0, -1, 0, 0,
                         1, 0, 0, 0,
-                        0, 1, 0, 0,
-                        0, 0, 1, 0,
+                        0, 0, 1.02, 0,
                         0, 0, -1, 1,
                     }
                 }, {
-                    id = 'asset/modutram_catenary_suspension_era_a.mdl',
+                    id = 'asset/modutram_catenary_suspension_era_c.mdl',
                     transf = {
                         0, 1, 0, 0,
                         -1, 0, 0, 0,
@@ -107,7 +107,7 @@ function data()
                         0, 0, -1, 1
                     }
                 }, {
-                    id = 'asset/modutram_catenary_suspension_era_a.mdl',
+                    id = 'asset/modutram_catenary_suspension_era_c.mdl',
                     transf = {
                         0, -1, 0, 0,
                         1, 0, 0, 0,
