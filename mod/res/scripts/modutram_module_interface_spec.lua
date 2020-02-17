@@ -177,4 +177,37 @@ describe('ModuleInterface', function ()
             assert.is_false(module_interface_2:has_bus_lane())
         end)
     end)
+
+    describe('get_track', function ()
+        local column_collection = ColumnCollection:new{}
+
+            local track_module = Module:new{
+                id = Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })
+            }
+
+            local catenary = Module:new{
+                id = Module.make_id({
+                    type = t.ASSET_CATENARY,
+                    grid_x = 0,
+                    grid_y = 0,
+                    asset_id = 1
+                })
+            }
+
+            column_collection:add(track_module, 'track.module')
+            column_collection:add(catenary, 'tram_track.module')
+            column_collection:calculate_x_positions()
+
+            local module_interface = ModuleInterface:new{
+                column_collection = column_collection,
+                column_module = catenary
+            }
+
+            assert.are.equal(t.TRACK_DOUBLE_DOORS_RIGHT, module_interface:get_track().type)
+            assert.are.equal(0, module_interface:get_track().x_pos)
+    end)
 end)

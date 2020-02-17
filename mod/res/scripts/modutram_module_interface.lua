@@ -25,4 +25,17 @@ function ModuleInterface:has_bus_lane()
     return self:has_placed_asset_on_slot(t.ASSET_BUS_LANE, 1)
 end
 
+function ModuleInterface:get_track()
+    if self.column_module.grid_y ~= 0 then
+        error ('asset is not placed on a track')
+    end
+
+    local track = self.column_collection:get_column(self.column_module.grid_x)
+    if not track:is_track() then
+        error ('asset is not placed on a track')
+    end
+
+    return track
+end
+
 return ModuleInterface
