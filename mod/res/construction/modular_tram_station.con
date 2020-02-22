@@ -136,6 +136,14 @@ function data()
             yearFrom = 0,
             yearTo = 0
         },
+        params = {
+            {
+                key = 'modutram_planning_mode',
+                name = _('modutram_planning_mode'),
+                values = { _('Yes'), _('No'), },
+                defaultIndex = 0,
+            },
+        },
         constructionTemplates = {
             {
                 type = 'DYNAMIC',
@@ -377,7 +385,7 @@ function data()
             return blueprint:create_template()
         end,
         updateFn = function(params)
-            local station = Station:new({}, params.modules or {})
+            local station = Station:new({planning_mode = params.modutram_planning_mode}, params.modules or {})
             return station:get_data()
         end
     }    

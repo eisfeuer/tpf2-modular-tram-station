@@ -1,0 +1,76 @@
+local t = require('modutram_types')
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "tracks", },
+        },
+        description = {
+            name = _("Track single up"),
+            description = _("Platform for waiting passengers."),
+            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "eisfeuer_modutram_tram_tracks",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local track_type = result.station:module(slotId):get_track().type
+
+            if track_type == t.TRACK_DOUBLE_DOORS_RIGHT then
+                result.station.builder:add_segment_models_for_tram_track(slotId, {
+                    {
+                        id = 'modutram_track_single_rep_era_c.mdl',
+                        transf = {
+                            1, 0, 0, 0,
+                            0, 1, 0, 0,
+                            0, 0, 1, 0,
+                            -1.5, 0, 0, 1,
+                        }
+                    }, {
+                        id = 'modutram_track_single_rep_era_c.mdl',
+                        transf = {
+                            1, 0, 0, 0,
+                            0, 1, 0, 0,
+                            0, 0, 1, 0,
+                            1.5, 0, 0, 1,
+                        }
+                    }
+                })
+            else
+                result.station.builder:add_segment_models_for_tram_track(slotId, {
+                    {
+                        id = 'modutram_track_single_rep_era_c.mdl',
+                        transf = {
+                            1, 0, 0, 0,
+                            0, 1, 0, 0,
+                            0, 0, 1, 0,
+                            0, 0, 0, 1,
+                        }
+                    }
+                })
+            end
+        end,
+        getModelsFn = function()
+            return {{
+                id = 'modutram_track_single_rep_era_c.mdl',
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

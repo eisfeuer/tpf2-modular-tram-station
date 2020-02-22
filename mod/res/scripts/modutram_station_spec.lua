@@ -175,4 +175,30 @@ describe('station', function ()
             assert.is_true(station:module(platform_id):has_placed_asset_on_slot(t.ASSET_SHELTER, 1, 'shelter.module'))
         end)
     end)
+    
+    describe('it_checks_wether_help_is_active', function ()
+        it('checks wether help is active', function ()
+            local platform_id = Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})
+            local platform_asset_id = Module.make_id({type = t.ASSET_SHELTER, grid_x = 0, grid_y = 0, asset_id = 1})
+
+            local station1 = Station:new({}, {
+                [platform_id] = 'platform.module',
+                [platform_asset_id] = 'shelter.module'
+            })
+
+            local station2 = Station:new({planning_mode = 0}, {
+                [platform_id] = 'platform.module',
+                [platform_asset_id] = 'shelter.module'
+            })
+
+            local station3 = Station:new({planning_mode = 1}, {
+                [platform_id] = 'platform.module',
+                [platform_asset_id] = 'shelter.module'
+            })
+
+            assert.is_false(station1:planning_mode_is_active())
+            assert.is_false(station2:planning_mode_is_active())
+            assert.is_true(station3:planning_mode_is_active())
+        end)
+    end)
 end)

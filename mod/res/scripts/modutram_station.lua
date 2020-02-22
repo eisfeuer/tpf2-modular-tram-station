@@ -114,4 +114,8 @@ function Station:module(module_slot_id)
     }
 end
 
+function Station:planning_mode_is_active()
+    return self.planning_mode == 1
+end
+
 return Station
