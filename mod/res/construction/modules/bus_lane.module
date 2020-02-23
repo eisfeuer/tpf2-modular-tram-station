@@ -18,7 +18,7 @@ function data()
             yearFrom = 0,
             yearTo = 0
         },
-        type = "eisfeuer_modutram_tram_tracks",
+        type = "eisfeuer_modutram_bus_lane",
         order = {
             value = 7,
         },
@@ -33,7 +33,7 @@ function data()
                         2, 0, 0, 0,
                         0, 2, 0, 0,
                         0, 0, 2, 0,
-                        transform[13], transform[14], 0.1, 1,
+                        transform[13], transform[14], 0.05, 1,
                     }
                 })
             end

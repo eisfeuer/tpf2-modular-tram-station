@@ -89,15 +89,15 @@ function AssetSlot:add_to_slots()
 end
 
 function AssetSlot:catenary()
-    return self:of_type(t.ASSET_CATENARY, 'eisfeuer_modutram_catenary')
+    return self:of_type(t.ASSET_CATENARY, 'eisfeuer_modutram_catenary'):with_spacing({1, 1, 1, 1})
 end
 
 function AssetSlot:tram_tracks()
-    return self:of_type(t.ASSET_TRAM_TRACKS, 'eisfeuer_modutram_tram_tracks')
+    return self:of_type(t.ASSET_TRAM_TRACKS, 'eisfeuer_modutram_tram_tracks'):with_spacing({1, 1, 1, 1})
 end
 
 function AssetSlot:bus_lane()
-    return self:of_type(t.ASSET_BUS_LANE, 'eisfeuer_modutram_bus_lane')
+    return self:of_type(t.ASSET_BUS_LANE, 'eisfeuer_modutram_bus_lane'):with_spacing({1, 1, 1, 1})
 end
 
 return AssetSlot

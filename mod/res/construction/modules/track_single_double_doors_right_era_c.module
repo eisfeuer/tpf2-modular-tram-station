@@ -26,9 +26,9 @@ function data()
             passenger = true,
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
-            result.station.slots:make_asset_slot(slotId, 1, transform):catenary():move(0, 0, 1):add_to_slots()
-            result.station.slots:make_asset_slot(slotId, 1, transform):tram_tracks():move(0.21, 0, 1):add_to_slots()
-            result.station.slots:make_asset_slot(slotId, 1, transform):bus_lane():move(-0.21, 0, 1):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 1, transform):catenary():move(0, 8, 1):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 1, transform):tram_tracks():move(0, 4, 1):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 1, transform):bus_lane():move(0, -4, 1):add_to_slots()
 
             result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, 1)
             result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, -1)

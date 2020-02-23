@@ -1,4 +1,5 @@
 local t = require('modutram_types')
+local Position = require('modutram_position')
 
 function data()
     return {
@@ -87,6 +88,13 @@ function data()
             end
 
             result.station.builder:add_segment_models_for_tram_track(slotId, catenary_components)
+
+            if result.station:planning_mode_is_active() then
+                result.station.builder:add_model({
+                    id = 'icons/modutram_lightning.mdl',
+                    transf = Position:new{x = 0, y = 0, z = -0.95}:add_to_matrix(transform)
+                })
+            end
         end,
         getModelsFn = function()
             return {

@@ -1,12 +1,12 @@
 function data()
 return {
 	boundingInfo = {
-		bbMax = { 0.51087731122971, 0.16238451004028, 0.017378371208906, },
-		bbMin = { -0.47725793719292, -0.18578235805035, -0.017378374934196, },
+		bbMax = { 0.64000010490417, 0.87999999523163, 0.034756742417812, },
+		bbMin = { -0.63999992609024, -0.89999997615814, -0.034756742417812, },
 	},
 	collider = {
 		params = {
-			halfExtents = { 0.49406760931015, 0.1740834414959, 0.017378373071551, },
+			halfExtents = { 0.63999998569489, 0.88999998569489, 0.034756742417812, },
 		},
 		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 		type = "BOX",
@@ -17,9 +17,9 @@ return {
 				children = {
 					{
 						materials = { "asset/icon/asset_icon_mark.mtl", },
-						mesh = "icons/modular_tram_station/modutram_icon_bus_lod0.msh",
-						name = "bus_lod0",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+						mesh = "icons/modular_tram_station/modutram_rails_lod0.msh",
+						name = "rails_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.39999997615814, 0, 0, 1, },
 					},
 				},
 				name = "RootNode",
@@ -27,7 +27,7 @@ return {
 			},
 			static = false,
 			visibleFrom = 0,
-			visibleTo = 108.11947631836,
+			visibleTo = 325.94519042969,
 		},
 	},
 	metadata = { },
