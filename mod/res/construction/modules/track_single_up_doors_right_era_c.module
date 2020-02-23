@@ -1,3 +1,5 @@
+local Position = require('modutram_position')
+
 function data()
     return {
         cost = {
@@ -26,6 +28,13 @@ function data()
             result.station.slots:make_asset_slot(slotId, 1, transform):catenary():move(0, 0, 1):add_to_slots()
 
             result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, 1)
+            if result.station:planning_mode_is_active() then
+                local arrow_up_position = Position:new{x = 1.5, y = 0, z = 0.05}:add_to_matrix(transform)
+                result.station.builder:add_model({
+                    id = 'icons/modutram_arrow.mdl',
+                    transf = transform
+                })
+            end
             result.station.builder:add_segment_models_for_tram_track(slotId, {{
                 id = 'modutram_track_single_rep_era_c.mdl',
                 transf = {

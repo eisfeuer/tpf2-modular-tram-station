@@ -65,8 +65,13 @@ function Station:get_data()
     result.edgeLists = {}
     result.terminalGroups = self.terminal_groups
 
-    result.terrainAlignmentLists = { TerrainAlignment.create_terrain_alignment_list_from_polygon(terrain_alignment_polygon) }
-    result.groundFaces = { TerrainAlignment.create_ground_faces_from_polygon(terrain_alignment_polygon, "industry_floor_high_priority.gtex.lua",  "pedestrian_connection_border.lua") }
+    if self:is_empty() then
+        result.terrainAlignmentLists = {}
+        result.groundFaces = {}
+    else
+        result.terrainAlignmentLists = { TerrainAlignment.create_terrain_alignment_list_from_polygon(terrain_alignment_polygon) }
+        result.groundFaces = { TerrainAlignment.create_ground_faces_from_polygon(terrain_alignment_polygon, "industry_floor_high_priority.gtex.lua",  "pedestrian_connection_border.lua") }
+    end
 
     result.terminateConstructionHook = function()	
         local passenger_path_builder = PassengerPathBuilder:new{

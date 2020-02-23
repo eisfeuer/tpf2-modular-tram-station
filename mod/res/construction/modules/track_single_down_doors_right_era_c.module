@@ -1,3 +1,6 @@
+local Position = require('modutram_position')
+local Matrix = require('modutram_matrix')
+
 function data()
     return {
         cost = {
@@ -35,6 +38,14 @@ function data()
                     0, 0, 0, 1,
                 }
             }})
+
+            if result.station:planning_mode_is_active() then
+                local arrow_down_position = Position:new{x = 0, y = 0, z = 0.05}:add_to_matrix(Matrix.rotate_around_z_axis(180, transform))
+                result.station.builder:add_model({
+                    id = 'icons/modutram_arrow.mdl',
+                    transf = arrow_down_position
+                })
+            end
         end,
         getModelsFn = function()
             return {{
