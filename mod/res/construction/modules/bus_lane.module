@@ -1,0 +1,53 @@
+local Matrix = require('modutram_matrix')
+local t = require('modutram_types')
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "tracks", },
+        },
+        description = {
+            name = _("Track single up"),
+            description = _("Platform for waiting passengers."),
+            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "eisfeuer_modutram_tram_tracks",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            if result.station:planning_mode_is_active() then
+                result.station.builder:add_model({
+                    id = 'icons/modutram_bus.mdl',
+                    transf = {
+                        2, 0, 0, 0,
+                        0, 2, 0, 0,
+                        0, 0, 2, 0,
+                        transform[13], transform[14], 0.1, 1,
+                    }
+                })
+            end
+        end,
+        getModelsFn = function()
+            return {{
+                id = 'icons/modutram_bus.mdl',
+                transf = {
+                    2, 0, 0, 0,
+                    0, 2, 0, 0,
+                    0, 0, 2, 0,
+                    0, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

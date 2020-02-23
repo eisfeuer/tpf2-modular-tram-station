@@ -140,7 +140,7 @@ function data()
             {
                 key = 'modutram_planning_mode',
                 name = _('modutram_planning_mode'),
-                values = { _('Yes'), _('No'), },
+                values = { _('Off'), _('On'), },
                 defaultIndex = 0,
             },
         },
