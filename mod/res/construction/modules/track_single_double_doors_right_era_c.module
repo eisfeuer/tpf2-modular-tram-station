@@ -1,3 +1,6 @@
+local Position = require('modutram_position')
+local Matrix = require('modutram_matrix')
+
 function data()
     return {
         cost = {
@@ -30,6 +33,17 @@ function data()
             result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, 1)
             result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, -1)
 
+            local arrow_up_position = Position:new{x = 1.5, y = 0, z = 0}:add_to_matrix(transform)
+            local arrow_down_position = Position:new{x = -1.5, y = 0, z = 0}:add_to_matrix(Matrix.rotate_around_z_axis(180, transform))
+
+            result.station.builder:add_model({
+                id = 'icons/modutram_arrow.mdl',
+                transf = arrow_up_position
+            })
+            result.station.builder:add_model({
+                id = 'icons/modutram_arrow.mdl',
+                transf = arrow_down_position
+            })
         end,
         getModelsFn = function()
             return {}

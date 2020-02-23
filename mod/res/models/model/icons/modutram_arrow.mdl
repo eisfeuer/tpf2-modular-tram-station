@@ -1,0 +1,36 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 0.46808204054832, 1.3858577013016, 0.034756738692522, },
+		bbMin = { -0.46808204054832, -1.3711334466934, -0.034756746143103, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 0.46808204054832, 1.3784955739975, 0.034756742417812, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "asset/icon/asset_icon_mark.mtl", },
+						mesh = "icons/modular_tram_station/modutram_arrow_lod0.msh",
+						name = "arrow_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 295.40765380859,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end
