@@ -67,8 +67,8 @@ function SlotBuilder.track_double_doors_right(id, transf)
         spacing = {
             (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
             (2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS) / 2 - 0.1,
-            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
-            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
+            c.TRACK_REMOVE_AREA_LENGTH / 2 - 0.1,
+            c.TRACK_REMOVE_AREA_LENGTH / 2 - 0.1,
         }
     }
 end
@@ -81,8 +81,8 @@ function SlotBuilder.track_up_doors_right(id, transf)
         spacing = {
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
-            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
-            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
+            c.TRACK_REMOVE_AREA_LENGTH / 2 - 0.1,
+            c.TRACK_REMOVE_AREA_LENGTH / 2 - 0.1,
         }
     }
 end
@@ -95,8 +95,8 @@ function SlotBuilder.track_down_doors_right(id, transf)
         spacing = {
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
             c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - 0.1,
-            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
-            c.PLATFORM_SEGMENT_LENGTH / 2 - 0.1,
+            c.TRACK_REMOVE_AREA_LENGTH / 2 - 0.1,
+            c.TRACK_REMOVE_AREA_LENGTH / 2 - 0.1,
         }
     }
 end

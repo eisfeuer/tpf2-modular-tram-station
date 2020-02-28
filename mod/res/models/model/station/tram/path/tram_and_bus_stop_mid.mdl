@@ -28,10 +28,13 @@ function data()
             transportNetworkProvider = {
                 laneLists = {{
                     nodes = {
-                        { { 0.0, -9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
-                        { { 0.0, 9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
+                        { { 0.0, -9.0, 0.0}, {0.0, 9.0, 0.0}, 2.65 },
+                        { { 0.0, 0.0, 0.0}, {0.0, 9.0, 0.0}, 2.65 },
+
+                        { { 0.0, 0.0, 0.0}, {0.0, 9.0, 0.0}, 2.65 },
+                        { { 0.0, 9.0, 0.0}, {0.0, 9.0, 0.0}, 2.65 },
                     },
-                    transportModes = {"TRAM"},
+                    transportModes = {"BUS", "TRAM", "ELECTRIC_TRAM"},
                     speedLimit = 30
                 }, {
                     nodes = {
@@ -46,9 +49,10 @@ function data()
                 runways = { },
                 terminals = {
                     {
-                        order = 0,
-                        personEdges = { 1, 2, },
-                        personNodes = { 4, },
+                        order = 1,
+                        personEdges = { 2, 3, },
+                        personNodes = { 6, },
+                        vehicleNode = 1,
                     },
                 },
             }

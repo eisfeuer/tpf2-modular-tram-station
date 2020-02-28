@@ -30,8 +30,29 @@ function data()
             result.station.slots:make_asset_slot(slotId, 1, transform):tram_tracks():move(0, 4, 1):add_to_slots()
             result.station.slots:make_asset_slot(slotId, 1, transform):bus_lane():move(0, -4, 1):add_to_slots()
 
-            result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, 1)
-            result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, -1)
+            local track_module = result.station:module(slotId)
+            if track_module:has_tram_tracks() then
+                if track_module:has_catenary() then
+                    if track_module:has_bus_lane() then
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_and_bus', slotId, 1)
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_and_bus', slotId, -1)
+                    else
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram', slotId, 1)
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram', slotId, -1)
+                    end
+                else
+                    if track_module:has_bus_lane() then
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric_and_bus', slotId, 1)
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric_and_bus', slotId, -1)
+                    else
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, 1)
+                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, -1)
+                    end
+                end
+            elseif track_module:has_bus_lane() then
+                result.station.builder:add_vehicle_and_platform_lanes_for('bus', slotId, 1)
+                result.station.builder:add_vehicle_and_platform_lanes_for('bus', slotId, -1)
+            end
 
             if result.station:planning_mode_is_active() then
                 local arrow_up_position = Position:new{x = 1.5, y = 0, z = 0.05}:add_to_matrix(transform)

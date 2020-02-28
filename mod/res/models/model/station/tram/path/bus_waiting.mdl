@@ -3,12 +3,12 @@ local c = require('modutram_constants')
 function data()
     return {
         boundingInfo = {
-            bbMax = { 1.2, 9.0, 4.825, },
-            bbMin = { -1.2, -9.0, 0.0, },
+            bbMax = { 9.0, 1.2, 4.825, },
+            bbMin = { -9.0, -1.2, 0.0, },
         },
         collider = {
             params = {
-                halfExtents = { 1.2, 9, 2.4120001792908, },
+                halfExtents = { 9, 1.2, 2.4120001792908, },
             },
             transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
             type = "BOX",
@@ -31,7 +31,7 @@ function data()
                         { { 0.0, -9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
                         { { 0.0, 9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
                     },
-                    transportModes = {"TRAM"},
+                    transportModes = {"BUS"},
                     speedLimit = 30
                 }, {
                     nodes = {
@@ -46,9 +46,10 @@ function data()
                 runways = { },
                 terminals = {
                     {
-                        order = 0,
+                        order = 2,
                         personEdges = { 1, 2, },
                         personNodes = { 4, },
+                        vehicleNode = 0,
                     },
                 },
             }
