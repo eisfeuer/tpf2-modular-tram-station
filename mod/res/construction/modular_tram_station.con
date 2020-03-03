@@ -254,17 +254,35 @@ function data()
 
                 -- Shelters
                 if params.modutram_shelter > 0 then
-                    if segment_blueprint:has_even_segment_count() and segment_blueprint:get_current_segment() == 0 then
-                        segment_blueprint:add_asset(2, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
-                    end
+                    if segment_blueprint:is_middle_platform_segment() then
+                        if segment_blueprint:has_even_segment_count() and segment_blueprint:get_current_segment() == 0 then
+                            segment_blueprint:add_asset(1, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        end
 
-                    if segment_blueprint:has_odd_segment_count() and segment_blueprint:get_current_segment() == 0 then
-                        segment_blueprint:add_asset(1, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        if segment_blueprint:has_even_segment_count() and segment_blueprint:get_current_segment() == 1 then
+                            segment_blueprint:add_asset(2, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        end
+
+                        if segment_blueprint:has_odd_segment_count() and segment_blueprint:get_current_segment() == 0 then
+                            segment_blueprint:add_asset(3, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        end
+
+                        if segment_blueprint:has_odd_segment_count() and segment_blueprint:get_current_segment() == -1 then
+                            segment_blueprint:add_asset(4, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        end
+                    else
+                        if segment_blueprint:has_even_segment_count() and segment_blueprint:get_current_segment() == 0 then
+                            segment_blueprint:add_asset(2, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        end
+
+                        if segment_blueprint:has_odd_segment_count() and segment_blueprint:get_current_segment() == 0 then
+                            segment_blueprint:add_asset(1, t.ASSET_SHELTER, select_shelter(params.modutram_shelter, params.modutram_shelter_size))
+                        end
                     end
                 end
 
                 -- Fences
-                if params.modutram_fences > 0 then
+                if params.modutram_fences > 0 and not segment_blueprint:is_middle_platform_segment() then
                     local fence_modules_6m = {
                         'modules/assets/fence_6m_era_a.module',
                         'modules/assets/fence_6m_era_b.module',
@@ -292,15 +310,25 @@ function data()
                     local lamp_modules = {
                         'modules/assets/lamp_era_a.module',
                         'modules/assets/lamp_era_b.module',
-                        segment_blueprint:is_platform_type(t.PLATFORM_DOUBLE) and 'modules/assets/lamp_era_c_double.module' or 'modules/assets/lamp_era_c.module'
+                        segment_blueprint:is_middle_platform_segment() and 'modules/assets/lamp_era_c_double.module' or 'modules/assets/lamp_era_c.module'
                     }
 
-                    if params.shelter == 0 or segment_blueprint:get_current_segment() ~= 1 or segment_blueprint:has_odd_segment_count() then
-                        segment_blueprint:add_asset(1, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
-                    end
+                    if segment_blueprint:is_middle_platform_segment() then
+                        if params.shelter == 0 or (segment_blueprint:get_current_segment() ~= 0 and segment_blueprint:get_current_segment() ~= 1) or segment_blueprint:has_even_segment_count() then
+                            segment_blueprint:add_asset(1, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                        end
 
-                    if params.shelter == 0 or segment_blueprint:get_current_segment() ~= 0 or segment_blueprint:has_even_segment_count() then
-                        segment_blueprint:add_asset(2, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                        if params.shelter == 0 or (segment_blueprint:get_current_segment() ~= 0 and segment_blueprint:get_current_segment() ~= 1) or segment_blueprint:has_odd_segment_count() then
+                            segment_blueprint:add_asset(2, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                        end
+                    else
+                        if params.shelter == 0 or segment_blueprint:get_current_segment() ~= 1 or segment_blueprint:has_odd_segment_count() then
+                            segment_blueprint:add_asset(1, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                        end
+
+                        if params.shelter == 0 or segment_blueprint:get_current_segment() ~= 0 or segment_blueprint:has_even_segment_count() then
+                            segment_blueprint:add_asset(2, t.ASSET_DECORATION, lamp_modules[params.modutram_lamps])
+                        end
                     end
 
                     if segment_blueprint:is_top_platform_segment() then
@@ -310,16 +338,25 @@ function data()
 
                 -- Benches
                 if params.modutram_benches > 0 then
-                    local bench_modules = {
-                        'modules/assets/bench_era_a.module',
-                        'modules/assets/bench_era_b.module',
-                        'modules/assets/bench_era_c.module'
-                    }
+                    local bench_modules = segment_blueprint:is_middle_platform_segment()
+                        and
+                            {
+                                'modules/assets/bench_double_era_a.module',
+                                'modules/assets/bench_double_era_b.module',
+                                'modules/assets/bench_double_era_c.module'
+                            }
+                        or
+                            {
+                                'modules/assets/bench_era_a.module',
+                                'modules/assets/bench_era_b.module',
+                                'modules/assets/bench_era_c.module'
+                            }
 
-                    if segment_blueprint:get_current_segment() < 0 then
+                    local offset = segment_blueprint:is_middle_platform_segment() and segment_blueprint:get_total_segment_count() % 2 or 0
+                    if segment_blueprint:get_current_segment() < -offset then
                         segment_blueprint:add_asset(6, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
                         segment_blueprint:add_asset(7, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
-                    elseif segment_blueprint:get_current_segment() > (segment_blueprint:get_total_segment_count() + 1) % 2 then
+                    elseif segment_blueprint:get_current_segment() > (segment_blueprint:get_total_segment_count() + 1) % 2 + offset then
                         segment_blueprint:add_asset(4, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
                         segment_blueprint:add_asset(5, t.ASSET_DECORATION, bench_modules[params.modutram_benches])
                     end
@@ -365,9 +402,13 @@ function data()
                         'modules/assets/station_sign_era_c.module'
                     }
 
-                    if segment_blueprint:get_current_segment() == -1 then
+                    if not segment_blueprint:is_middle_platform_segment() and segment_blueprint:get_total_segment_count() == 3 and segment_blueprint:get_current_segment() == -1 then
                         segment_blueprint:add_asset(2, t.ASSET_STATION_SIGN, station_sign_modules[params.modutram_station_signs])
-                    elseif segment_blueprint:get_current_segment() == ((segment_blueprint:get_total_segment_count() + 1) % 2) + 1 then
+                    elseif not segment_blueprint:is_middle_platform_segment() and segment_blueprint:get_total_segment_count() == 3 and segment_blueprint:get_current_segment() == 1 then
+                        segment_blueprint:add_asset(1, t.ASSET_STATION_SIGN, station_sign_modules[params.modutram_station_signs])
+                    elseif segment_blueprint:get_current_segment() == -1 - (segment_blueprint:get_total_segment_count() % 2) then
+                        segment_blueprint:add_asset(2, t.ASSET_STATION_SIGN, station_sign_modules[params.modutram_station_signs])
+                    elseif segment_blueprint:get_current_segment() == (segment_blueprint:get_total_segment_count() % 2) + 2 then
                         segment_blueprint:add_asset(1, t.ASSET_STATION_SIGN, station_sign_modules[params.modutram_station_signs])
                     end
                 end
@@ -375,9 +416,19 @@ function data()
                 -- Destination Display
                 if params.modutram_destination_display == 1 and segment_blueprint:get_current_segment() == 0 then
                     if segment_blueprint:has_even_segment_count() then
-                        segment_blueprint:add_asset(9, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                        if segment_blueprint:is_middle_platform_segment() then
+                            segment_blueprint:add_asset(11, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                            segment_blueprint:add_asset(13, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                        else
+                            segment_blueprint:add_asset(9, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                        end
                     else
-                        segment_blueprint:add_asset(8, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                        if segment_blueprint:is_middle_platform_segment() then
+                            segment_blueprint:add_asset(12, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                            segment_blueprint:add_asset(14, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                        else
+                            segment_blueprint:add_asset(8, t.ASSET_DECORATION, 'modules/assets/destination_display_era_c.module')
+                        end
                     end 
                 end
             end)

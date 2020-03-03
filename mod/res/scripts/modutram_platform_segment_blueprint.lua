@@ -1,4 +1,5 @@
 local Module = require('modutram_module')
+local t = require('modutram_types')
 local PlatformSegmentBlueprint = {}
 
 function PlatformSegmentBlueprint:new(o)
@@ -38,6 +39,10 @@ end
 
 function PlatformSegmentBlueprint:has_odd_segment_count()
     return not self:has_even_segment_count()
+end
+
+function PlatformSegmentBlueprint:is_middle_platform_segment()
+    return self.platform_type == t.PLATFORM_DOUBLE
 end
 
 return PlatformSegmentBlueprint

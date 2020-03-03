@@ -240,4 +240,33 @@ describe('PlatformSegmentBlueprint', function ()
             assert.is_true(segment_blueprint_3:has_odd_segment_count())
         end)
     end)
+
+    describe ('is_middle_platform_segment', function ()
+        it ('checks weather segment is from middle platform', function ()
+            local segment_blueprint_1 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_DOUBLE,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -1,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+    
+            local segment_blueprint_2 = PlatformSegmentBlueprint:new{
+                platform_type = t.PLATFORM_LEFT,
+                grid_x = 3,
+                grid_y = 1,
+                start_segment = -2,
+                end_segment = 2,
+                template = {
+                    [234567] = 'a_module'
+                }
+            }
+
+            assert.is_true(segment_blueprint_1:is_middle_platform_segment())
+            assert.is_false(segment_blueprint_2:is_middle_platform_segment())
+        end)
+    end)
 end)

@@ -44,6 +44,28 @@ function data()
             if result.station:is_top_segment_of_a_platform(slotId) then
                 result.station.slots:make_asset_slot(slotId, 3, transform):move(0, 9, 1.15):add_to_slots()
             end
+
+            -- Other Decoration Between Lamps
+            result.station.slots:make_asset_slot(slotId, 4, transform):move(0, -6, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 5, transform):move(0, -3, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 6, transform):move(0, 3, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 7, transform):move(0, 6, 1.15):add_to_slots()
+
+            -- Stop Signs and Destination Display
+            result.station.slots:make_asset_slot(slotId, 8, transform):move(0, -8.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 9, transform):move(0, 0, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 10, transform):move(0, 8.2, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 11, transform):move(-0.5, 9, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 12, transform):move(-0.5, 0, 1.15):rotate(180):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 13, transform):move(0.5, 9, 1.15):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 14, transform):move(0.5, 0, 1.15):add_to_slots()
+
+            -- Station Signs
+            result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_STATION_SIGN, 'eisfeuer_modutram_station_sign')
+                :move(0, -4.5, 2.2):add_to_slots()
+            result.station.slots:make_asset_slot(slotId, 2, transform):of_type(t.ASSET_STATION_SIGN, 'eisfeuer_modutram_station_sign')
+                :move(0, 4.5, 2.2):add_to_slots()
+
         end,
         getModelsFn = function()
             return {{

@@ -7,7 +7,7 @@ function data()
             price = 20000,
         },
         category = {
-            categories = { "track", },
+            categories = { "tracks", },
         },
         description = {
             name = _("Track single down"),
