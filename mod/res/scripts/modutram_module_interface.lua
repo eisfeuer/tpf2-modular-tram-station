@@ -38,4 +38,12 @@ function ModuleInterface:get_track()
     return track
 end
 
+function ModuleInterface:get_grid_x()
+    return self.column_module.grid_x
+end
+
+function ModuleInterface:get_grid_y()
+    return self.column_module.grid_y
+end
+
 return ModuleInterface

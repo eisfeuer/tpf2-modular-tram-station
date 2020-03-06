@@ -1,4 +1,6 @@
 local t = require('modutram_types')
+local Matrix = require('modutram_matrix')
+local Position = require('modutram_position')
 
 function data()
     return {
@@ -29,6 +31,18 @@ function data()
                 id = 'station/tram/modutram_platform_double_rep_era_c.mdl',
                 transf = transform
             })
+            if result.station:is_top_segment_of_a_platform(slotId) then 
+                result.station.builder:add_model({
+                    id = 'station/tram/modutram_platform_double_noaccess_era_b.mdl',
+                    transf = Position:new{x = 0, y = 9, z = 0}:add_to_matrix(transform)
+                })
+            end
+            if result.station:is_bottom_segment_of_a_platform(slotId) then
+                result.station.builder:add_model({
+                    id = 'station/tram/modutram_platform_double_noaccess_era_b.mdl',
+                    transf = Position:new{x = 0, y = -9, z = 0}:add_to_matrix(Matrix.rotate_around_z_axis(180, transform))
+                })
+            end
 
             -- Shelters
             result.station.slots:make_asset_slot(slotId, 1, transform):of_type(t.ASSET_SHELTER, 'g_shelter'):move(-0.9, 0, 1.15):add_to_slots()
@@ -69,12 +83,28 @@ function data()
         end,
         getModelsFn = function()
             return {{
+                id = 'station/tram/modutram_platform_double_noaccess_era_b.mdl',
+                transf = {
+                    0, -1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    -9, 0, 0, 1,
+                }
+            }, {
                 id = 'station/tram/modutram_platform_double_rep_era_c.mdl',
                 transf = {
                     0, 1, 0, 0,
                     1, 0, 0, 0,
                     0, 0, 1, 0,
                     0, 0, 0, 1,
+                }
+            }, {
+                id = 'station/tram/modutram_platform_double_noaccess_era_b.mdl',
+                transf = {
+                    0, 1, 0, 0,
+                    1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    9, 0, 0, 1,
                 }
             }}
         end

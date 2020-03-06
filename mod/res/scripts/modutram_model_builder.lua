@@ -67,4 +67,31 @@ function ModelBuilder:add_vehicle_and_platform_lanes_for(vehicle_type, module_id
     end
 end
 
+function ModelBuilder:add_platform_access_passenger_lanes(position, platform_height, ramp_width, linkable)
+    
+    if ramp_width > c.PLATFORM_SEGMENT_LENGTH - 0.001 then
+        ramp_width = c.PLATFORM_SEGMENT_LENGTH
+    end
+
+    if ramp_width > 0.001 and platform_height > 0.001 then
+        self:add_model({
+            id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
+            transf = position:add_to_matrix({
+                ramp_width, 0, 0, 0, 0, 1, 0, 0, 0, 0, platform_height, 0, 0, 0, 0, 1
+            })
+        })
+    else
+        ramp_width = 0
+    end
+
+    if ramp_width < c.PLATFORM_SEGMENT_LENGTH - 0.001 then
+        self:add_model({
+            id = linkable and c.PLATFORM_PATH_MODELS.platform_access_plain_linkable or c.PLATFORM_PATH_MODELS.platform_access_plain,
+            transf = position:add_to_matrix({
+                c.PLATFORM_SEGMENT_LENGTH - ramp_width, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, ramp_width, 0, 0, 1
+            })
+        })
+    end
+end
+
 return ModelBuilder

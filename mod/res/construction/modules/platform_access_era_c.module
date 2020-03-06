@@ -1,0 +1,55 @@
+local t = require('modutram_types')
+local Position = require('modutram_position')
+local Matrix = require('modutram_matrix')
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "passenger", },
+        },
+        description = {
+            name = _("Passenger platform"),
+            description = _("Platform for waiting passengers."),
+            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "eisfeuer_modutram_platform_entrance",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            if result.station:module(slotId):get_grid_y() > 0 then
+                result.station.builder:add_model({
+                    id = 'station/tram/modutram_platform_double_access_era_c.mdl',
+                    transf = Position:new{x = 0, y = -1, z = 0}:add_to_matrix(transform)
+                })
+            else
+                result.station.builder:add_model({
+                    id = 'station/tram/modutram_platform_double_access_era_c.mdl',
+                    transf = Position:new{x = 0, y = 1, z = 0}:add_to_matrix(Matrix.rotate_around_z_axis(180, transform))
+                })
+            end
+            
+        end,
+        getModelsFn = function()
+            return {{
+                id = 'station/tram/modutram_platform_double_access_era_c.mdl',
+                transf = {
+                    0, 1, 0, 0,
+                    1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

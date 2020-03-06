@@ -28,6 +28,7 @@ function data()
         metadata = {
             transportNetworkProvider = {
                 laneLists = {{
+                    linkable = true,
                     nodes = {
                         { { -crosswalk_path_length * 0.5, 0.0, 0.0}, {crosswalk_path_length, 0.0, 0.0}, 3 },
                         { { crosswalk_path_length * 0.5, 0.0, 0.0}, {crosswalk_path_length, 0.0, 0.0}, 3 },

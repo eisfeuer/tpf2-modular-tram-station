@@ -38,7 +38,10 @@ return {
             stop_edge_terminal = { model = 'station/tram/path/tram_and_bus_stop_edge.mdl', terminal_position = 0 },
             stop_mid_terminal = { model = 'station/tram/path/tram_and_bus_stop_mid.mdl', terminal_position = 0 },
             vehicle_lane_without_terminal = { model = 'station/tram/path/tram_and_bus_lanes_only.mdl', terminal_position = 0 },
-        }
+        },
+        platform_access_ramp = 'station/tram/path/platform_access_ramp.mdl',
+        platform_access_plain = 'station/tram/path/platform_access_plain.mdl',
+        platform_access_plain_linkable = 'station/tram/path/platform_access_plain_linkable.mdl'
     },
     DEFAULT_ASSET_SLOT_TYPE = 'g_decoration',
     DEFAULT_ASSET_SLOT_SPACING = {0.1 ,0.1, 0.1, 0.1}

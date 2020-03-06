@@ -4,6 +4,52 @@ local t = require('modutram_types')
 local Module = require('modutram_module')
 
 describe('ModuleInterface', function ()
+    describe('get_grid_x', function ()
+        it('returns grid x', function ()
+            local column_collection = ColumnCollection:new{}
+
+            local platform_module = Module:new{
+                id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 1,
+                    grid_y = 0
+                })
+            }
+
+            column_collection:add(platform_module, 'platform.module')
+
+            local module_interface = ModuleInterface:new{
+                column_collection = column_collection,
+                column_module = platform_module
+            }
+
+            assert.are.equal(1, module_interface:get_grid_x())
+        end)
+    end)
+
+    describe('get_grid_y', function ()
+        it('returns grid y', function ()
+            local column_collection = ColumnCollection:new{}
+
+            local platform_module = Module:new{
+                id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 1,
+                    grid_y = 2
+                })
+            }
+
+            column_collection:add(platform_module, 'platform.module')
+
+            local module_interface = ModuleInterface:new{
+                column_collection = column_collection,
+                column_module = platform_module
+            }
+
+            assert.are.equal(2, module_interface:get_grid_y())
+        end)
+    end)
+
     describe('has_placed_asset_on_slot', function ()
         local column_collection = ColumnCollection:new{}
 

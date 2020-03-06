@@ -165,7 +165,146 @@ describe('ModelBuilder', function ()
         end)
     end)
 
-    describe('add_vehicle_and_platform_lanes_for', function ()
+    describe('add platform access passenger lanes', function ()
+        it('creates passenger lanes for platform access and adds it to model collection', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 2.1)
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
+                    transf = {
+                        2.1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 0.15, 0,
+                        2, 1, 3, 1
+                    }
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_plain,
+                    transf = {
+                        c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        2 + 2.1, 1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+        end)
+
+        it('creates ramp only when ramp length is equal to platform segment length', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, c.PLATFORM_SEGMENT_LENGTH)
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
+                    transf = {
+                        c.PLATFORM_SEGMENT_LENGTH, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 0.15, 0,
+                        2, 1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+        end)
+
+        it('creates plane lane only when ramp length is 0', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 0.0)
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_plain,
+                    transf = {
+                        c.PLATFORM_SEGMENT_LENGTH, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        2, 1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+        end)
+
+        it('creates plane lane only when platform height is 0', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.0, 2.1)
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_plain,
+                    transf = {
+                        c.PLATFORM_SEGMENT_LENGTH, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        2, 1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+        end)
+
+        it('creates ramp and linkable plain path', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 2.1, true)
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
+                    transf = {
+                        2.1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 0.15, 0,
+                        2, 1, 3, 1
+                    }
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_plain_linkable,
+                    transf = {
+                        c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        2 + 2.1, 1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+        end)
+        
+    end)
+
+    describe('add vehicle and platform lanes for', function ()
         it ('adds vehicle and platform waiting langes', function ()
             local modelCollection = ModelCollection:new{}
             local columnCollection = ColumnCollection:new{}
