@@ -60,10 +60,10 @@ function Station:get_data()
             
     result.station = self
 
-    result.models = self:get_models()
+    result.models = {}
     result.slots = self:get_slots()
     result.edgeLists = {}
-    result.terminalGroups = self.terminal_groups
+    result.terminalGroups = {}
 
     if self:is_empty() then
         result.terrainAlignmentLists = {}
@@ -84,8 +84,21 @@ function Station:get_data()
             }
         }
 
+        require('inspect').inspect(self.models)
+
+        for i, terminal_group in ipairs(self.terminal_groups) do
+            table.insert(result.terminalGroups, terminal_group:as_terminal_group_item())
+            terminal_group:add_to_model_collection(self.models)
+        end
+
         passenger_path_builder:add_bottom_part_to_model_collection(self.models)
         passenger_path_builder:add_top_part_to_model_collection(self.models)
+
+        local models = result.models
+        result.models = self:get_models()
+        for i, model in ipairs(models) do
+            table.insert(result.models, model)
+        end
     end
     return result
 end

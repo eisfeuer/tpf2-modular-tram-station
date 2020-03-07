@@ -256,4 +256,37 @@ describe('ModuleInterface', function ()
             assert.are.equal(t.TRACK_DOUBLE_DOORS_RIGHT, module_interface:get_track().type)
             assert.are.equal(0, module_interface:get_track().x_pos)
     end)
+
+    describe('get_platform', function ()
+        local column_collection = ColumnCollection:new{}
+
+            local platform_module = Module:new{
+                id = Module.make_id({
+                    type = t.PLATFORM_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 0
+                })
+            }
+
+            local bench = Module:new{
+                id = Module.make_id({
+                    type = t.ASSET_DECORATION,
+                    grid_x = 0,
+                    grid_y = 0,
+                    asset_id = 1
+                })
+            }
+
+            column_collection:add(platform_module, 'platform.module')
+            column_collection:add(bench, 'bench.module')
+            column_collection:calculate_x_positions()
+
+            local module_interface = ModuleInterface:new{
+                column_collection = column_collection,
+                column_module = bench
+            }
+
+            assert.are.equal(t.PLATFORM_DOUBLE, module_interface:get_platform().type)
+            assert.are.equal(0, module_interface:get_platform().x_pos)
+    end)
 end)

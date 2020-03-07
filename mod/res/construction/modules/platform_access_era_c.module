@@ -1,6 +1,7 @@
 local t = require('modutram_types')
 local Position = require('modutram_position')
 local Matrix = require('modutram_matrix')
+local c = require('modutram_constants')
 
 function data()
     return {
@@ -27,17 +28,38 @@ function data()
             passenger = true,
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local lane_dist =  c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE - c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM
+            local ramp_y_offset = c.PLATFORM_DOUBLE_WIDTH / 2 + c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM - c.DISTANCE_BETWEEN_VEHICLE_AND_PERSON_LANE - lane_dist
             if result.station:module(slotId):get_grid_y() > 0 then
                 result.station.builder:add_model({
                     id = 'station/tram/modutram_platform_double_access_era_c.mdl',
                     transf = Position:new{x = 0, y = -1, z = 0}:add_to_matrix(transform)
+                })
+
+                result.station.builder:add_platform_access_passenger_lanes(Position:new{x = transform[13] - lane_dist, y = transform[14] - 1, z = transform[15]}, 0.15, 3, {
+                    ramp_y_offset = -ramp_y_offset
+                })
+                result.station.builder:add_platform_access_passenger_lanes(Position:new{x = transform[13] + lane_dist, y = transform[14] - 1, z = transform[15]}, 0.15, 3, {
+                    ramp_y_offset = ramp_y_offset
                 })
             else
                 result.station.builder:add_model({
                     id = 'station/tram/modutram_platform_double_access_era_c.mdl',
                     transf = Position:new{x = 0, y = 1, z = 0}:add_to_matrix(Matrix.rotate_around_z_axis(180, transform))
                 })
+
+                result.station.builder:add_platform_access_passenger_lanes(Position:new{x = transform[13] - lane_dist, y = transform[14] + 1, z = transform[15]}, 0.15, 3, {
+                    mirrored = true,
+                    ramp_y_offset = -ramp_y_offset
+                })
+                result.station.builder:add_platform_access_passenger_lanes(Position:new{x = transform[13] + lane_dist, y = transform[14] + 1, z = transform[15]}, 0.15, 3, {
+                    mirrored = true,
+                    ramp_y_offset = ramp_y_offset
+                })
             end
+
+
+            
             
         end,
         getModelsFn = function()

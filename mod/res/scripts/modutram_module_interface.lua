@@ -38,6 +38,15 @@ function ModuleInterface:get_track()
     return track
 end
 
+function ModuleInterface:get_platform()
+    local platform = self.column_collection:get_column(self.column_module.grid_x)
+    if not platform:is_platform() then
+        error ('asset is not placed on a platform')
+    end
+
+    return platform
+end
+
 function ModuleInterface:get_grid_x()
     return self.column_module.grid_x
 end

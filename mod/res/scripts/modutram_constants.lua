@@ -40,6 +40,7 @@ return {
             vehicle_lane_without_terminal = { model = 'station/tram/path/tram_and_bus_lanes_only.mdl', terminal_position = 0 },
         },
         platform_access_ramp = 'station/tram/path/platform_access_ramp.mdl',
+        platform_access_ramp_mirrored = 'station/tram/path/platform_access_ramp_mirrored.mdl',
         platform_access_plain = 'station/tram/path/platform_access_plain.mdl',
         platform_access_plain_linkable = 'station/tram/path/platform_access_plain_linkable.mdl'
     },

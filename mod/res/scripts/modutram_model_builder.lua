@@ -59,25 +59,28 @@ function ModelBuilder:add_vehicle_and_platform_lanes_for(vehicle_type, module_id
                 models = self.model_collection,
                 tram_path_model = path_models.vehicle_lane_without_terminal.model
             }
-            table.insert(self.terminal_groups, terminal_group:as_terminal_group_item())
-            terminal_group:add_to_model_collection(self.model_collection)
+            table.insert(self.terminal_groups, terminal_group)
+            -- terminal_group:add_to_model_collection(self.model_collection)
         end
     else
         error('lanes must be added on a track module')
     end
 end
 
-function ModelBuilder:add_platform_access_passenger_lanes(position, platform_height, ramp_width, linkable)
-    
+function ModelBuilder:add_platform_access_passenger_lanes(position, platform_height, ramp_width, options)
+    local linkable = (options and options.linkable) == true
+    local mirrored = (options and options.mirrored) == true
+    local ramp_y_offset = (options and options.ramp_y_offset) or 0
+
     if ramp_width > c.PLATFORM_SEGMENT_LENGTH - 0.001 then
         ramp_width = c.PLATFORM_SEGMENT_LENGTH
     end
 
     if ramp_width > 0.001 and platform_height > 0.001 then
         self:add_model({
-            id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
+            id = mirrored and c.PLATFORM_PATH_MODELS.platform_access_ramp_mirrored or c.PLATFORM_PATH_MODELS.platform_access_ramp,
             transf = position:add_to_matrix({
-                ramp_width, 0, 0, 0, 0, 1, 0, 0, 0, 0, platform_height, 0, 0, 0, 0, 1
+                ramp_y_offset, 0, 0, 0, 0, ramp_width, 0, 0, 0, 0, platform_height, 0, 0, 0, 0, 1
             })
         })
     else
@@ -85,10 +88,11 @@ function ModelBuilder:add_platform_access_passenger_lanes(position, platform_hei
     end
 
     if ramp_width < c.PLATFORM_SEGMENT_LENGTH - 0.001 then
+        local direction = mirrored and -1 or 1
         self:add_model({
             id = linkable and c.PLATFORM_PATH_MODELS.platform_access_plain_linkable or c.PLATFORM_PATH_MODELS.platform_access_plain,
             transf = position:add_to_matrix({
-                c.PLATFORM_SEGMENT_LENGTH - ramp_width, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, ramp_width, 0, 0, 1
+                direction, 0, 0, 0, 0, (c.PLATFORM_SEGMENT_LENGTH - ramp_width) * direction, 0, 0, 0, 0, 1, 0, 0, ramp_width * direction, 0, 1
             })
         })
     end

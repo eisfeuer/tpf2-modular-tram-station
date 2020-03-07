@@ -165,7 +165,7 @@ describe('ModelBuilder', function ()
         end)
     end)
 
-    describe('add platform access passenger lanes', function ()
+    describe('add_platform_access_passenger_lanes', function ()
         it('creates passenger lanes for platform access and adds it to model collection', function ()
             local modelCollection = ModelCollection:new{}
             local columnCollection = ColumnCollection:new{}
@@ -181,18 +181,18 @@ describe('ModelBuilder', function ()
                 {
                     id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
                     transf = {
-                        2.1, 0, 0, 0,
-                        0, 1, 0, 0,
+                        0, 0, 0, 0,
+                        0, 2.1, 0, 0,
                         0, 0, 0.15, 0,
                         2, 1, 3, 1
                     }
                 }, {
                     id = c.PLATFORM_PATH_MODELS.platform_access_plain,
                     transf = {
-                        c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0, 0,
-                        0, 1, 0, 0,
+                        1, 0, 0, 0,
+                        0, c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0,
                         0, 0, 1, 0,
-                        2 + 2.1, 1, 3, 1
+                        2, 1 + 2.1, 3, 1
                     }
                 }
             }, modelCollection.models)
@@ -213,8 +213,8 @@ describe('ModelBuilder', function ()
                 {
                     id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
                     transf = {
-                        c.PLATFORM_SEGMENT_LENGTH, 0, 0, 0,
-                        0, 1, 0, 0,
+                        0, 0, 0, 0,
+                        0, c.PLATFORM_SEGMENT_LENGTH, 0, 0,
                         0, 0, 0.15, 0,
                         2, 1, 3, 1
                     }
@@ -237,8 +237,8 @@ describe('ModelBuilder', function ()
                 {
                     id = c.PLATFORM_PATH_MODELS.platform_access_plain,
                     transf = {
-                        c.PLATFORM_SEGMENT_LENGTH, 0, 0, 0,
-                        0, 1, 0, 0,
+                        1, 0, 0, 0,
+                        0, c.PLATFORM_SEGMENT_LENGTH, 0, 0,
                         0, 0, 1, 0,
                         2, 1, 3, 1
                     }
@@ -261,8 +261,8 @@ describe('ModelBuilder', function ()
                 {
                     id = c.PLATFORM_PATH_MODELS.platform_access_plain,
                     transf = {
-                        c.PLATFORM_SEGMENT_LENGTH, 0, 0, 0,
-                        0, 1, 0, 0,
+                        1, 0, 0, 0,
+                        0, c.PLATFORM_SEGMENT_LENGTH, 0, 0,
                         0, 0, 1, 0,
                         2, 1, 3, 1
                     }
@@ -279,29 +279,94 @@ describe('ModelBuilder', function ()
                 column_collection = columnCollection
             }
 
-            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 2.1, true)
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 2.1, {linkable = true})
 
             assert.are.same({
                 {
                     id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
                     transf = {
-                        2.1, 0, 0, 0,
-                        0, 1, 0, 0,
+                        0, 0, 0, 0,
+                        0, 2.1, 0, 0,
                         0, 0, 0.15, 0,
                         2, 1, 3, 1
                     }
                 }, {
                     id = c.PLATFORM_PATH_MODELS.platform_access_plain_linkable,
                     transf = {
-                        c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0, 0,
-                        0, 1, 0, 0,
+                        1, 0, 0, 0,
+                        0, c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0,
                         0, 0, 1, 0,
-                        2 + 2.1, 1, 3, 1
+                        2, 1 + 2.1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+
+        end)
+
+        it('creates ramp path with y offset', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 2.1, {ramp_y_offset = 1.2})
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_ramp,
+                    transf = {
+                        1.2, 0, 0, 0,
+                        0, 2.1, 0, 0,
+                        0, 0, 0.15, 0,
+                        2, 1, 3, 1
+                    }
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_plain,
+                    transf = {
+                        1, 0, 0, 0,
+                        0, c.PLATFORM_SEGMENT_LENGTH - 2.1, 0, 0,
+                        0, 0, 1, 0,
+                        2, 1 + 2.1, 3, 1
                     }
                 }
             }, modelCollection.models)
         end)
-        
+
+        it('creates mirrored path', function ()
+            local modelCollection = ModelCollection:new{}
+            local columnCollection = ColumnCollection:new{}
+
+            local modelBuilder = ModelBuilder:new{
+                model_collection = modelCollection,
+                column_collection = columnCollection
+            }
+
+            modelBuilder:add_platform_access_passenger_lanes(Position:new{x = 2, y = 1, z = 3}, 0.15, 2.1, {mirrored = true})
+
+            assert.are.same({
+                {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_ramp_mirrored,
+                    transf = {
+                        0, 0, 0, 0,
+                        0, 2.1, 0, 0,
+                        0, 0, 0.15, 0,
+                        2, 1, 3, 1
+                    }
+                }, {
+                    id = c.PLATFORM_PATH_MODELS.platform_access_plain,
+                    transf = {
+                        -1, 0, 0, 0,
+                        0, -(c.PLATFORM_SEGMENT_LENGTH - 2.1), 0, 0,
+                        0, 0, 1, 0,
+                        2, 1 - 2.1, 3, 1
+                    }
+                }
+            }, modelCollection.models)
+        end)
+
     end)
 
     describe('add vehicle and platform lanes for', function ()
@@ -342,6 +407,12 @@ describe('ModelBuilder', function ()
             })
             modelBuilder:add_vehicle_and_platform_lanes_for('tram', trackModuleId, c.LEFT)
 
+            local mapped_terminal_groups = {}
+            for i, terminal_group in ipairs(terminal_groups) do
+                table.insert(mapped_terminal_groups, terminal_group:as_terminal_group_item())
+                terminal_group:add_to_model_collection(modelCollection)
+            end
+
             assert.are.same({
                 {
                     tag = 0,
@@ -351,7 +422,7 @@ describe('ModelBuilder', function ()
                         { 3, c.PLATFORM_PATH_MODELS.tram.waiting_area_only_terminal.terminal_position }
                     }
                 }
-            }, terminal_groups)
+            }, mapped_terminal_groups)
 
             assert.are.same({
                 {
