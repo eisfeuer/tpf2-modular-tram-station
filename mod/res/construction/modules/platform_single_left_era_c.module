@@ -29,6 +29,8 @@ function data()
             passenger = true,
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            result.station:module(slotId):get_platform():set_height(0.15)
+
             result.station.builder:add_model({
                 id = 'station/tram/modutram_platform_single_rep_era_c.mdl',
                 transf = Matrix.rotate_around_z_axis(180, transform)
