@@ -289,4 +289,37 @@ describe('ModuleInterface', function ()
             assert.are.equal(t.PLATFORM_DOUBLE, module_interface:get_platform().type)
             assert.are.equal(0, module_interface:get_platform().x_pos)
     end)
+
+    describe('get_track_module', function ()
+        local column_collection = ColumnCollection:new{}
+
+            local track_module = Module:new{
+                id = Module.make_id({
+                    type = t.TRACK_DOUBLE_DOORS_RIGHT,
+                    grid_x = 0,
+                    grid_y = 0
+                })
+            }
+
+            local street_access = Module:new{
+                id = Module.make_id({
+                    type = t.STREET_CONNECTION_DOUBLE,
+                    grid_x = 0,
+                    grid_y = 1,
+                    asset_id = 1
+                })
+            }
+
+            column_collection:add(track_module, 'track.module')
+            column_collection:add(street_access, 'street_access.module')
+            column_collection:calculate_x_positions()
+
+            local module_interface = ModuleInterface:new{
+                column_collection = column_collection,
+                column_module = street_access
+            }
+
+            assert.are.same(t.TRACK_DOUBLE_DOORS_RIGHT, module_interface:get_track_module():get_track().type)
+            assert.are.equal(0, module_interface:get_track_module():get_track().x_pos)
+    end)
 end)

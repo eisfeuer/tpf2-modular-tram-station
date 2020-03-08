@@ -1,5 +1,17 @@
 local modulesutil = require "modulesutil"
 
+local function get_tram_track_type(track_module)
+    if track_module:has_catenary() then
+        return 'ELECTRIC'
+    end
+
+    if track_module:has_tram_tracks() then
+        return 'YES'
+    end
+
+    return 'NO'
+end
+
 function data()
     return {
         cost = {
@@ -30,7 +42,7 @@ function data()
 				type = "STREET",
 				params = {
 					type = "standard/town_verysmall_new_tram.lua",
-					tramTrackType = "ELECTRIC",
+					tramTrackType = get_tram_track_type(result.station:module(slotId):get_track_module()),
 				},
 				edges = {
                     { modulesutil.mul(transform, {0, -1, 0, 1}), tng },

@@ -1,4 +1,5 @@
 local t = require('modutram_types')
+local Module = require('modutram_module')
 
 local ModuleInterface = {}
 
@@ -45,6 +46,24 @@ function ModuleInterface:get_platform()
     end
 
     return platform
+end
+
+function ModuleInterface:get_track_module()
+    local track = self.column_collection:get_column(self.column_module.grid_x)
+    if not track:is_track() then
+        error ('asset is not placed on a track')
+    end
+
+    local track_module = Module:new({id = Module.make_id({
+        type = track.type,
+        grid_x = track.grid_x,
+        grid_y = 0
+    })})
+
+    return ModuleInterface:new({
+        column_collection = self.column_collection,
+        column_module = track_module
+    })
 end
 
 function ModuleInterface:get_grid_x()
