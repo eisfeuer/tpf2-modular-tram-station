@@ -1,5 +1,17 @@
 local modulesutil = require "modulesutil"
 
+local function get_tram_track_type(track_module)
+    if track_module:has_catenary() then
+        return 'ELECTRIC'
+    end
+
+    if track_module:has_tram_tracks() then
+        return 'YES'
+    end
+
+    return 'NO'
+end
+
 function data()
     return {
         cost = {
@@ -17,7 +29,7 @@ function data()
             yearFrom = 0,
             yearTo = 0
         },
-        type = "eisfeuer_modutram_street_connection_in",
+        type = "eisfeuer_modutram_street_connection_out",
         order = {
             value = 7,
         },
@@ -30,13 +42,13 @@ function data()
 				type = "STREET",
 				params = {
 					type = "standard/town_verysmall_one_way_new_tram.lua",
-					tramTrackType = "YES",
+					tramTrackType = get_tram_track_type(result.station:module(slotId):get_track_module()),
 				},
 				edges = {
-					{ modulesutil.mul(transform, {0, -17, 0, 1}), tng },
-					{ modulesutil.mul(transform, {0, 1, 0, 1}), tng },
+                    { modulesutil.mul(transform, {0, -1, 0, 1}), tng },
+					{ modulesutil.mul(transform, {0, 17, 0, 1}), tng }
 				},
-				snapNodes = { 0 }
+				snapNodes = { 1 }
 		    })
         end,
         getModelsFn = function()

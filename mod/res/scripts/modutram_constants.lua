@@ -25,7 +25,7 @@ return {
             waiting_area_only_terminal = { model = 'station/tram/path/tram_not_electric_and_bus_waiting.mdl', terminal_position = 0 },
             stop_edge_terminal = { model = 'station/tram/path/tram_not_electric_and_bus_stop_edge.mdl', terminal_position = 0 },
             stop_mid_terminal = { model = 'station/tram/path/tram_not_electric_and_bus_stop_mid.mdl', terminal_position = 0 },
-            vehicle_lane_without_terminal = { model = 'station/tram/path/tram_not_electric_and_bus_lanes_only.mdl', terminal_position = 0 },
+            vehicle_lane_without_terminal = { model = 'station/tram/path/tram_not_electric_and_bus_lane_only.mdl', terminal_position = 0 },
         },
         tram = {
             waiting_area_only_terminal = { model = 'station/tram/path/tram_waiting.mdl', terminal_position = 0 },
@@ -37,7 +37,7 @@ return {
             waiting_area_only_terminal = { model = 'station/tram/path/tram_and_bus_waiting.mdl', terminal_position = 0 },
             stop_edge_terminal = { model = 'station/tram/path/tram_and_bus_stop_edge.mdl', terminal_position = 0 },
             stop_mid_terminal = { model = 'station/tram/path/tram_and_bus_stop_mid.mdl', terminal_position = 0 },
-            vehicle_lane_without_terminal = { model = 'station/tram/path/tram_and_bus_lanes_only.mdl', terminal_position = 0 },
+            vehicle_lane_without_terminal = { model = 'station/tram/path/tram_and_bus_lane_only.mdl', terminal_position = 0 },
         },
         platform_access_ramp = 'station/tram/path/platform_access_ramp.mdl',
         platform_access_ramp_mirrored = 'station/tram/path/platform_access_ramp_mirrored.mdl',
