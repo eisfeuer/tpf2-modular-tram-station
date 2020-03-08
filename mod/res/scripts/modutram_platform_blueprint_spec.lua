@@ -8,6 +8,9 @@ describe('PlatformBlueprint', function ()
     
         it ('adds three platform segments to template', function ()
             local platform_blueprint = PlatformBlueprint:new{
+                has_platform_access_top = false,
+                has_platform_access_btm = false,
+                platform_access_module = 'platform_access_ramp.module',
                 platform_segments = 3,
                 platform_segment_module = 'platform_double.module',
                 platform_type = t.PLATFORM_DOUBLE,
@@ -27,6 +30,9 @@ describe('PlatformBlueprint', function ()
 
         it ('adds four platform segments to template', function ()
             local platform_blueprint = PlatformBlueprint:new{
+                has_platform_access_top = false,
+                has_platform_access_btm = false,
+                platform_access_module = 'platform_access_ramp.module',
                 platform_segments = 4,
                 platform_segment_module = 'platform_double.module',
                 platform_type = t.PLATFORM_DOUBLE,
@@ -45,9 +51,82 @@ describe('PlatformBlueprint', function ()
             }, template)
         end)
 
+        it ('adds three platform segments with access on top to template', function ()
+            local platform_blueprint = PlatformBlueprint:new{
+                has_platform_access_top = true,
+                has_platform_access_btm = false,
+                platform_access_module = 'platform_access_ramp.module',
+                platform_segments = 3,
+                platform_segment_module = 'platform_double.module',
+                platform_type = t.PLATFORM_DOUBLE,
+                platform_grid_x = 5
+            }
+
+            local template = {}
+
+            platform_blueprint:add_to_template(template)
+
+            assert.are.same({
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = -1})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = 0})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = 1})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP, grid_x = 5, grid_y = 2})] = 'platform_access_ramp.module'
+            }, template)
+        end)
+
+        it ('adds three platform segments with bottom entrance to template', function ()
+            local platform_blueprint = PlatformBlueprint:new{
+                has_platform_access_top = false,
+                has_platform_access_btm = true,
+                platform_access_module = 'platform_access_ramp.module',
+                platform_segments = 3,
+                platform_segment_module = 'platform_double.module',
+                platform_type = t.PLATFORM_DOUBLE,
+                platform_grid_x = 5
+            }
+
+            local template = {}
+
+            platform_blueprint:add_to_template(template)
+
+            assert.are.same({
+                [Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM, grid_x = 5, grid_y = -2})] = 'platform_access_ramp.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = -1})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = 0})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = 1})] = 'platform_double.module'
+            }, template)
+        end)
+
+        it ('adds three platform segments with top and bottom entrance to template', function ()
+            local platform_blueprint = PlatformBlueprint:new{
+                has_platform_access_top = true,
+                has_platform_access_btm = true,
+                platform_access_module = 'platform_access_ramp.module',
+                platform_segments = 3,
+                platform_segment_module = 'platform_double.module',
+                platform_type = t.PLATFORM_DOUBLE,
+                platform_grid_x = 5
+            }
+
+            local template = {}
+
+            platform_blueprint:add_to_template(template)
+
+            assert.are.same({
+                [Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM, grid_x = 5, grid_y = -2})] = 'platform_access_ramp.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = -1})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = 0})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 5, grid_y = 1})] = 'platform_double.module',
+                [Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP, grid_x = 5, grid_y = 2})] = 'platform_access_ramp.module',
+            }, template)
+        end)
+
         describe('set_segment_decorations', function ()
             it ('decorates platform with assets', function ()
                 local platform_blueprint = PlatformBlueprint:new{
+                    has_platform_access_top = false,
+                    has_platform_access_btm = false,
+                    platform_access_module = 'platform_access_ramp.module',
                     platform_segments = 3,
                     platform_segment_module = 'platform_double.module',
                     platform_type = t.PLATFORM_DOUBLE,

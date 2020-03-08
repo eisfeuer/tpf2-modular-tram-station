@@ -31,12 +31,15 @@ end
 local function add_single_platform_to_template_inner(self, platform_grid_x, direction, template)
     local platform_type = direction == c.LEFT and t.PLATFORM_RIGHT or t.PLATFORM_LEFT
     local platform_module = direction == c.LEFT and self.modules.platform_right or self.modules.platform_left
-    
+
     local platform_blueprint = PlatformBlueprint:new{
         platform_type = platform_type,
         platform_grid_x = platform_grid_x,
         platform_segments = self.segments_per_platform,
-        platform_segment_module = platform_module
+        platform_segment_module = platform_module,
+        has_platform_access_top = self.platforms_has_access_top,
+        has_platform_access_btm = self.platforms_has_access_bottom,
+        platform_access_module = self.modules.platform_access,
     }
     platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
     platform_blueprint:add_to_template(template)
@@ -50,7 +53,10 @@ local function add_single_platform_to_template_outer(self, platform_grid_x, dire
         platform_type = platform_type,
         platform_grid_x = platform_grid_x,
         platform_segments = self.segments_per_platform,
-        platform_segment_module = platform_module
+        platform_segment_module = platform_module,
+        has_platform_access_top = self.platforms_has_access_top,
+        has_platform_access_btm = self.platforms_has_access_bottom,
+        platform_access_module = self.modules.platform_access,
     }
     platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
     platform_blueprint:add_to_template(template)
@@ -65,7 +71,10 @@ local function add_double_platform_to_template(self, platform_grid_x, template)
         platform_type = t.PLATFORM_DOUBLE,
         platform_grid_x = platform_grid_x,
         platform_segments = self.segments_per_platform,
-        platform_segment_module = self.modules.platform_double
+        platform_segment_module = self.modules.platform_double,
+        has_platform_access_top = self.platforms_has_access_top,
+        has_platform_access_btm = self.platforms_has_access_bottom,
+        platform_access_module = self.modules.platform_access,
     }
     platform_blueprint:set_segment_decorations(self.platform_decoration_functions)
     platform_blueprint:add_to_template(template)

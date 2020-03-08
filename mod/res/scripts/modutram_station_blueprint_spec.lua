@@ -9,6 +9,7 @@ describe('StationBlueprint', function ()
         platform_left = 'platform_left.module',
         platform_right = 'platform_right.module',
         platform_double = 'platform_double.module',
+        platform_access = 'platform_entrance_ramp.module',
         track_up_doors_right = 'track_up.module',
         track_down_doors_right = 'track_down.module',
         track_double_doors_right = 'track_double.module'
@@ -25,7 +26,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 0,
                     platforms_right = 0,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -41,7 +44,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 0,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -58,7 +63,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 0,
-                    segments_per_platform = 2
+                    segments_per_platform = 2,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -76,7 +83,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 0,
-                    segments_per_platform = 3
+                    segments_per_platform = 3,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -95,7 +104,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 0,
-                    segments_per_platform = 4
+                    segments_per_platform = 4,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -115,7 +126,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 0,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -132,7 +145,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 1,
-                    segments_per_platform = 2
+                    segments_per_platform = 2,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -152,7 +167,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 2,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -171,7 +188,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -191,7 +210,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 4,
-                    segments_per_platform = 3
+                    segments_per_platform = 3,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
 
                 assert.are.same(
@@ -235,7 +256,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 0,
                     platforms_right = 0,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -251,7 +274,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 1,
-                    segments_per_platform = 2
+                    segments_per_platform = 2,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -271,7 +296,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 2,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -291,7 +318,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -313,7 +342,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 4,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
 
                 assert.are.same(
@@ -348,7 +379,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 0,
                     platforms_right = 0,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -366,7 +399,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -384,7 +419,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 2,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -404,7 +441,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -426,7 +465,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 4,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
 
                 assert.are.same(
@@ -460,7 +501,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 0,
                     platforms_right = 0,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -477,7 +520,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 0,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -494,7 +539,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 1,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -513,7 +560,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 2,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -534,7 +583,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 1,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
                 assert.are.same(
                     {
@@ -557,7 +608,9 @@ describe('StationBlueprint', function ()
                     modules = modules,
                     platforms_left = 3,
                     platforms_right = 4,
-                    segments_per_platform = 1
+                    segments_per_platform = 1,
+                    platforms_has_access_top = false,
+                    platforms_has_access_bottom = false
                 }
 
                 assert.are.same(
@@ -592,7 +645,9 @@ describe('StationBlueprint', function ()
                         modules = modules,
                         platforms_left = 0,
                         platforms_right = 0,
-                        segments_per_platform = 1
+                        segments_per_platform = 1,
+                        platforms_has_access_top = false,
+                        platforms_has_access_bottom = false
                     }
                     assert.are.same(
                         {
@@ -609,7 +664,9 @@ describe('StationBlueprint', function ()
                         modules = modules,
                         platforms_left = 1,
                         platforms_right = 0,
-                        segments_per_platform = 1
+                        segments_per_platform = 1,
+                        platforms_has_access_top = false,
+                        platforms_has_access_bottom = false
                     }
                     assert.are.same(
                         {
@@ -626,7 +683,9 @@ describe('StationBlueprint', function ()
                         modules = modules,
                         platforms_left = 1,
                         platforms_right = 1,
-                        segments_per_platform = 1
+                        segments_per_platform = 1,
+                        platforms_has_access_top = false,
+                        platforms_has_access_bottom = false
                     }
                     assert.are.same(
                         {
@@ -645,7 +704,9 @@ describe('StationBlueprint', function ()
                         modules = modules,
                         platforms_left = 2,
                         platforms_right = 1,
-                        segments_per_platform = 1
+                        segments_per_platform = 1,
+                        platforms_has_access_top = false,
+                        platforms_has_access_bottom = false
                     }
                     assert.are.same(
                         {
@@ -666,7 +727,9 @@ describe('StationBlueprint', function ()
                         modules = modules,
                         platforms_left = 3,
                         platforms_right = 1,
-                        segments_per_platform = 1
+                        segments_per_platform = 1,
+                        platforms_has_access_top = false,
+                        platforms_has_access_bottom = false
                     }
                     assert.are.same(
                         {
@@ -689,7 +752,9 @@ describe('StationBlueprint', function ()
                         modules = modules,
                         platforms_left = 3,
                         platforms_right = 4,
-                        segments_per_platform = 1
+                        segments_per_platform = 1,
+                        platforms_has_access_top = false,
+                        platforms_has_access_bottom = false
                     }
     
                     assert.are.same(
@@ -715,6 +780,30 @@ describe('StationBlueprint', function ()
                 end)
             end)
 
+        describe('platform access', function ()
+            it('creates template with double platform with entrace on top and bottom', function ()
+                local station_blueprint = StationBlueprint:new{
+                    platform_placing_pattern = 2,
+                    modules = modules,
+                    platforms_left = 0,
+                    platforms_right = 0,
+                    segments_per_platform = 1,
+                    platforms_has_access_top = true,
+                    platforms_has_access_bottom = true
+                }
+                assert.are.same(
+                    {
+                        [Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = -1, grid_y = 0})] = 'track_up.module',
+                        [Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_BTM, grid_x = 0, grid_y = -1})] = 'platform_entrance_ramp.module',
+                        [Module.make_id({type = t.PLATFORM_DOUBLE, grid_x = 0, grid_y = 0})] = 'platform_double.module',
+                        [Module.make_id({type = t.PLATFORM_ENTRANCE_DOUBLE_TOP, grid_x = 0, grid_y = 1})] = 'platform_entrance_ramp.module',
+                        [Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = 1, grid_y = 0})] = 'track_down.module'
+                    },
+                    station_blueprint:create_template()
+                )
+            end)
+        end)
+
     end)
 
     describe('decorate_platforms', function ()
@@ -724,7 +813,9 @@ describe('StationBlueprint', function ()
                 modules = modules,
                 platforms_left = 1,
                 platforms_right = 1,
-                segments_per_platform = 1
+                segments_per_platform = 1,
+                platforms_has_access_top = false,
+                platforms_has_access_bottom = false
             }
 
             station_blueprint:decorate_platforms(function (segment_blueprint)

@@ -10,11 +10,16 @@ local SMALL = 0
 local MEDIUM = 1
 local LARGE = 2
 
+local PASSENGER_ACCESS_LEFT = 1
+local PASSENGER_ACCESS_RIGHT = 2
+local PASSENGER_ACCESS_BOTH = 3
+
 local function get_station_base_modules(params)
     return {
         platform_left = 'modules/platform_single_right_era_c.module',
         platform_right = 'modules/platform_single_left_era_c.module',
         platform_double = 'modules/platform_double_era_c.module',
+        platform_access = 'modules/platform_access_era_c.module',
         track_up_doors_right = 'modules/track_single_up_doors_right_era_c.module',
         track_down_doors_right = 'modules/track_single_down_doors_right_era_c.module',
         track_double_doors_right = 'modules/track_single_double_doors_right_era_c.module'
@@ -184,6 +189,12 @@ function data()
                             defaultIndex = 2,
                         },
                         {
+                            key = 'modutram_platform_passenger_access',
+                            name = _('modutram_platform_passenger_access'),
+                            values = { _('off'), _('left'), _('right'), _('both') },
+                            defaultIndex = 3,
+                        },
+                        {
                             key = 'modutram_shelter',
                             name = _('modutram_shelter'),
                             values = { _('off'), _('era_a'), _('era_b'), _('era_c') },
@@ -247,7 +258,10 @@ function data()
                 modules = get_station_base_modules(params),
                 platforms_left = params.modutram_platforms_left,
                 platforms_right = params.modutram_platforms_right,
-                segments_per_platform = params.modutram_platform_length + 1
+                segments_per_platform = params.modutram_platform_length + 1,
+                platforms_has_access_top = params.modutram_platform_passenger_access == PASSENGER_ACCESS_LEFT or params.modutram_platform_passenger_access == PASSENGER_ACCESS_BOTH,
+                platforms_has_access_bottom = params.modutram_platform_passenger_access == PASSENGER_ACCESS_RIGHT or params.modutram_platform_passenger_access == PASSENGER_ACCESS_BOTH,
+                modutram_platform_passenger_access
             }
 
             blueprint:decorate_platforms(function(segment_blueprint)
