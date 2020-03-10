@@ -840,4 +840,32 @@ describe('StationBlueprint', function ()
         end)
     end)
 
+    describe('configure_tracks', function ()
+        it ('configures track modules', function ()
+            local station_blueprint = StationBlueprint:new{
+                platform_placing_pattern = 1,
+                modules = modules,
+                platforms_left = 1,
+                platforms_right = 1,
+                segments_per_platform = 1,
+                platforms_has_access_top = false,
+                platforms_has_access_bottom = false
+            }
+
+            station_blueprint:configure_tracks(function(track_blueprint)
+                track_blueprint:add_tram_tracks('tram_tracks.module')
+            end)
+
+            assert.are.same(
+                {
+                    [Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = 0, grid_y = 0})] = 'track_double.module',
+                    [Module.make_id({type = t.ASSET_TRAM_TRACKS, grid_x = 0, grid_y = 0, asset_id = 1})] = 'tram_tracks.module',
+                    [Module.make_id({type = t.PLATFORM_RIGHT, grid_x = -1, grid_y = 0})] = 'platform_right.module',
+                    [Module.make_id({type = t.PLATFORM_LEFT, grid_x = 1, grid_y = 0})] = 'platform_left.module',
+                },
+                station_blueprint:create_template()
+            )
+        end)
+    end)
+
 end)

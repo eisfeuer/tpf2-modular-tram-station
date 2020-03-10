@@ -3,29 +3,41 @@ local Module = require('modutram_module')
 local t = require('modutram_types')
 local PlatformBlueprint = require('modutram_platform_blueprint')
 local c = require('modutram_constants')
+local TrackBlueprint = require('modutram_track_blueprint')
 
 function StationBlueprint:new(o)
     o = o or {}
     o.platform_decoration_functions = {}
+    o.track_configuration_function = function (track_blueprint)
+        return track_blueprint
+    end
     setmetatable(o, self)
     self.__index = self
     return o
 end
 
 local function add_single_track_outer_open_doors_to_template(self, track_grid_x, direction, template)
+    local track_blueprint = nil
     if direction == c.RIGHT then
-        template[Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_up_doors_right
+        track_blueprint = TrackBlueprint:new{track_type = t.TRACK_UP_DOORS_RIGHT, track_grid_x = track_grid_x, track_module = self.modules.track_up_doors_right}
     else
-        template[Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_down_doors_right
+        track_blueprint = TrackBlueprint:new{track_type = t.TRACK_DOWN_DOORS_RIGHT, track_grid_x = track_grid_x, track_module = self.modules.track_down_doors_right}
     end
+
+    self.track_configuration_function(track_blueprint)
+    track_blueprint:add_to_template(template)
 end
 
 local function add_single_track_inner_open_doors_to_template(self, track_grid_x, direction, template)
+    local track_blueprint = nil
     if direction == c.LEFT then
-        template[Module.make_id({type = t.TRACK_UP_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_up_doors_right
+        track_blueprint = TrackBlueprint:new{track_type = t.TRACK_UP_DOORS_RIGHT, track_grid_x = track_grid_x, track_module = self.modules.track_up_doors_right}
     else
-        template[Module.make_id({type = t.TRACK_DOWN_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_down_doors_right
+        track_blueprint = TrackBlueprint:new{track_type = t.TRACK_DOWN_DOORS_RIGHT, track_grid_x = track_grid_x, track_module = self.modules.track_down_doors_right}
     end
+
+    self.track_configuration_function(track_blueprint)
+    track_blueprint:add_to_template(template)
 end
 
 local function add_single_platform_to_template_inner(self, platform_grid_x, direction, template)
@@ -63,7 +75,9 @@ local function add_single_platform_to_template_outer(self, platform_grid_x, dire
 end
 
 local function add_double_track_to_template(self, track_grid_x, template)
-    template[Module.make_id({type = t.TRACK_DOUBLE_DOORS_RIGHT, grid_x = track_grid_x, grid_y = 0})] = self.modules.track_double_doors_right
+    local track_blueprint = TrackBlueprint:new{track_type = t.TRACK_DOUBLE_DOORS_RIGHT, track_grid_x = track_grid_x, track_module = self.modules.track_double_doors_right}
+    self.track_configuration_function(track_blueprint)
+    track_blueprint:add_to_template(template)
 end
 
 local function add_double_platform_to_template(self, platform_grid_x, template)
@@ -135,6 +149,10 @@ end
 
 function StationBlueprint:decorate_platforms(decoration_function)
     table.insert(self.platform_decoration_functions, decoration_function)
+end
+
+function StationBlueprint:configure_tracks(track_configuration_function)
+    self.track_configuration_function = track_configuration_function
 end
 
 function StationBlueprint:create_template()
