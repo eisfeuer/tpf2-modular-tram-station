@@ -48,8 +48,8 @@ return {
     DEFAULT_ASSET_SLOT_SPACING = {0.1 ,0.1, 0.1, 0.1},
     DEFAULT_BUS_LANE_MODULE = 'modules/bus_lane.module',
     DEFAULT_STREET_CONNECTION_MODULES = {
-        connection_in = 'street_connection_in.module',
-        connection_out = 'street_connection_out.module',
-        connection_double = 'street_connection_double.module'
+        connection_in = 'modules/street_connection_in.module',
+        connection_out = 'modules/street_connection_out.module',
+        connection_double = 'modules/street_connection_double.module'
     }
 }

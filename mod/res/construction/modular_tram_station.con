@@ -171,6 +171,30 @@ function data()
                             defaultIndex = 0,
                         },
                         {
+                            key = 'modutram_tram_tracks',
+                            name = _('modutram_tram_tracks'),
+                            values = { _('off'), _('on'), },
+                            defaultIndex = 1,
+                        },
+                        {
+                            key = 'modutram_electrification',
+                            name = _('modutram_electrification'),
+                            values = { _('off'), _('era_a'), _('era_b'), _('era_c') },
+                            defaultIndex = 3,
+                        },
+                        {
+                            key = 'modutram_bus',
+                            name = _('modutram_bus'),
+                            values = { _('off'), _('on'), },
+                            defaultIndex = 1,
+                        },
+                        {
+                            key = 'modutram_street_connections',
+                            name = _('modutram_street_connections'),
+                            values = { _('off'), _('on') },
+                            defaultIndex = 1,
+                        },
+                        {
                             key = 'modutram_platforms_left',
                             name = _('modutram_platforms_left'),
                             values = { _('0'), _('1'), _('2'), _('3'), ('4'), _('5') },
@@ -263,6 +287,31 @@ function data()
                 platforms_has_access_bottom = params.modutram_platform_passenger_access == PASSENGER_ACCESS_RIGHT or params.modutram_platform_passenger_access == PASSENGER_ACCESS_BOTH,
                 modutram_platform_passenger_access
             }
+
+            blueprint:configure_tracks(function(track_blueprint)
+                if params.modutram_tram_tracks == 1 then
+                    track_blueprint:add_tram_tracks('modules/tram_tracks_1000mm.module')
+                end
+
+                if params.modutram_electrification > 0 then
+                    local catenary_modules = {
+                        'modules/assets/catenary_era_a.module',
+                        'modules/assets/catenary_era_b.module',
+                        'modules/assets/catenary_era_c.module'
+                    }
+
+                    track_blueprint:add_catenary(catenary_modules[params.modutram_electrification])
+                end
+
+                if params.modutram_bus == 1 then
+                    track_blueprint:add_bus_lane()
+                end
+
+                if params.modutram_street_connections == 1 then
+                    track_blueprint:add_street_connection_top()
+                    track_blueprint:add_street_connection_bottom()
+                end
+            end)
 
             blueprint:decorate_platforms(function(segment_blueprint)
 
