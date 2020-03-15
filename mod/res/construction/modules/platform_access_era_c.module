@@ -45,6 +45,11 @@ function data()
                     result.station.builder:add_platform_access_passenger_lanes(Position:new{x = transform[13] + lane_dist, y = transform[14] - 1, z = transform[15]}, 0.15, 3, {
                         ramp_y_offset = ramp_y_offset
                     })
+
+                    result.station.builder:add_model({
+                        id = 'station/tram/path/platform_access_double_connection.mdl',
+                        transf = Position:new{x = 0, y =  c.PLATFORM_SEGMENT_LENGTH - 1, z = 0}:add_to_matrix(transform)
+                    })
                 else
                     result.station.builder:add_model({
                         id = 'station/tram/modutram_platform_double_access_era_c.mdl',
@@ -58,6 +63,11 @@ function data()
                     result.station.builder:add_platform_access_passenger_lanes(Position:new{x = transform[13] + lane_dist, y = transform[14] + 1, z = transform[15]}, 0.15, 3, {
                         mirrored = true,
                         ramp_y_offset = ramp_y_offset
+                    })
+
+                    result.station.builder:add_model({
+                        id = 'station/tram/path/platform_access_double_connection.mdl',
+                        transf = Position:new{x = 0, y =  -c.PLATFORM_SEGMENT_LENGTH + 1, z = 0}:add_to_matrix(transform)
                     })
                 end
             elseif result.station:module(slotId):get_platform().type == t.PLATFORM_LEFT then

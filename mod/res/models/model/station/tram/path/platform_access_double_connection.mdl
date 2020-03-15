@@ -29,14 +29,8 @@ function data()
             transportNetworkProvider = {
                 laneLists = {{
                     nodes = {
-                        { { distance_between_path_and_center, c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, -c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
-                        { { distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, -c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
-
-                        { { distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {-distance_between_path_and_center * 2, 0.0, 0.0}, 3 },
-                        { { -distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {-distance_between_path_and_center * 2, 0.0, 0.0}, 3 },
-
-                        { { -distance_between_path_and_center, -c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
-                        { { -distance_between_path_and_center, c.PLATFORM_SEGMENT_LENGTH / 2, 0.0}, {0.0, c.PLATFORM_SEGMENT_LENGTH, 0.0}, 3 },
+                        { { distance_between_path_and_center, 0.0, 0.0}, {-distance_between_path_and_center * 2, 0.0, 0.0}, 3 },
+                        { { -distance_between_path_and_center, 0.0, 0.0}, {-distance_between_path_and_center * 2, 0.0, 0.0}, 3 },
                     },
                     transportModes = {"PERSON"}
                 }},
