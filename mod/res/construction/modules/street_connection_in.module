@@ -41,7 +41,7 @@ function data()
             table.insert(result.edgeLists, {
 				type = "STREET",
 				params = {
-					type = "standard/town_verysmall_one_way_new_tram.lua",
+					type = "modutram_town_xs_one_way_new_era_c.lua",
 					tramTrackType = get_tram_track_type(result.station:module(slotId):get_track_module()),
 				},
 				edges = {
