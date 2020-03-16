@@ -11,8 +11,8 @@ function data()
             categories = { "passenger", },
         },
         description = {
-            name = _("Passenger platform"),
-            description = _("Platform for waiting passengers."),
+            name = _("module_platform_double_name"),
+            description = _("era_c"),
             icon = "ui/construction/station/street/platform_passenger_era_a.tga"
         }, 
         availability = {

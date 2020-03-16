@@ -21,8 +21,8 @@ function data()
             categories = { "street access", },
         },
         description = {
-            name = _("Station entrance (Not electrified trams)"),
-            description = _("Street connection that can be used as an entrance only."),
+            name = _("module_street_connection_double_name"),
+            description = _("era_c"),
             icon = "ui/construction/station/street/platform_entrance.tga"
         }, 
         availability = {

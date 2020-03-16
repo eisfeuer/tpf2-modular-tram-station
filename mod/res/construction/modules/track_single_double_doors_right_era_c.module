@@ -10,8 +10,8 @@ function data()
             categories = { "tracks", },
         },
         description = {
-            name = _("Track single up"),
-            description = _("Platform for waiting passengers."),
+            name = _("module_track_double_name"),
+            description = _("module_track_desc"),
             icon = "ui/construction/station/street/platform_passenger_era_a.tga"
         }, 
         availability = {

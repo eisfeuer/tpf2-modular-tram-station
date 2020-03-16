@@ -134,8 +134,8 @@ function data()
     return { 
         type = 'STREET_STATION',
         description = {
-            name = _('Modular Tram Station'),			
-            description = _('Base Set.')
+            name = _('modular_tram_station_name'),			
+            description = _('modular_tram_station_desc')
         },
         availability = {
             yearFrom = 0,
@@ -158,8 +158,8 @@ function data()
                     yearTo = 0
                 },
                 description = {
-                    name = _('Modular Tram Station'),
-                    description = _('Base Set.'),
+                    name = _('modular_tram_station_name'),
+                    description = _('modular_tram_station_desc'),
                     icon = 'ui/construction/station/street/passenger_era_a.tga'
                 },
                 data = {
