@@ -308,8 +308,32 @@ function data()
                 end
 
                 if params.modutram_street_connections == 1 then
-                    track_blueprint:add_street_connection_top()
-                    track_blueprint:add_street_connection_bottom()
+                    if params.modutram_electrification == ERA_A then
+                        track_blueprint:add_street_connection_top({
+                            connection_in = 'modules/street_connection_in_era_a.module',
+                            connection_out = 'modules/street_connection_out_era_a.module',
+                            connection_double = 'modules/street_connection_double_era_a.module'
+                        })
+                        track_blueprint:add_street_connection_bottom({
+                            connection_in = 'modules/street_connection_in_era_a.module',
+                            connection_out = 'modules/street_connection_out_era_a.module',
+                            connection_double = 'modules/street_connection_double_era_a.module'
+                        })
+                    elseif params.modutram_electrification == ERA_C then
+                        track_blueprint:add_street_connection_top({
+                            connection_in = 'modules/street_connection_in_era_c.module',
+                            connection_out = 'modules/street_connection_out_era_c.module',
+                            connection_double = 'modules/street_connection_double_era_c.module'
+                        })
+                        track_blueprint:add_street_connection_bottom({
+                            connection_in = 'modules/street_connection_in_era_c.module',
+                            connection_out = 'modules/street_connection_out_era_c.module',
+                            connection_double = 'modules/street_connection_double_era_c.module'
+                        })
+                    else
+                        track_blueprint:add_street_connection_top()
+                        track_blueprint:add_street_connection_bottom()
+                    end
                 end
             end)
 

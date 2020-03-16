@@ -1,0 +1,58 @@
+local modulesutil = require "modulesutil"
+
+local function get_tram_track_type(track_module)
+    if track_module:has_catenary() then
+        return 'ELECTRIC'
+    end
+
+    if track_module:has_tram_tracks() then
+        return 'YES'
+    end
+
+    return 'NO'
+end
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "street access", },
+        },
+        description = {
+            name = _("Station entrance (Not electrified trams)"),
+            description = _("Street connection that can be used as an entrance only."),
+            icon = "ui/construction/station/street/platform_entrance.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "eisfeuer_modutram_street_connection_double",
+        order = {
+            value = 7,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local tng = modulesutil.mul(transform, {0.0, 18.0, 0.0, 0.0})
+            table.insert(result.edgeLists, {
+				type = "STREET",
+				params = {
+					type = "modutram_town_xs_new_era_b.lua",
+					tramTrackType = get_tram_track_type(result.station:module(slotId):get_track_module()),
+				},
+				edges = {
+                    { modulesutil.mul(transform, {0, -1, 0, 1}), tng },
+					{ modulesutil.mul(transform, {0, 17, 0, 1}), tng }
+				},
+				snapNodes = { 1 }
+		    })
+        end,
+        getModelsFn = function()
+            return {}
+        end
+    }
+end
