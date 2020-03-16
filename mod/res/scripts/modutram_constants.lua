@@ -51,5 +51,6 @@ return {
         connection_in = 'modules/street_connection_in.module',
         connection_out = 'modules/street_connection_out.module',
         connection_double = 'modules/street_connection_double.module'
-    }
+    },
+    STREET_CONNECTION_PATH_LENGHT = 0.8
 }

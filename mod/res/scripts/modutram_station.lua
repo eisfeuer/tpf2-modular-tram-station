@@ -80,7 +80,9 @@ function Station:get_data()
                 vertical_single_platform = 'station/tram/path/passenger_vertical_single_platform.mdl',
                 vertical_double_platform = 'station/tram/path/passenger_vertical_double_platform_btm.mdl',
                 horizontal_single_track = 'station/tram/path/passenger_horizontal_single_track.mdl',
-                horizontal_double_track = 'station/tram/path/passenger_horizontal_double_track.mdl'
+                horizontal_double_track = 'station/tram/path/passenger_horizontal_double_track.mdl',
+                street_link_left = 'station/tram/path/passenger_street_link_left.mdl',
+                street_link_right = 'station/tram/path/passenger_street_link_right.mdl',
             }
         }
 

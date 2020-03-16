@@ -1,5 +1,4 @@
 local c = require('modutram_constants')
-local crosswalk_path_length = 2 * c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM + c.DISTANCE_BETWEEN_TWO_TRACKS + c.PLATFORM_SINGLE_WIDTH
 
 function data()
     return {
@@ -28,9 +27,10 @@ function data()
         metadata = {
             transportNetworkProvider = {
                 laneLists = {{
+                    linkable = true,
                     nodes = {
-                        { { -crosswalk_path_length * 0.5, 0.0, 0.0}, {crosswalk_path_length, 0.0, 0.0}, 3 },
-                        { { crosswalk_path_length * 0.5, 0.0, 0.0}, {crosswalk_path_length, 0.0, 0.0}, 3 },
+                        { { 0.0, 0.0, 0.0}, {c.STREET_CONNECTION_PATH_LENGHT, 0.0, 0.0}, 3 },
+                        { { c.STREET_CONNECTION_PATH_LENGHT, 0.0, 0.0}, {c.STREET_CONNECTION_PATH_LENGHT, 0.0, 0.0}, 3 },
                     },
                     transportModes = {"PERSON"}
                 }},
