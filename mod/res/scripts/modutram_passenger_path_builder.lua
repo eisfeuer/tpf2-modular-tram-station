@@ -47,7 +47,69 @@ local function get_start_position(column_collection)
     return nil
 end
 
-local function place_path_models(self, model_collection, handle_placing, handle_placing_last_platform, get_crosswalk_y_position)
+local function place_right_street_connection(self, model_collection, track, left_platform, right_platform, get_end_segment_function)
+    if not track or not track:is_track() then
+        return
+    end
+
+    if not right_platform then
+        local x_pos_offset = c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM
+
+        if track.type == t.TRACK_DOUBLE_DOORS_RIGHT then
+            x_pos_offset = x_pos_offset + c.DISTANCE_BETWEEN_TWO_TRACKS / 2
+        end
+
+        if left_platform then
+            local y_pos = get_end_segment_function(left_platform) * c.PLATFORM_SEGMENT_LENGTH
+
+            model_collection:add({
+                id = self.passenger_path_models.street_link_right,
+                transf = Position:new{x = track.x_pos + x_pos_offset, y = y_pos}:as_matrix()
+            })
+        end 
+        return
+    end
+
+    local y_pos = get_end_segment_function(right_platform) * c.PLATFORM_SEGMENT_LENGTH
+
+    model_collection:add({
+        id = self.passenger_path_models.street_link_right,
+        transf = Position:new{x = right_platform.x_pos, y = y_pos}:as_matrix()
+    })
+end
+
+local function place_left_street_connection(self, model_collection, track, left_platform, right_platform, get_end_segment_function)
+    if not track or not track:is_track() then
+        return
+    end
+
+    if not left_platform then
+        local x_pos_offset = -c.DISTANCE_BETWEEN_TRACK_AND_PLATFORM
+
+        if track.type == t.TRACK_DOUBLE_DOORS_RIGHT then
+            x_pos_offset = x_pos_offset - c.DISTANCE_BETWEEN_TWO_TRACKS / 2
+        end
+
+        if right_platform then
+            local y_pos = get_end_segment_function(right_platform) * c.PLATFORM_SEGMENT_LENGTH
+
+            model_collection:add({
+                id = self.passenger_path_models.street_link_left,
+                transf = Position:new{x = track.x_pos + x_pos_offset, y = y_pos}:as_matrix()
+            })
+        end
+        return
+    end
+
+    local y_pos = get_end_segment_function(left_platform) * c.PLATFORM_SEGMENT_LENGTH
+
+    model_collection:add({
+        id = self.passenger_path_models.street_link_left,
+        transf = Position:new{x = left_platform.x_pos, y = y_pos}:as_matrix()
+    })
+end
+
+local function place_path_models(self, model_collection, handle_placing, handle_placing_last_platform, get_crosswalk_y_position, get_end_segment_function)
     local start_position = get_start_position(self.column_collection)
     if start_position then
         local i = start_position
@@ -55,12 +117,15 @@ local function place_path_models(self, model_collection, handle_placing, handle_
         local left_platform = self.column_collection:get_column(i - 1)
         local right_platform = self.column_collection:get_column(i + 1)
 
+        place_left_street_connection(self, model_collection, self.column_collection:get_column(i), left_platform, right_platform, get_end_segment_function)
+
         if left_platform or right_platform then
             local current_track = self.column_collection:get_column(i)
             local last_crossway_position = nil
+            local crosswalk_pathing = nil
 
             while current_track and current_track:is_track() do
-                local crosswalk_pathing = TrackCrosswalkPathing:new{
+                crosswalk_pathing = TrackCrosswalkPathing:new{
                     left_platform = left_platform,
                     right_platform = right_platform,
                     track = current_track
@@ -78,6 +143,10 @@ local function place_path_models(self, model_collection, handle_placing, handle_
 
             if left_platform and last_crossway_position then
                 handle_placing_last_platform(left_platform, last_crossway_position)
+            end
+
+            if crosswalk_pathing then
+                place_right_street_connection(self, model_collection, crosswalk_pathing.track, crosswalk_pathing.left_platform, crosswalk_pathing.right_platform, get_end_segment_function)
             end
         end
     end
@@ -108,6 +177,9 @@ function PassengerPathBuilder:add_bottom_part_to_model_collection(model_collecti
         end,
         function (crosswalk_pathing)
             return crosswalk_pathing:get_bottom_crosswalk_y_position()
+        end,
+        function (platform)
+            return platform.btm_segment_id - 1.5
         end
     )                
 end
@@ -137,6 +209,9 @@ function PassengerPathBuilder:add_top_part_to_model_collection(model_collection)
         end,
         function (crosswalk_pathing)
             return crosswalk_pathing:get_top_crosswalk_y_position()
+        end,
+        function (platform)
+            return platform.top_segment_id + 1.5
         end
     )
 end
