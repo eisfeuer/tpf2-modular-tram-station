@@ -232,7 +232,7 @@ function data()
                         },
                         {
                             key = 'modutram_fences',
-                            name = _('modutram_lamps'),
+                            name = _('modutram_fences'),
                             values = { _('off'), _('era_a'), _('era_b'), _('era_c') },
                             defaultIndex = 3,
                         },

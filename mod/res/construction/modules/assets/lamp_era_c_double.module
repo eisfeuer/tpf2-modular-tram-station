@@ -7,8 +7,8 @@ function data()
             categories = { "lamps", },
         },
         description = {
-            name = _("Lamp"),
-            description = _("Makes Light."),
+            name = _("module_lamp_name"),
+            description = _("for_double_platform") .. " " .. _("era_c"),
             icon = "ui/construction/asset/default_multi_lamp.tga"
         }, 
         availability = {

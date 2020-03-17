@@ -10,8 +10,8 @@ function data()
             categories = { "tracks", },
         },
         description = {
-            name = _("Catenary"),
-            description = _("Era A"),
+            name = _("module_catenary_name"),
+            description = _("era_a"),
             icon = "ui/construction/asset/default_multi_bench_new.tga"
         }, 
         availability = {

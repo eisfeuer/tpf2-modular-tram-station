@@ -7,8 +7,8 @@ function data()
             categories = { "fences", },
         },
         description = {
-            name = _("Splash Guard"),
-            description = _("1.2m Era C"),
+            name = _("module_splash_guard_name"),
+            description = "120cm " .. _("era_c"),
             icon = "ui/construction/asset/default_multi_lamp.tga"
         }, 
         availability = {

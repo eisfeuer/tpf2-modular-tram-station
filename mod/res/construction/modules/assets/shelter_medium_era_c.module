@@ -9,8 +9,8 @@ function data()
             categories = { "shelters", },
         },
         description = {
-            name = _("shelter"),
-            description = _("shelter era a"),
+            name = _("module_shelter_name"),
+            description = _("mid") .. " " .. _("era_c"),
             icon = "ui/models/station/bus/small_new.tga"
         }, 
         availability = {

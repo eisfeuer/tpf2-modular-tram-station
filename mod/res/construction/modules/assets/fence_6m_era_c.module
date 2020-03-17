@@ -7,8 +7,8 @@ function data()
             categories = { "fences", },
         },
         description = {
-            name = _("Fence"),
-            description = _("6m Era C"),
+            name = _("module_fence_name"),
+            description = "6m " .. _("era_c"),
             icon = "ui/construction/asset/default_multi_lamp.tga"
         }, 
         availability = {

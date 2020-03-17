@@ -7,8 +7,8 @@ function data()
             categories = { "benches", },
         },
         description = {
-            name = _("Bench"),
-            description = _("Wooden Bench"),
+            name = _("module_bench_name"),
+            description = _("wooden"),
             icon = "ui/construction/asset/default_multi_lamp.tga"
         }, 
         availability = {

@@ -7,8 +7,8 @@ function data()
             categories = { "benches", },
         },
         description = {
-            name = _("Bench"),
-            description = _("Art Nouveau for middle platform"),
+            name = _("module_bench_name"),
+            description = _("for_double_platform") .. " " .. _("era_a"),
             icon = "ui/construction/asset/default_multi_bench_old.tga"
         }, 
         availability = {

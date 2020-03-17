@@ -8,7 +8,7 @@ function data()
             price = 20000,
         },
         category = {
-            categories = { "passenger", },
+            categories = { "platforms", },
         },
         description = {
             name = _("module_platform_single_right_name"),

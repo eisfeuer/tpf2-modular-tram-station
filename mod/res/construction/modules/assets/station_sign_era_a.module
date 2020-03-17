@@ -7,8 +7,8 @@ function data()
             categories = { "signs", },
         },
         description = {
-            name = _("Station Sign"),
-            description = _("Art Nouveau"),
+            name = _("module_station_sign_name"),
+            description = _("era_a"),
             icon = "ui/construction/asset/default_multi_bench_old.tga"
         }, 
         availability = {
