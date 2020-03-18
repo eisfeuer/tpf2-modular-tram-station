@@ -1,5 +1,4 @@
 local Position = require('modutram_position')
-local Matrix = require('modutram_matrix')
 
 function data()
     return {
@@ -10,15 +9,15 @@ function data()
             categories = { "tracks", },
         },
         description = {
-            name = _("module_track_double_name"),
+            name = _("module_track_up_name"),
             description = _("module_track_desc"),
-            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+            icon = "ui/tracks/high_speed.tga"
         }, 
         availability = {
             yearFrom = 0,
             yearTo = 0
         },
-        type = "eisfeuer_modutram_track_double_doors_right",
+        type = "eisfeuer_modutram_track_up_doors_right",
         order = {
             value = 7,
         },
@@ -35,36 +34,25 @@ function data()
                 if track_module:has_catenary() then
                     if track_module:has_bus_lane() then
                         result.station.builder:add_vehicle_and_platform_lanes_for('tram_and_bus', slotId, 1)
-                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_and_bus', slotId, -1)
                     else
                         result.station.builder:add_vehicle_and_platform_lanes_for('tram', slotId, 1)
-                        result.station.builder:add_vehicle_and_platform_lanes_for('tram', slotId, -1)
                     end
                 else
                     if track_module:has_bus_lane() then
                         result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric_and_bus', slotId, 1)
-                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric_and_bus', slotId, -1)
                     else
                         result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, 1)
-                        result.station.builder:add_vehicle_and_platform_lanes_for('tram_not_electric', slotId, -1)
                     end
                 end
             elseif track_module:has_bus_lane() then
                 result.station.builder:add_vehicle_and_platform_lanes_for('bus', slotId, 1)
-                result.station.builder:add_vehicle_and_platform_lanes_for('bus', slotId, -1)
             end
 
             if result.station:planning_mode_is_active() then
                 local arrow_up_position = Position:new{x = 1.5, y = 0, z = 0.05}:add_to_matrix(transform)
-                local arrow_down_position = Position:new{x = -1.5, y = 0, z = 0.05}:add_to_matrix(Matrix.rotate_around_z_axis(180, transform))
-
                 result.station.builder:add_model({
                     id = 'icons/modutram_arrow.mdl',
-                    transf = arrow_up_position
-                })
-                result.station.builder:add_model({
-                    id = 'icons/modutram_arrow.mdl',
-                    transf = arrow_down_position
+                    transf = transform
                 })
             end
         end,

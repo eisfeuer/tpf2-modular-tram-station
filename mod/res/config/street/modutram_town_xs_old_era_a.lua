@@ -12,6 +12,7 @@ return {
 	type = "new small",
 	name = _("Small street"),
 	desc = _("Old Two-lane street with old catenary poles (speed limit %2%)."),
+	icon = "ui/streets/standard/country_small_new.tga",
 	categories = { "urban" },
 	borderGroundTex = "street_border.lua",
 	materials = {

@@ -9,7 +9,7 @@ function data()
         description = {
             name = _("module_billboard_name"),
             description = _("era_c") .. " " .. _("poster_2"),
-            icon = "ui/construction/asset/default_multi_lamp.tga"
+            icon = "ui/achievements/ach_build_bus_stop.tga"
         }, 
         availability = {
             yearFrom = 0,

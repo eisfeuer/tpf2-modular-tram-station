@@ -9,7 +9,7 @@ function data()
         description = {
             name = _("module_fence_name"),
             description = "120cm " .. _("era_b"),
-            icon = "ui/construction/asset/default_multi_lamp.tga"
+            icon = "ui/achievements/ach_track_length.tga"
         }, 
         availability = {
             yearFrom = 0,

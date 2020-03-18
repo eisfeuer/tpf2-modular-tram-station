@@ -12,7 +12,7 @@ function data()
         description = {
             name = _("tram_tracks"),
             description = _("1000mm"),
-            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+            icon = "ui/achievements/ach_first_electric_train_arrived.tga"
         }, 
         availability = {
             yearFrom = 0,

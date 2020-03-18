@@ -16,6 +16,7 @@ return {
 	type = "one way new small",
 	name = _("Small one-way street"),
 	desc = _("One-lane one-way street with new catenary poles (speed limit %2%)."),
+	icon = "ui/streets/standard/country_small_one_way_new.tga",
 	categories = { "one-way" },
 	borderGroundTex = "street_border.lua",
 	materials = {
