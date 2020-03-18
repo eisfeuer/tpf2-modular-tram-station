@@ -4,3 +4,4 @@ textures/*.dds
 textures/*.json
 work/*.blend1
 work/*.fbx
+releases/*

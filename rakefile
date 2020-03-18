@@ -64,7 +64,19 @@ task :clean_staging_area do
     sh "rm -rf #{staging_area_path}/"
 end
 
+task :remove_tests do
+    puts 'removing test files'
+    sh "rm #{staging_area_path}/res/scripts/*_spec.lua"
+end
+
+task :remove_debug do
+    puts 'removing debug stuff'
+    sh "rm #{staging_area_path}/res/scripts/inspect.lua"
+end
+
 task cleanpush: [:clean_staging_area, :push]
+
+task release: [:cleanpush, :remove_debug, :remove_tests]
 
 task pull: [] do
     puts 'pulling mod from staging area'
