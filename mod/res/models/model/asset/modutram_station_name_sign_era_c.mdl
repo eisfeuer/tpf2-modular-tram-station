@@ -47,7 +47,34 @@ return {
 			visibleTo = 465.08618164063,
 		},
 	},
-	metadata = { },
+	metadata = {
+		labelList = {
+			labels = {
+				{
+					transf = { 0, 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.06, -0.9, 1.35, 1, },
+					size = { 1.8, 0.28 },
+					type = "STATION_NAME",
+					renderMode = "STD",
+					fitting = "SCALE",
+					childId = "RootNode",
+					alignment = "CENTER",
+					verticalAlignment = "CENTER",
+					color = {0.18, 0.18, 0.196},
+				},
+				{
+					transf = { 0, -1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, -0.06, 0.9, 1.35, 1, },
+					size = { 1.8, 0.28 },
+					type = "STATION_NAME",
+					renderMode = "STD",
+					fitting = "SCALE",
+					childId = "RootNode",
+					alignment = "CENTER",
+					verticalAlignment = "CENTER",
+					color = {0.18, 0.18, 0.196},
+				},
+			},
+		},
+	 },
 	version = 1,
 }
 end
