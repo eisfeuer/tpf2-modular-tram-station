@@ -106,6 +106,42 @@ function data()
                     1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
                 }
             )
+            addModelFn(
+                'asset/bench_old.mdl',
+                {
+                    0, -1, 0, 0,
+                    1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    0.5, -3.9, -1, 1
+                }
+            )
+            addModelFn(
+                'asset/bench_old.mdl',
+                {
+                    0, -1, 0, 0,
+                    1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    0.5, 0, -1, 1
+                }
+            )
+            addModelFn(
+                'asset/modutram_schedule_era_a.mdl',
+                {
+                    -2, 0, 0, 0,
+                    0, -2, 0, 0,
+                    0, 0, 2, 0,
+                    0.25, 2.6, 0.5, 1
+                }
+            )
+            addModelFn(
+                'asset/bench_old.mdl',
+                {
+                    0, -1, 0, 0,
+                    1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    0.5, 3.9, -1, 1
+                }
+            )
         end,
         getModelsFn = function()
             return {
@@ -180,6 +216,38 @@ function data()
                         -1, 0, 0, 0,
                         0, 0, 1, 0,
                         1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }, {
+                    id = 'asset/bench_old.mdl',
+                    transf = {
+                        0, -1, 0, 0,
+                        1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0.5, -3.9, -1, 1
+                    }
+                }, {
+                    id = 'asset/bench_old.mdl',
+                    transf = {
+                        0, -1, 0, 0,
+                        1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0.5, 0, -1, 1
+                    }
+                }, {
+                    id = 'asset/modutram_schedule_era_a.mdl',
+                    transf = {
+                        -2, 0, 0, 0,
+                        0, -2, 0, 0,
+                        0, 0, 2, 0,
+                        0.25, 2.6, 0.5, 1
+                    }
+                }, {
+                    id = 'asset/bench_old.mdl',
+                    transf = {
+                        0, -1, 0, 0,
+                        1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0.5, 3.9, -1, 1
                     }
                 }
             }
