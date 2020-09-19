@@ -1,0 +1,3 @@
+[submodule "mod/res/scripts/modutram"]
+	path = mod/res/scripts/modutram
+	url = git@github.com:eisfeuer/modutram.git
