@@ -1,3 +1,5 @@
+local lighting = require("modules.lighting")
+
 function data()
     return {
         cost = {
@@ -7,36 +9,36 @@ function data()
             categories = { "Decoration", },
         },
         description = {
-            name = _("module_bench_name"),
-            description = _("wooden"),
-            icon = "ui/construction/asset/default_multi_bench_old.tga"
+            name = _("module_lamp_name"),
+            description = _("era_a"),
+            icon = "ui/construction/asset/default_multi_lamp.tga"
         }, 
         availability = {
             yearFrom = 0,
             yearTo = 0
         },
-        type = "modutram_asset",
+        type = "modutram_asset_lighting",
         order = {
-            value = 999990904,
+            value = 999991001,
         },
         metadata = {
-            passenger = true,
+            modutram = {
+                themes = { "era_a" },
+                themeType = "lighting"
+            }
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
-            addModelFn(
-                'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
-                {
-                    0, 1, 0, 0,
-                    -1, 0, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, -1, 1
-                }
+            lighting.build(
+                result.modutram:getModule(slotId):getParentGridModule(),
+                result.modutram.config.gridModuleLength,
+                addModelFn,
+                "street/street_light_eu_a.mdl"
             )
         end,
         getModelsFn = function()
             return {
                 {
-                    id = 'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
+                    id = "street/street_light_eu_a.mdl",
                     transf = {
                         0, 1, 0, 0,
                         -1, 0, 0, 0,

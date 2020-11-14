@@ -1,0 +1,39 @@
+function data()
+    return {
+        boundingInfo = {
+            bbMax = { 0.1, 0.1, 0.1, },
+            bbMin = { -0.1, -0.1, 0.0, },
+        },
+        collider = {
+            params = {
+                halfExtents = { 0.1, 0.1, 2},
+            },
+            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+            type = "BOX",
+        },
+        lods = {
+            {
+                node = {
+                    name = "RootNode",
+                    transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+                },
+                static = false,
+                visibleFrom = 0,
+                visibleTo = 830,
+            },
+        },
+        metadata = {
+            transportNetworkProvider = {
+                laneLists = {{
+                    nodes = {
+                        { { 0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}, 3.0 },
+                        { { 1.0, 1.0, 1.0}, {1.0, 1.0, 1.0}, 3.0 },
+                    },
+                    transportModes = {"PERSON"},
+                    speedLimit = 30
+                }}
+            }
+        },
+        version = 1,
+    }
+end

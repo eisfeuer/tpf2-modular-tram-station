@@ -1,0 +1,51 @@
+local transf = require("transf")
+local bench = require("modules.bench")
+
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "Decoration", },
+        },
+        description = {
+            name = _("module_bench_name"),
+            description = _("for_double_platform") .. " " .. _("era_a"),
+            icon = "ui/construction/asset/default_multi_bench_new.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_asset",
+        order = {
+            value = 999990912,
+        },
+        metadata = {
+            modutram = {
+                themes = { "era_b" },
+                themeType = "benches"
+            }
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            bench.buildDouble(
+                result.modutram:getModule(slotId),
+                addModelFn,
+                "asset/bench_new.mdl",
+                transf.rotZ(-math.pi / 2)
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = "asset/bench_new.mdl",
+                    transf = transf.rotZTransl(math.pi / 2, {x = 0, y = -1.5, z = 0})
+                }, {
+                    id = "asset/bench_new.mdl",
+                    transf = transf.rotZTransl(math.pi / 2, {x = 0, y = 1.5, z = 0})
+                }
+            }
+        end
+    }
+end

@@ -1,0 +1,20 @@
+local Modutram = require("modutram.modutram")
+local tramLineOperationTemplate = require("templates.tram_line_operation")
+
+function data()
+    return {
+        createTemplateFn = function (params)
+            if params.templateIndex == 0 then
+                return tramLineOperationTemplate(params)
+            end
+            return {}
+        end,
+        updateFn = function (params, paramsFromModLua)
+            local result = { }
+            
+            Modutram.initialize(params, paramsFromModLua):bindToResult(result)
+
+            return result
+        end
+    }
+end

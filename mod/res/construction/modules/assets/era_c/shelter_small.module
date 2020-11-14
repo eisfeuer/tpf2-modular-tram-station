@@ -1,0 +1,124 @@
+local SHELTER_SEGMENT_WIDTH = 1.3
+
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "shelters", },
+        },
+        description = {
+            name = _("module_shelter_name"),
+            description = _("small") .. " " .. _("era_c"),
+            icon = "ui/models/station/bus/small_new.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_asset_shelter",
+        order = {
+            value = 999990721,
+        },
+        metadata = {
+            modutram = {
+                shelterSize = 3.9,
+                themes = { "era_c" },
+                themeType = "shelter_small",
+            },
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_r_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 0.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_c_l_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -2, 1
+                }
+            )
+            addModelFn(
+                'asset/modutram_bench_era_c.mdl',
+                {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0.7, -0.65, -2, 1
+                }
+            )
+            addModelFn(
+                'asset/modutram_schedule_era_c.mdl',
+                {
+                    -1.8, 0, 0, 0,
+                    0, -1.8, 0, 0,
+                    0, 0, 1.8, 0,
+                    0.4, 1.3, -0.5, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'station/road/streetstation/asset/shelter_era_c_r_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_c_l_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'asset/modutram_bench_era_c.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0.7, -0.65, -1, 1
+                    }
+                }, {
+                    id = 'asset/modutram_schedule_era_c.mdl',
+                    transf = {
+                        -1.8, 0, 0, 0,
+                        0, -1.8, 0, 0,
+                        0, 0, 1.8, 0,
+                        0.4, 1.3, 0.5, 1
+                    }
+                }
+            }
+        end
+    }
+end

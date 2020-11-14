@@ -7,7 +7,7 @@ function data()
             price = 20000,
         },
         category = {
-            categories = { "tracks", },
+            categories = { "tram", },
         },
         description = {
             name = _("module_bus_lane_name"),

@@ -1,3 +1,6 @@
+local transf = require("transf")
+local bench = require("modules.bench")
+
 function data()
     return {
         cost = {
@@ -8,7 +11,7 @@ function data()
         },
         description = {
             name = _("module_bench_name"),
-            description = _("wooden"),
+            description = _("era_a"),
             icon = "ui/construction/asset/default_multi_bench_old.tga"
         }, 
         availability = {
@@ -17,32 +20,28 @@ function data()
         },
         type = "modutram_asset",
         order = {
-            value = 999990904,
+            value = 999990901,
         },
         metadata = {
-            passenger = true,
+            modutram = {
+                themes = { "era_a" },
+                themeType = "bench",
+                --themeExcludes = { "destination_display" }
+            },
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
-            addModelFn(
-                'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
-                {
-                    0, 1, 0, 0,
-                    -1, 0, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, -1, 1
-                }
+            bench.buildSingle(
+                result.modutram:getModule(slotId),
+                addModelFn,
+                "asset/bench_old.mdl",
+                transf.rotZ(-math.pi / 2)
             )
         end,
         getModelsFn = function()
             return {
                 {
-                    id = 'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
-                    transf = {
-                        0, 1, 0, 0,
-                        -1, 0, 0, 0,
-                        0, 0, 1, 0,
-                        0, 0, -1, 1,
-                    }
+                    id = "asset/bench_old.mdl",
+                    transf = transf.rotZ(math.pi / 2)
                 }
             }
         end

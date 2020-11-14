@@ -7,9 +7,9 @@ function data()
             categories = { "Decoration", },
         },
         description = {
-            name = _("module_bench_name"),
-            description = _("wooden"),
-            icon = "ui/construction/asset/default_multi_bench_old.tga"
+            name = _("module_billboard_name"),
+            description = _("era_a") .. " " .. _("poster_1"),
+            icon = "ui/achievements/ach_build_bus_stop.tga"
         }, 
         availability = {
             yearFrom = 0,
@@ -17,14 +17,21 @@ function data()
         },
         type = "modutram_asset",
         order = {
-            value = 999990904,
+            value = 999991101,
         },
         metadata = {
-            passenger = true,
+            modutram = {
+                themes = { "era_a" },
+                themeType = "billboard_small"
+            },
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local asset = result.modutram:getModule(slotId)
+            local seed = params.seed + asset:getSlotId()
+            local billboardId = (seed  % 2) + 1
+
             addModelFn(
-                'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
+                'station/road/streetstation/asset/com_small_era_a_' .. billboardId .. '.mdl',
                 {
                     0, 1, 0, 0,
                     -1, 0, 0, 0,
@@ -36,7 +43,7 @@ function data()
         getModelsFn = function()
             return {
                 {
-                    id = 'asset/commercial/era_a/com_1_ground_double_bench_a.mdl',
+                    id = 'station/road/streetstation/asset/com_small_era_a_1.mdl',
                     transf = {
                         0, 1, 0, 0,
                         -1, 0, 0, 0,

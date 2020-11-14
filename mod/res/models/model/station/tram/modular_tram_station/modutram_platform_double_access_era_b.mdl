@@ -1,0 +1,53 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 2.7000005245209, 4.9000000953674, 0.14999997615814, },
+		bbMin = { -2.7000002861023, -1.1802075050582e-07, -0.14999997615814, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 2.7000002861023, 2.4500000476837, 0.14999997615814, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", },
+						mesh = "station/tram/modular_tram_station/modutram_platform_double_access_era_b_lod0.msh",
+						name = "platform_double_access_era_b_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 601.24920654297,
+		},
+		{
+			node = {
+				children = {
+					{
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", },
+						mesh = "station/tram/modular_tram_station/modutram_platform_double_access_era_b_lod1.msh",
+						name = "platform_double_access_era_b_lod1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 601.24920654297,
+			visibleTo = 1803.7475585938,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end

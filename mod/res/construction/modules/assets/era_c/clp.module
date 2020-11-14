@@ -1,0 +1,74 @@
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "Decoration", },
+        },
+        description = {
+            name = _("module_billboard_clp_name"),
+            description = _("era_c") .. " " .. _("poster_1"),
+            icon = "ui/achievements/ach_build_bus_stop.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_asset",
+        order = {
+            value = 999991121,
+        },
+        metadata = {
+            modutram = {
+                themes = { "era_c" },
+                themeType = "billboard_small"
+            },
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local asset = result.modutram:getModule(slotId)
+            local seed = params.seed + asset:getSlotId()
+
+            addModelFn(
+                'asset/modutram_city_light_poster_showcase.mdl',
+                {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, -1, 1,
+                }
+            )
+            addModelFn(
+                'asset/modutram_city_light_poster_' .. seed % 3 + 1 .. '.mdl',
+                {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, -1, 1,
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'asset/modutram_city_light_poster_showcase.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
+                },
+                {
+                    id = 'asset/modutram_city_light_poster_1.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
+                }
+            }
+        end
+    }
+end

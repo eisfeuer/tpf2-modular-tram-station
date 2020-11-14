@@ -1,0 +1,61 @@
+function data()
+    return {
+        updateFn = function(result, transform, tag, slotId, addModelFn, params, closureParams)
+            local gridModule = result.modutram:getModule(slotId)
+
+            local snapNodes = {}
+            if gridModule:getNeighborTop():isBlank() then
+                table.insert(snapNodes, 0)
+            end
+            if gridModule:getNeighborBottom():isBlank() then
+                table.insert(snapNodes, 13)
+            end
+
+            local x = transform[13]
+            local y = transform[14]
+            local z = transform[15]
+
+            local nodeIndex = result.modutram:addTrack(closureParams.trackType, closureParams.catenary, {
+                {{x, y + 9, z}, {0, -1, 0}},
+                {{x, y + 8, z}, {0, -1, 0}},
+
+                {{x, y + 8, z}, {0, -1, 0}},
+                {{x, y + 7, z}, {0, -1, 0}},
+
+                {{x, y + 6, z}, {0, 1, 0}},
+                {{x, y + 7, z}, {0, 1, 0}},
+
+                {{x, y + 1, z}, {0, 5, 0}},
+                {{x, y + 6, z}, {0, 5, 0}},
+
+                {{x, y + 0, z}, {0, 1, 0}},
+                {{x, y + 1, z}, {0, 1, 0,}},
+
+                {{x, y - 0, z}, {0, -1, 0}},
+                {{x, y - 1, z}, {0, -1, 0}},
+
+                {{x, y - 1, z}, {0, -8, 0}},
+                {{x, y - 9, z}, {0, -8, 0}}
+            }, snapNodes)
+
+            gridModule:handleTerminals(function (terminalGroup)
+                if terminalGroup.vehicleStopAlignment == 'top' then
+                    if terminalGroup.platformDirection == 'left' then
+                        terminalGroup:attachVehicleTrackNode(closureParams.trackType, closureParams.catenary, nodeIndex + 2)
+                    else
+                        terminalGroup:attachVehicleTrackNode(closureParams.trackType, closureParams.catenary, nodeIndex + 4)
+                    end
+                else
+                    if terminalGroup.platformDirection == 'left' then
+                        terminalGroup:attachVehicleTrackNode(closureParams.trackType, closureParams.catenary, nodeIndex + 11)
+                    else
+                        terminalGroup:attachVehicleTrackNode(closureParams.trackType, closureParams.catenary, nodeIndex + 6)
+                    end
+                end
+            end)
+        end,
+        getModelsFn = function()
+            return { }
+        end
+    }
+end

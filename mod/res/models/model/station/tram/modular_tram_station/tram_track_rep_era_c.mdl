@@ -1,0 +1,44 @@
+function data()
+    return {
+        boundingInfo = {
+            bbMax = { 9, 1.65, 0.15},
+            bbMin = { -9, -1.65, -0.15},
+        },
+        collider = {
+            params = {
+                halfExtents = { 9, 0.15, 1.65, },
+            },
+            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+            type = "BOX",
+        },
+        lods = {
+            {
+                node = {
+                    children = {
+                        {
+                            
+                            materials = { "street/new_medium_tram_track.mtl", },
+                            mesh = "station/road/streetstation/era_b/path_rep_lod0.msh",
+                            name = "path_rep",
+                            transf = { 0.9, 0, 0, 0, 0, 0.9, 0, 0, 0, 0, 0.9, 0, 0, -4.5, 0, 1, },
+                        }, {
+                            
+                            materials = { "street/new_medium_tram_track.mtl", },
+                            mesh = "station/road/streetstation/era_b/path_rep_lod0.msh",
+                            name = "path_rep",
+                            transf = { 0.9, 0, 0, 0, 0, 0.9, 0, 0, 0, 0, 0.9, 0, 0, 4.5, 0, 1, },
+                        },
+                    },
+                    name = "RootNode",
+                    transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+                },
+                static = false,
+                visibleFrom = 0,
+                visibleTo = 829.90075683594,
+            },
+        },
+        metadata = { },
+        version = 1,
+    }
+    end
+    

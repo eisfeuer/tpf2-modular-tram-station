@@ -1,0 +1,19 @@
+function data()
+    return {
+        lods = {
+            {
+                node = {
+                    name = "RootNode",
+                    transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+                },
+                static = false,
+                visibleFrom = 0,
+                visibleTo = 1,
+            },
+        },
+        metadata = {
+           
+        },
+        version = 1,
+    }
+end

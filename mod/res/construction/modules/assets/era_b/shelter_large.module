@@ -1,0 +1,294 @@
+local SHELTER_SEGMENT_WIDTH = 1.3
+
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "shelters", },
+        },
+        description = {
+            name = _("module_shelter_name"),
+            description = _("large") .. " " .. _("era_b"),
+            icon = "ui/models/station/bus/small_mid.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_asset_shelter",
+        order = {
+            value = 999990713,
+        },
+        metadata = {
+            modutram = {
+                shelterSize = 3.9 * 3,
+                themes = { "era_b" },
+                themeType = "shelter_large"
+            }
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_r_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 3.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 2.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 1.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, SHELTER_SEGMENT_WIDTH * 0.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 1.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 2.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -2, 1
+                }
+            )
+            addModelFn(
+                'station/road/streetstation/asset/shelter_era_b_l_1.mdl',
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -2, 1
+                }
+            )
+            addModelFn(
+                "station/road/streetstation/asset/bench_era_b_l_1.mdl",
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.1, -3.9, -2, 1
+                }
+            )
+            addModelFn(
+                "station/road/streetstation/asset/bench_era_b_r_1.mdl",
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.1, -3.9, -2, 1
+                }
+            )
+            addModelFn(
+                'asset/modutram_schedule_era_b.mdl',
+                {
+                    -2, 0, 0, 0,
+                    0, -2, 0, 0,
+                    0, 0, 2, 0,
+                    0.45, -1.3, -0.5, 1
+                }
+            )
+            addModelFn(
+                "station/road/streetstation/asset/tickets_era_b_1.mdl",
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.0, 0, -2, 1
+                }
+            )
+            addModelFn(
+                "station/road/streetstation/asset/bench_era_b_l_1.mdl",
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.1, 3.9, -2, 1
+                }
+            )
+            addModelFn(
+                "station/road/streetstation/asset/bench_era_b_r_1.mdl",
+                {
+                    0, 1, 0, 0,
+                    -1, 0, 0, 0,
+                    0, 0, 1, 0,
+                    1.1, 3.9, -2, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'station/road/streetstation/asset/shelter_era_b_r_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 2.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 1.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 0.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 1.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 2.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_rep_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }, {
+                    id = 'station/road/streetstation/asset/shelter_era_b_l_1.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.8, -SHELTER_SEGMENT_WIDTH * 3.5, -1, 1
+                    }
+                }, {
+                    id = "station/road/streetstation/asset/bench_era_b_l_1.mdl",
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.1, -3.9, -1, 1
+                    }
+                }, {
+                    id = "station/road/streetstation/asset/bench_era_b_r_1.mdl",
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.1, -3.9, -1, 1
+                    }
+                }, {
+                    id = 'asset/modutram_schedule_era_b.mdl',
+                    transf = {
+                        -2, 0, 0, 0,
+                        0, -2, 0, 0,
+                        0, 0, 2, 0,
+                        0.45, -1.3, 0.5, 1
+                    }
+                }, {
+                    id = "station/road/streetstation/asset/tickets_era_b_1.mdl",
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.0, 0, -1, 1
+                    }
+                }, {
+                    id = "station/road/streetstation/asset/bench_era_b_l_1.mdl",
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.1, 3.9, -1, 1
+                    }
+                }, {
+                    id = "station/road/streetstation/asset/bench_era_b_r_1.mdl",
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        1.1, 3.9, -1, 1
+                    }
+                },
+            }
+        end
+    }
+end

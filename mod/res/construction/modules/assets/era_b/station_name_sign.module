@@ -1,0 +1,53 @@
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "Decoration", },
+        },
+        description = {
+            name = _("module_station_sign_name"),
+            description = _("era_b"),
+            icon = "ui/hud/depot_road.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_asset_station_name_sign",
+        order = {
+            value = 999990812,
+        },
+        metadata = {
+            modutram = {
+                themes = { "era_b" },
+                themeType = "station_name_sign"
+            },
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            addModelFn(
+                'station/rail/asset/cargo_name_board.mdl',
+                {
+                    0, -0.7, 0, 0,
+                    0.7, 0, 0, 0,
+                    0, 0, 0.7, 0,
+                    0, 0, -3.05, 1
+                }
+            )
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'station/rail/asset/cargo_name_board.mdl',
+                    transf = {
+                        0, -0.7, 0, 0,
+                        0.7, 0, 0, 0,
+                        0, 0, 0.7, 0,
+                        0, 0, -3.05, 1,
+                    }
+                }
+            }
+        end
+    }
+end
