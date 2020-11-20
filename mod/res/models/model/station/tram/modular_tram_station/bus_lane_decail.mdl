@@ -1,0 +1,36 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 1, 1, 0, },
+		bbMin = { -1, -1, 0, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 1, 1, 0, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "station/tram/modular_tram_station/modutram_bus_lane_decail.mtl", },
+						mesh = "station/tram/modular_tram_station/bus_lane_decail_lod0.msh",
+						name = "bus_lane_decail",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 461.42135620117,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end

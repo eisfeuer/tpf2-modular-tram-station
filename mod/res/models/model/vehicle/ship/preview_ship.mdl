@@ -1,3 +1,5 @@
+local SEGMENT = 1.3
+
 function data()
 return {
 	boundingInfo = {
@@ -16,10 +18,35 @@ return {
 			node = {
 				children = {
 					{
-						materials = { "street/street_lights.mtl", },
-						mesh = "street/street_light_eu_a/street_light_eu_a_lod0.msh",
-						name = "street_light_eu_a",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0, 0, 0, 1, },
+						materials = { "station/road/streetstation/streetstation_1_transparent.mtl",  "station/road/streetstation/streetstation_1.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_b_l_1/shelter_era_b_l_1_lod0.msh",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.64999997615814, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_b_rep_1/shelter_era_b_rep_1_lod0.msh",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.64999997615814, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_b_r_1/shelter_era_b_r_1_lod0.msh",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.64999997615814, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", },
+						mesh = "station/road/streetstation/asset/bench_era_b_l_1/bench_era_b_l_1_lod0.msh",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.5, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", },
+						mesh = "station/road/streetstation/asset/bench_era_b_r_1/bench_era_b_r_1_lod0.msh",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.5, 0, 1, },
+					},
+					{
+						materials = { "asset/modutram_ads_and_schedules.mtl", },
+						mesh = "asset/modular_tram_station/modutram_schedule_era_b_lod0.msh",
+						name = "schedule_era_a_lod0",
+						transf = {2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1.9, 0.7, 1.5, 1 },
 					},
 				},
 				name = "RootNode",

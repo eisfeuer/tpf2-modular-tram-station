@@ -12,7 +12,7 @@ function data()
         description = {
             name = _("module_bench_name"),
             description = _("era_a"),
-            icon = "ui/construction/asset/default_multi_bench_old.tga"
+            icon = "ui/construction/modules/modular_tram_station/bench_era_a.tga"
         }, 
         availability = {
             yearFrom = 0,
@@ -26,7 +26,7 @@ function data()
             modutram = {
                 themes = { "era_a" },
                 themeType = "bench",
-                --themeExcludes = { "destination_display" }
+                themeExcludes = { "destination_display" }
             },
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)

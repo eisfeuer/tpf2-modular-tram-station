@@ -1,0 +1,84 @@
+local makeGroundFaceFromGridModule = require("modutram.utils.makeGroundFaceFromGridModule")
+local makeLot = require("modutram.utils.makeLot")
+local transf = require("transf")
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "Platforms - Right", },
+        },
+        description = {
+            name = _("module_platform_access_name"),
+            description = _("era_b"),
+            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_platform_right_330cm",
+        order = {
+            value = 999990622,
+        },
+        metadata = {
+            modutram = {
+                hasTerminals = false,
+                hasCrossingConnection = true,
+                isRegularPlatform = false,
+                themes = { "era_b" },
+                themeType = "platform_right_ramp",
+            }
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local module = result.modutram:getModule(slotId)
+
+            local groundFace = makeGroundFaceFromGridModule(module, transform)
+            makeLot(result, groundFace)
+
+            if module:getNeighborTop():isPlatform() then
+                addModelFn("station/tram/modular_tram_station/platform_single_access_btm_era_b.mdl", transf.rotZTransl(0, {x = 0, y = module.config.gridModuleLength / 2, z = 0}))
+
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scale({x = 0, y = 4.5, z = 0}))
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.5, z = 0}, 0, {x = 0, y = 4.5, z = 0}))
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 2.0, z = 0}, 0, {x = 0, y = 6, z = 0}))
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.0, z = 0}, 0, {x = 0, y = 8, z = 0}))
+
+                if not module:hasNeighborLeft() then
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = -module:getOption("widthInCm") / 200, y = 0, z = 0}, 0, {x = 0, y = 4.5, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_link.mdl", transf.scaleXYZRotZTransl({x = 0, y = 4.5, z = 0}, 0, {x = -module:getOption("widthInCm") / 200, y = 0, z = 0}))
+                end
+            end
+
+            addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scale({x = module:getOption("widthInCm") / 200, y = 0, z = 0}))
+            addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scale({x = -module:getOption("widthInCm") / 200, y = 0, z = 0}))
+
+            if module:getNeighborBottom():isPlatform() then
+                addModelFn("station/tram/modular_tram_station/platform_single_access_top_era_b.mdl", transf.rotZTransl(0, {x = 0, y = -module.config.gridModuleLength / 2, z = 0}))
+
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scale({x = 0, y = -4.5, z = 0}))
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.5, z = 0}, 0, {x = 0, y = -4.5, z = 0}))
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -2.0, z = 0}, 0, {x = 0, y = -6, z = 0}))
+                addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.0, z = 0}, 0, {x = 0, y = -8, z = 0}))
+
+                if not module:hasNeighborLeft() then
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = -module:getOption("widthInCm") / 200, y = 0, z = 0}, 0, {x = 0, y = -4.5, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_link.mdl", transf.scaleXYZRotZTransl({x = 0, y = -4.5, z = 0}, 0, {x = -module:getOption("widthInCm") / 200, y = 0, z = 0}))
+                end
+            end
+        end,
+        getModelsFn = function()
+            return {{
+                id = "station/tram/modular_tram_station/platform_single_access_btm_era_b.mdl",
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

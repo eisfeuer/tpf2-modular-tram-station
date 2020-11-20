@@ -1,0 +1,40 @@
+function data()
+return {
+	order = 0,
+	params = {
+		albedo_scale = {
+			albedoScale = { 1, 1, 1, },
+		},
+		fade_out_range = {
+			fadeOutEndDist = 20000,
+			fadeOutStartDist = 10000,
+		},
+		map_albedo = {
+			fileName = "models/station/road/streetstation/streetstation_001_albedo_opacity.dds",
+			type = "TWOD",
+		},
+		map_metal_gloss_ao = {
+			fileName = "models/station/road/streetstation/streetstation_001_metal_gloss_ao.dds",
+			type = "TWOD",
+		},
+		map_normal = {
+			fileName = "models/station/road/streetstation/streetstation_001_normal.dds",
+			redGreen = true,
+			type = "TWOD",
+		},
+		normal_scale = {
+			normalScale = 1,
+		},
+		polygon_offset = {
+			factor = 0,
+			forceDepthWrite = false,
+			units = 0,
+		},
+		two_sided = {
+			flipNormal = false,
+			twoSided = false,
+		},
+	},
+	type = "PHYSICAL_NRML_MAP",
+}
+end

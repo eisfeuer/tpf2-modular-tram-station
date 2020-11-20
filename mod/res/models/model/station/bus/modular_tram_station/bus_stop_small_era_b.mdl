@@ -1,0 +1,84 @@
+function data()
+    return {
+        boundingInfo = {
+            bbMax = { 3.2503168582916, 1.4219369888306, 3.2145841121674, },
+            bbMin = { -3.2676060199738, -1.2628409862518, 0, },
+        },
+        collider = {
+            params = { },
+            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+            type = "MESH",
+        },
+        lods = {
+            {
+                node = {
+                    children = {
+                        {
+                            materials = { "station/road/streetstation/streetstation_1_transparent.mtl",  "station/road/streetstation/streetstation_1.mtl", },
+                            mesh = "station/road/streetstation/asset/shelter_era_b_l_1/shelter_era_b_l_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.64999997615814, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+                            mesh = "station/road/streetstation/asset/shelter_era_b_rep_1/shelter_era_b_rep_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.64999997615814, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+                            mesh = "station/road/streetstation/asset/shelter_era_b_r_1/shelter_era_b_r_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.64999997615814, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "station/road/streetstation/streetstation_1.mtl", },
+                            mesh = "station/road/streetstation/asset/bus_stop_sign_era_b_1/bus_stop_sign_era_b_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2.7999999523163, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "station/road/streetstation/streetstation_1.mtl", },
+                            mesh = "station/road/streetstation/asset/tickets_era_b_1/tickets_era_b_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 2.7999999523163, 0, 0, 1, },
+                        },
+                        {
+                            materials = { "station/road/streetstation/streetstation_1.mtl", },
+                            mesh = "station/road/streetstation/asset/bench_era_b_l_1/bench_era_b_l_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.5, 0, 1, },
+                        },
+                        {
+                            materials = { "station/road/streetstation/streetstation_1.mtl", },
+                            mesh = "station/road/streetstation/asset/bench_era_b_r_1/bench_era_b_r_1_lod0.msh",
+                            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.5, 0, 1, },
+                        },
+                        {
+                            materials = { "asset/modutram_ads_and_schedules.mtl", },
+                            mesh = "asset/modular_tram_station/modutram_schedule_era_b_lod0.msh",
+                            name = "schedule_era_a_lod0",
+                            transf = {2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1.9, 0.7, 1.5, 1 },
+                        },
+                    },
+                    transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+                },
+                static = false,
+                visibleFrom = 0,
+                visibleTo = 900,
+            },
+        },
+        metadata = {
+            availability = {
+                yearFrom = 1920,
+                yearTo = 0,
+            },
+            cost = {
+                price = 1200,
+            },
+            description = {
+                description = _("Small bus/tram stop for passengers, to be placed on the sidewalk."),
+                name = _("Bus/tram stop"),
+            },
+            streetTerminal = {
+                cargo = false,
+            },
+        },
+        version = 1,
+    }
+    end
+    

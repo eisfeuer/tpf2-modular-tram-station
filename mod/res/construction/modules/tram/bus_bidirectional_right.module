@@ -1,0 +1,122 @@
+local makeGroundFaceFromGridModule = require("modutram.utils.makeGroundFaceFromGridModule")
+local makeLot = require("modutram.utils.makeLot")
+local transf = require("transf")
+local trammoduleutils = require("utils.trammoduleutils")
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "Tram", },
+        },
+        description = {
+            name = _("tram_tracks"),
+            description = _("1000mm"),
+            icon = "ui/construction/modules/modular_tram_station/tram_bus_bidirectional.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_tram_bidirectional_right_566cm",
+        order = {
+            value = 999990101,
+        },
+        metadata = {
+            -- modutram = {
+            --     themes = { "era_c" },
+            --     themeType = "tram_bidirectional_right",
+            --     hasTramRails = true
+            -- },
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local gridModule = result.modutram:getModule(slotId)
+
+            gridModule:addAssetSlot(result, 1, "modutram_asset_catenary", transf.mul(transform, transf.transl({x = 0, y = 0, z = 1})))
+
+            if not gridModule:hasNeighborTop() then
+                gridModule:addAssetSlot(
+                    result,
+                    3, 
+                    "modutram_asset_tram_street_connection",
+                    transf.mul(transform, transf.transl({x = 0, y = result.modutram.config.gridModuleLength / 2, z = 0})),
+                    {gridModule:getOption("widthInCm", 1) / 200, gridModule:getOption("widthInCm", 1) / 200, 0, 10})
+            end
+
+            if not gridModule:hasNeighborBottom() then
+                gridModule:addAssetSlot(
+                    result,
+                    4, 
+                    "modutram_asset_tram_street_connection",
+                    transf.mul(transform, transf.rotZTransl(math.pi, {x = 0, y = -result.modutram.config.gridModuleLength / 2, z = 0})),
+                    {gridModule:getOption("widthInCm", 1) / 200, gridModule:getOption("widthInCm", 1) / 200, 0, 10})
+            end
+
+            local groundFace = makeGroundFaceFromGridModule(gridModule, transform)
+            makeLot(result, groundFace)
+
+            addModelFn("station/tram/modular_tram_station/bus_lane_decail.mdl", transf.rotZTransl(math.pi, {x = -1.5, y = 0, z = 0.01}))
+            addModelFn("station/tram/modular_tram_station/bus_lane_decail.mdl", transf.transl({x = 1.5, y = 0, z = 0.01}))
+
+            trammoduleutils.addCrossing(gridModule, addModelFn)
+
+            gridModule:handleTerminals(function (terminalGroup)
+                local vehicleNodeOffset = terminalGroup.vehicleStopAlignment == 'top' and 2 or 0
+
+                if terminalGroup.platformDirection == 'left' then
+                    if terminalGroup.vehicleStopAlignment == 'top' then
+                        vehicleNodeOffset = vehicleNodeOffset + 2
+                    end
+                    
+                    terminalGroup:addVehicleTerminalModel(
+                        "station/tram/modular_tram_station/path/bus_stop.mdl",
+                        transf.mul(transform, transf.rotZTransl(math.pi, {x = -1.5, y = 0, z = 0})),
+                        1 + vehicleNodeOffset
+                    )
+                else
+                    terminalGroup:addVehicleTerminalModel(
+                        "station/tram/modular_tram_station/path/bus_stop.mdl",
+                        transf.mul(transform, transf.transl({x = 1.5, y = 0, z = 0})),
+                        1 + vehicleNodeOffset
+                    )
+                end
+            end)
+
+            gridModule:handleLanes(function (hasTerminalLeft, hasTerminalRight)
+                if not hasTerminalLeft then
+                    addModelFn(
+                        "station/tram/modular_tram_station/path/bus_lane.mdl",
+                        transf.rotZTransl(math.pi, {x = -1.5, y = 0, z = 0})
+                    )
+                end
+                if not hasTerminalRight then
+                    addModelFn(
+                        "station/tram/modular_tram_station/path/bus_lane.mdl",
+                        transf.transl({x = 1.5, y = 0, z = 0})
+                    )
+                end
+            end)
+        end,
+        getModelsFn = function()
+            return {{
+                id = "station/tram/modular_tram_station/tram_track_rep_era_c.mdl",
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    -1.5, 0, 0, 1,
+                }
+            }, {
+                id = "station/tram/modular_tram_station/tram_track_rep_era_c.mdl",
+                transf = {
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    1.5, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

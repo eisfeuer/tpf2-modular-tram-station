@@ -1,0 +1,87 @@
+local makeGroundFaceFromGridModule = require("modutram.utils.makeGroundFaceFromGridModule")
+local makeLot = require("modutram.utils.makeLot")
+local transf = require("transf")
+
+function data()
+    return {
+        cost = {
+            price = 20000,
+        },
+        category = {
+            categories = { "Platforms - Right", },
+        },
+        description = {
+            name = _("module_platform_single_right_name"),
+            description = _("era_a"),
+            icon = "ui/construction/station/street/platform_passenger_era_a.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_platform_right_330cm",
+        order = {
+            value = 999990621,
+        },
+        metadata = {
+            modutram = {
+                themes = { "era_a" },
+                themeType = "platform_right",
+            },
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local module = result.modutram:getModule(slotId)
+
+            local groundFace = makeGroundFaceFromGridModule(module, transform)
+            makeLot(result, groundFace)
+
+            addModelFn("station/tram/modular_tram_station/platform_single_rep_era_a.mdl", transf.rotZ(math.pi))
+
+            -- if not module:getNeighborTop():isPlatform() then
+            --     addModelFn("station/tram/modutram_platform_double_noaccess_era_a.mdl", tranf.transl({x = 0, y = module.config.gridModuleLength / 2, z = 0}))
+            -- end
+
+            -- if not module:getNeighborBottom():isPlatform() then
+            --     addModelFn("station/tram/modutram_platform_double_noaccess_era_a.mdl", tranf.rotZTransl(math.pi, {x = 0, y = -module.config.gridModuleLength / 2, z = 0}))
+            -- end
+
+            -- Shelters
+            module:addAssetSlot(result, 1, "modutram_asset_shelter", transf.mul(transform, transf.transl({x = -1.8, y = 0, z = 2.15})))
+            if module:hasNeighborTop() and module:getNeighborTop():getOption('isRegularPlatform', true) then
+                module:addAssetSlot(result, 2, "modutram_asset_shelter", transf.mul(transform, transf.transl({x = -1.8, y = 9, z = 2.15})))
+            end
+            -- Lamps
+            module:addAssetSlot(result, 5, "modutram_asset_lighting", transf.mul(transform, transf.transl({x = -1.2, y = 0, z = 3.15})))
+            -- Fence
+            module:addAssetSlot(result, 6, "modutram_asset_fence", transf.mul(transform, transf.transl({x = -1.5, y = 0, z = 1.15})))
+            -- General Platform addAssetSlot
+            module:addAssetSlot(result, 7, "modutram_asset", transf.mul(transform, transf.transl({x = -1.2, y = -4.5, z = 1.15})))
+            module:addAssetSlot(result, 8, "modutram_asset", transf.mul(transform, transf.transl({x = -1.2, y = 4.5, z = 1.15})))
+            -- Signs
+            module:addAssetSlot(result, 9, "modutram_asset_sign", transf.mul(transform, transf.transl({x = -0.9, y = -7.5, z = 2.15})))
+            module:addAssetSlot(result, 10, "modutram_asset_sign", transf.mul(transform, transf.transl({x = -0.9, y = -4.5, z = 2.15})))
+            module:addAssetSlot(result, 11, "modutram_asset_sign", transf.mul(transform, transf.transl({x = -0.9, y = -1.5, z = 2.15})))
+            module:addAssetSlot(result, 12, "modutram_asset_sign", transf.mul(transform, transf.transl({x = -0.9, y = 1.5, z = 2.15})))
+            module:addAssetSlot(result, 13, "modutram_asset_sign", transf.mul(transform, transf.transl({x = -0.9, y = 4.5, z = 2.15})))
+            module:addAssetSlot(result, 14, "modutram_asset_sign", transf.mul(transform, transf.transl({x = -0.9, y = 7.5, z = 2.15})))
+            -- Station name singns
+            module:addAssetSlot(result, 15, "modutram_asset_station_name_sign", transf.mul(transform, transf.transl({x = -1.5, y = -4.5, z = 3.15})))
+            module:addAssetSlot(result, 16, "modutram_asset_station_name_sign", transf.mul(transform, transf.transl({x = -1.5, y = 4.5, z = 3.15})))
+
+            module:handleTerminals(function (terminalGroup)
+                terminalGroup:addTerminalModel('station/tram/modular_tram_station/path/passenger_terminal.mdl', transf.mul(transform, transf.rotZ(math.pi)))
+            end)
+        end,
+        getModelsFn = function()
+            return {{
+                id = 'station/tram/modular_tram_station/platform_single_rep_era_a.mdl',
+                transf = {
+                    -1, 0, 0, 0,
+                    0, -1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1,
+                }
+            }}
+        end
+    }
+end

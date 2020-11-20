@@ -9,7 +9,7 @@ function data()
         description = {
             name = _("module_bench_name"),
             description = _("for_double_platform") .. " " .. _("era_c"),
-            icon = "ui/construction/asset/default_multi_bench_new.tga"
+            icon = "ui/construction/modules/modular_tram_station/benches_era_c.tga"
         }, 
         availability = {
             yearFrom = 0,

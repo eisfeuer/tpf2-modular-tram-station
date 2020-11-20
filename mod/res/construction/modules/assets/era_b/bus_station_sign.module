@@ -9,13 +9,13 @@ function data()
         description = {
             name = _("module_sign_name"),
             description = _("bus") .. " " .._("era_b"),
-            icon = "ui/achievements/ach_build_bus_stop.tga"
+            icon = "ui/construction/modules/modular_tram_station/bus_station_sign_era_b.tga"
         }, 
         availability = {
             yearFrom = 0,
             yearTo = 0
         },
-        type = "bus_station_sign",
+        type = "modutram_asset_sign",
         order = {
             value = 999990811,
         },

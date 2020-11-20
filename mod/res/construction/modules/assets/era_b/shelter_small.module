@@ -11,7 +11,7 @@ function data()
         description = {
             name = _("module_shelter_name"),
             description = _("small") .. " " .. _("era_b"),
-            icon = "ui/models/station/bus/small_mid.tga"
+            icon = "ui/construction/modules/modular_tram_station/shelter_small_era_b.tga"
         }, 
         availability = {
             yearFrom = 0,

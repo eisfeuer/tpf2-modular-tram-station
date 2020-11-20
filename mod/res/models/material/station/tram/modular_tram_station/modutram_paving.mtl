@@ -16,7 +16,7 @@ return {
 			wrapT = "REPEAT",
 		},
 		map_metal_gloss_ao = {
-			fileName = "modutram_misc_metal_gloss_ao.dds",
+			fileName = "modutram_paving_metal_gloss_ao.dds",
 			type = "TWOD",
 			wrapS = "REPEAT",
 			wrapT = "REPEAT",

@@ -1,0 +1,39 @@
+function data()
+return {
+	order = 0,
+	params = {
+		albedo_scale = {
+			albedoScale = { 1, 1, 1, },
+		},
+		alpha_scale = {
+			alphaScale = 1,
+		},
+		alpha_test = {
+			alphaThreshold = 0.5,
+			cutout = true,
+		},
+		fade_out_range = {
+			fadeOutEndDist = 20000,
+			fadeOutStartDist = 10000,
+		},
+		map_albedo_opacity = {
+			fileName = "models/asset/bench_old.tga",
+			type = "TWOD",
+		},
+		map_metal_gloss_ao = {
+			fileName = "default_metal_gloss_ao.tga",
+			type = "TWOD",
+		},
+		polygon_offset = {
+			factor = 0,
+			forceDepthWrite = false,
+			units = 0,
+		},
+		two_sided = {
+			flipNormal = true,
+			twoSided = true,
+		},
+	},
+	type = "PHYS_TRANSPARENT",
+}
+end

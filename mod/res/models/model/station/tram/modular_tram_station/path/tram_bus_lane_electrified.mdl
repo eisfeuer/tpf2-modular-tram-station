@@ -1,0 +1,43 @@
+local c = require('modutram_constants')
+
+function data()
+    return {
+        boundingInfo = {
+            bbMax = { 9.0, 1.2, 4.825, },
+            bbMin = { -9.0, -1.2, 0.0, },
+        },
+        collider = {
+            params = {
+                halfExtents = { 9, 1.2, 2.4120001792908, },
+            },
+            transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+            type = "BOX",
+        },
+        lods = {
+            {
+                node = {
+                    name = "RootNode",
+                    transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+                },
+                static = false,
+                visibleFrom = 0,
+                visibleTo = 1,
+            },
+        },
+        metadata = {
+            transportNetworkProvider = {
+                laneLists = {{
+                    nodes = {
+                        { { 0.0, -9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
+                        { { 0.0, 9.0, 0.0}, {0.0, 18.0, 0.0}, 2.65 },
+                    },
+                    transportModes = {"BUS", "TRAM", "ELECTRIC_TRAM"},
+                    speedLimit = 30
+                }},
+                runways = { },
+                terminals = { },
+            }
+        },
+        version = 1,
+    }
+end

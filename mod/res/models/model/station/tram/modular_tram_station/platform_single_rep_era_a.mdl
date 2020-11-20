@@ -1,0 +1,36 @@
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 1.6500010490417, 8.9999990463257, 0.15000003576279, },
+		bbMin = { -1.6500002145767, -8.9999990463257, -0.15000002086163, },
+	},
+	collider = {
+		params = {
+			halfExtents = { 1.6500005722046, 8.9999990463257, 0.15000003576279, },
+		},
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "BOX",
+	},
+	lods = {
+		{
+			node = {
+				children = {
+					{
+						materials = { "street/old_medium_sidewalk.mtl", "street/old_medium_sidewalk_curb.mtl", },
+						mesh = "station/tram/modular_tram_station/modutram_platform_single_rep_era_a_lod0.msh",
+						name = "platform_single_rep_era_a_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 1443.123046875,
+		},
+	},
+	metadata = { },
+	version = 1,
+}
+end

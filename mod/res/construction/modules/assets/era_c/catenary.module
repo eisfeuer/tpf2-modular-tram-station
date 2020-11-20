@@ -1,0 +1,89 @@
+local t = require('modutram.types')
+local transf = require("transf")
+
+function data()
+    return {
+        cost = {
+            price = 1000,
+        },
+        category = {
+            categories = { "Tram", },
+        },
+        description = {
+            name = _("module_catenary_name"),
+            description = _("era_c"),
+            icon = "ui/construction/modules/modular_tram_station/catenary_era_c.tga"
+        }, 
+        availability = {
+            yearFrom = 0,
+            yearTo = 0
+        },
+        type = "modutram_asset_catenary",
+        order = {
+            value = 999990109,
+        },
+        metadata = {
+            passenger = true,
+        },
+        updateFn = function(result, transform, tag, slotId, addModelFn, params)
+            local trackType = result.modutram:getModule(slotId):getParentGridModule():getType()
+            local isBidirectionalTrack = trackType == t.TRAM_BIDIRECTIONAL_LEFT or trackType == t.TRAM_BIDIRECTIONAL_RIGHT
+            
+            local catenaryWirePosition = isBidirectionalTrack and 1.5 or 0
+            local catenaryPolePosition = isBidirectionalTrack and 0 or ((trackType == t.TRAM_UP) and -1.5 or 1.5)
+
+            addModelFn("asset/modutram_catenary_pole_era_c.mdl", transf.rotZTransl(math.pi / 2, {x = catenaryPolePosition, y = 0, z = -1}))
+            addModelFn("station/tram/modutram_catenary_wire.mdl", transf.rotZTransl(math.pi / 2, {x = catenaryWirePosition, y = 0, z = -1}))
+
+            if trackType ~= t.TRAM_UP then
+                addModelFn(
+                    "asset/modutram_catenary_suspension_era_c.mdl",
+                    transf.rotZTransl(math.pi / 2, {x = catenaryPolePosition, y = 0, z = -1.2})
+                )
+            end
+
+            if trackType ~= t.TRAM_DOWN then
+                addModelFn(
+                    "asset/modutram_catenary_suspension_era_c.mdl",
+                    transf.rotZTransl(-math.pi / 2, {x = catenaryPolePosition, y = 0, z = -1.2})
+                )
+            end
+
+            if isBidirectionalTrack then
+                addModelFn(
+                    "station/tram/modutram_catenary_wire.mdl",
+                    transf.rotZTransl(math.pi / 2, {x = -catenaryWirePosition, y = 0, z = -1})
+                )
+            end
+        end,
+        getModelsFn = function()
+            return {
+                {
+                    id = 'asset/modutram_catenary_pole_era_c.mdl',
+                    transf = {
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1, 1,
+                    }
+                }, {
+                    id = 'asset/modutram_catenary_suspension_era_c.mdl',
+                    transf = {
+                        0, 1, 0, 0,
+                        -1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1.2, 1
+                    }
+                }, {
+                    id = 'asset/modutram_catenary_suspension_era_c.mdl',
+                    transf = {
+                        0, -1, 0, 0,
+                        1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, -1.2, 1
+                    }
+                }
+            }
+        end
+    }
+end

@@ -19,8 +19,18 @@ local function addTrackModules()
             mod.description.description = track.desc .. (catenary and _(" (with catenary)") or "")
             mod.description.icon = track.icon
             if mod.description.icon ~= "" then
-                mod.description.icon = string.gsub(mod.description.icon, ".tga", "")
-                mod.description.icon = mod.description.icon .. "_module" .. (catenary and "_catenary" or "") .. ".tga"
+                local icons = { 
+                    ["standard.lua"] = "ui/tracks/standard.tga",
+                    ["high_speed.lua"] = "ui/tracks/high_speed.tga"
+                }
+                local icon = icons[trackName]
+
+                if icon then
+                    mod.description.icon = icon
+                else
+                    mod.description.icon = string.gsub(mod.description.icon, ".tga", "")
+                    mod.description.icon = mod.description.icon .. "_module" .. (catenary and "_catenary" or "") .. ".tga"
+                end
             end
 
             mod.type = "modutram_train_320cm"
@@ -79,11 +89,11 @@ function data()
                 end
             end
 
-            local motrasStation = api.res.constructionRep.get(api.res.constructionRep.find('station/tram/modular_tram_station.con'))
+            local modutram = api.res.constructionRep.get(api.res.constructionRep.find('station/tram/modular_tram_station.con'))
 
             local themeParams = themeRepository:getConstructionParams()
 
-            for i, template in pairs(motrasStation.constructionTemplates) do
+            for i, template in pairs(modutram.constructionTemplates) do
                 local dynamicConstructionTemplate = api.type.DynamicConstructionTemplate.new()
                 local params = template.data.params
     
@@ -103,13 +113,13 @@ function data()
                 end
     
                 dynamicConstructionTemplate.params = params
-                motrasStation.constructionTemplates[i].data = dynamicConstructionTemplate 
+                modutram.constructionTemplates[i].data = dynamicConstructionTemplate 
             end
 
-            motrasStation.createTemplateScript.fileName = "construction/station/tram/modular_tram_station.createTemplateFn"
-            motrasStation.createTemplateScript.params = {themes = themeRepository:getRepositoryTable(), defaultTheme = themeRepository:getDefaultTheme() }
-            motrasStation.updateScript.fileName = "construction/station/tram/modular_tram_station.updateFn"
-            motrasStation.updateScript.params = {modules = modulesForModularTramStation}
+            modutram.createTemplateScript.fileName = "construction/station/tram/modular_tram_station.createTemplateFn"
+            modutram.createTemplateScript.params = {themes = themeRepository:getRepositoryTable(), defaultTheme = themeRepository:getDefaultTheme() }
+            modutram.updateScript.fileName = "construction/station/tram/modular_tram_station.updateFn"
+            modutram.updateScript.params = {modules = modulesForModularTramStation}
         end
     }
     end

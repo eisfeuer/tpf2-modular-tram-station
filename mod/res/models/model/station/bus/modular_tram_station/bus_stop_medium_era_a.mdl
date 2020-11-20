@@ -1,0 +1,98 @@
+local SEGMENT_LENGTH = 1.38
+
+function data()
+return {
+	boundingInfo = {
+		bbMax = { 2.11, 1.55, 2.25, },
+		bbMin = { -2.18, -0.1, -0.5, },
+	},
+	collider = {
+		params = { },
+		transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+		type = "MESH",
+	},
+	lods = {
+		{
+			node = {
+				animations = { },
+				children = {
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_a_l_1/shelter_era_a_l_1_lod0.msh",
+						name = "shelter_era_a_l_1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2.5999999046326, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_a_r_1/shelter_era_a_r_1_lod0.msh",
+						name = "shelter_era_a_r_1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 2.5999999046326, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_a_rep_1/shelter_era_a_rep_1_lod0.msh",
+						name = "shelter_era_a_rep_1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2.5999999046326, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_a_rep_1/shelter_era_a_rep_1_lod0.msh",
+						name = "shelter_era_a_rep_1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -1.2999999523163, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_a_rep_1/shelter_era_a_rep_1_lod0.msh",
+						name = "shelter_era_a_rep_1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+					},
+					{
+						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
+						mesh = "station/road/streetstation/asset/shelter_era_a_rep_1/shelter_era_a_rep_1_lod0.msh",
+						name = "shelter_era_a_rep_1",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1.2999999523163, 0, 0, 1, },
+					},
+					{
+						materials = { "asset/bench_old.mtl", },
+						mesh = "asset/bench_old_lod_0.msh",
+						transf = { -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, -2.6500000953674, 1, 0, 1, },
+					},
+					{
+						materials = { "asset/bench_old.mtl", },
+						mesh = "asset/bench_old_lod_0.msh",
+						transf = { -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 2.6500000953674, 1, 0, 1, },
+					},
+					{
+						materials = { "asset/modutram_ads_and_schedules.mtl", },
+						mesh = "asset/modular_tram_station/modutram_schedule_era_a_lod0.msh",
+						name = "schedule_era_a_lod0",
+						transf = { 0, 2, 0, 0, -2, 0, 0, 0, 0, 0, 2, 0, 0.64999997615814, 1.5, 1.5, 1, },
+					},
+				},
+				name = "RootNode",
+				transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
+			},
+			static = false,
+			visibleFrom = 0,
+			visibleTo = 920,
+		},
+	},
+	metadata = {
+		availability = {
+			yearFrom = 0,
+			yearTo = 0,
+		},
+		cost = {
+			price = 1200,
+		},
+		description = {
+			description = _("bvg_busstop_only_glass_shelter"),
+			name = _("bvg_busstop"),
+		},
+		streetTerminal = {
+			cargo = false,
+		},
+	},
+	version = 1,
+}
+end

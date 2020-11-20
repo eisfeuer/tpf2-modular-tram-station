@@ -11,13 +11,13 @@ function data()
         description = {
             name = _("module_shelter_name"),
             description = _("mid") .. " " .. _("era_b"),
-            icon = "ui/models/station/bus/small_mid.tga"
+            icon = "ui/construction/modules/modular_tram_station/shelter_medium_era_b.tga"
         }, 
         availability = {
             yearFrom = 0,
             yearTo = 0
         },
-        type = "modutram_shelter",
+        type = "modutram_asset_shelter",
         order = {
             value = 999990712,
         },
