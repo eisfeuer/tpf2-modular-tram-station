@@ -23,7 +23,7 @@ function data()
                 description = {
                     name = _('modular_tram_station_name'),
                     description = _('modular_tram_station_desc'),
-                    icon = 'ui/modutram_main.tga'
+                    icon = 'ui/construction/station/tram/modular_tram_station/line_operation.tga'
                 },
                 data = {
                     params = {
@@ -86,7 +86,7 @@ function data()
                 description = {
                     name = _('modular_tram_station_name'),
                     description = _('modular_tram_station_desc'),
-                    icon = 'ui/modutram_main.tga'
+                    icon = 'ui/construction/station/tram/modular_tram_station/directional_operation.tga'
                 },
                 data = {
                     params = {
@@ -149,7 +149,7 @@ function data()
                 description = {
                     name = _('modular_tram_station_name'),
                     description = _('modular_tram_station_desc'),
-                    icon = 'ui/modutram_main.tga'
+                    icon = 'ui/construction/station/tram/modular_tram_station/oneway_operation.tga'
                 },
                 data = {
                     params = {
@@ -206,7 +206,7 @@ function data()
                 description = {
                     name = _('modular_tram_station_name_freestyle'),
                     description = _('modular_tram_station_freestyle_desc'),
-                    icon = 'ui/modutram_main.tga'
+                    icon = 'ui/construction/station/tram/modular_tram_station/from_scratch.tga'
                 },
                 data = {
                     params = {}
