@@ -2,6 +2,7 @@ local makeGroundFaceFromGridModule = require("modutram.utils.makeGroundFaceFromG
 local makeLot = require("modutram.utils.makeLot")
 local transf = require("transf")
 local trammoduleutils = require("utils.trammoduleutils")
+local makeCollider = require("modutram.utils.makaCollider")
 
 function data()
     return {
@@ -25,11 +26,10 @@ function data()
             value = 999990104,
         },
         metadata = {
-            -- modutram = {
-            --     themes = { "era_c" },
-            --     themeType = "tram_down",
-            --     hasTramRails = true
-            -- },
+            modutram = {
+                themes = { "era_c" },
+                themeType = "rbs_down",
+            },
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             local gridModule = result.modutram:getModule(slotId)
@@ -38,6 +38,7 @@ function data()
 
             local groundFace = makeGroundFaceFromGridModule(gridModule, transform)
             makeLot(result, groundFace)
+            makeCollider(result, gridModule)
 
             addModelFn("station/tram/modular_tram_station/bus_lane_decail.mdl", transf.rotZTransl(math.pi, {x = 0, y = 0, z = 0.01}))
             

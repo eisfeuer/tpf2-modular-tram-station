@@ -1,4 +1,5 @@
 local modulesutil = require "modulesutil"
+local Transf = require "transf"
 
 local function getStreetTramProperty(gridModule)
     if not gridModule:getOption("hasTramRails") then
@@ -38,6 +39,14 @@ function data()
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             local asset = result.modutram:getModule(slotId)
             local gridModule = asset:getParentGridModule()
+
+            table.insert(result.colliders, {
+                params = {
+                  halfExtents = { gridModule:getOption("widthInCm", 1) / 200, 5, 2, },
+                },
+                transf = Transf.mul(transform, Transf.transl({x = 0, y = 5, z = 2})),
+                type = "BOX",
+            })
 
             if gridModule:isBidirectionalRightTrack() then
                 result.modutram:addStreet("modutram_town_xs_new_era_a.lua", getStreetTramProperty(gridModule), {

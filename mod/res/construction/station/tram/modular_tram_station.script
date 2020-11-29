@@ -1,11 +1,19 @@
 local Modutram = require("modutram.modutram")
 local tramLineOperationTemplate = require("templates.tram_line_operation")
+local tramDirectionalOperation = require("templates.tram_directional_operation")
+local tramOnewayOperation = require("templates.tram_oneway_operation")
 
 function data()
     return {
         createTemplateFn = function (params)
             if params.templateIndex == 0 then
                 return tramLineOperationTemplate(params)
+            end
+            if params.templateIndex == 1 then
+                return tramDirectionalOperation(params)
+            end
+            if params.templateIndex == 2 then
+                return tramOnewayOperation(params)
             end
             return {}
         end,

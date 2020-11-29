@@ -29,7 +29,7 @@ function data()
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             local module = result.modutram:getModule(slotId)
-            fence.build(result.modutram, module, addModelFn, 1.2, "asset/modutram_fence_120cm_era_c.mdl")
+            fence.build(result.modutram, module, addModelFn, 1.2, "asset/modutram_fence_120cm_era_c.mdl", "asset/modutram_splash_guard_120cm_era_c.mdl")
         end,
         getModelsFn = function()
             return {

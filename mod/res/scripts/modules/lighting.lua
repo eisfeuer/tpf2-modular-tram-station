@@ -1,3 +1,5 @@
+local transf = require("transf")
+
 local lighting = {}
 
 local function hasShelterVeryLargeMiddleShelter(assetId, gridModule, gridModuleLength)
@@ -68,46 +70,39 @@ local function getLampModule(gridModule, lampModel, islandPlatformLampModel)
         return lampModel
     end
 
-    return gridModule.class == "PlatformIsland" and islandPlatformLampModel or lampModel
+    return (gridModule.class == "PlatformIsland" and islandPlatformLampModel ~= true) and islandPlatformLampModel or lampModel
+end
+
+local function placeLamp(gridModule, addModelFn, lampModel, islandPlatformLampModel, yPos)
+    local xPos = 0
+
+    if islandPlatformLampModel == true and gridModule.class == "PlatformIsland" then
+        addModelFn(
+            getLampModule(gridModule, lampModel, islandPlatformLampModel),
+            transf.rotZTransl(-math.pi / 2, { x = -0.15, y = yPos, z = -3})
+        )
+        xPos = 0.15
+    end
+
+    addModelFn(
+        getLampModule(gridModule, lampModel, islandPlatformLampModel),
+        transf.rotZTransl(math.pi / 2, { x = xPos, y = yPos, z = -3})
+    )
 end
 
 function lighting.build(gridModule, gridModuleLength, addModelFn, lampModel, islandPlatformLampModel)
     local flipFactor = gridModule.class == 'PlatformLeft' and -1 or 1
 
     if not isTopLampOccupied(gridModule, gridModuleLength) then
-        addModelFn(
-           getLampModule(gridModule, lampModel, islandPlatformLampModel),
-            {
-                0, 1, 0, 0,
-                -1, 0, 0, 0,
-                0, 0, 1, 0,
-                0, gridModuleLength / 2 * flipFactor, -3, 1
-            }
-        )
+        placeLamp(gridModule, addModelFn, lampModel, islandPlatformLampModel, gridModuleLength / 2 * flipFactor)
     end
 
     if not isMidLampOccupied(gridModule, gridModuleLength) then
-        addModelFn(
-           getLampModule(gridModule, lampModel, islandPlatformLampModel),
-            {
-                0, 1, 0, 0,
-                -1, 0, 0, 0,
-                0, 0, 1, 0,
-                0, 0, -3, 1
-            }
-        )
+        placeLamp(gridModule, addModelFn, lampModel, islandPlatformLampModel, 0)
     end
 
     if isBottomLampEnabled(gridModule, gridModuleLength) then
-        addModelFn(
-           getLampModule(gridModule, lampModel, islandPlatformLampModel),
-            {
-                0, 1, 0, 0,
-                -1, 0, 0, 0,
-                0, 0, 1, 0,
-                0, -gridModuleLength / 2 * flipFactor, -3, 1
-            }
-        )
+        placeLamp(gridModule, addModelFn, lampModel, islandPlatformLampModel, -gridModuleLength / 2 * flipFactor)
     end
 end
 

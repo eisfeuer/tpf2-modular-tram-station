@@ -1,3 +1,5 @@
+local TRAM_CATENARY_YEAR_FROM = 1875
+
 function data()
     return { 
         type = 'STREET_STATION',
@@ -9,14 +11,7 @@ function data()
             yearFrom = 0,
             yearTo = 0
         },
-        params = {
-            {
-                key = 'modutram_planning_mode',
-                name = _('modutram_planning_mode'),
-                values = { _('Off'), _('On'), },
-                defaultIndex = 0,
-            },
-        },
+        params = {},
         constructionTemplates = {
             {
                 type = 'DYNAMIC',
@@ -33,120 +28,168 @@ function data()
                 data = {
                     params = {
                         {
-                            key = 'modutram_tracks',
-                            name = _('modutram_tracks'),
+                            key = 'modutram_base_tracks',
+                            name = _('modutram_base_tracks'),
                             values = { '1', '2', '3', '4', '5', '6', '7', '8' },
                             defaultIndex = 1,
                         },
                         {
-                            key = 'modutram_platform_length',
-                            name = _('modutram_platform_length'),
+                            key = 'modutram_base_platform_length',
+                            name = _('modutram_base_platform_length'),
                             values = { _('18m'), _('36m'), _('54m'), _('72m'), _('90m') },
                             defaultIndex = 2,
                         },
                         {
-                            key = 'modutram_center_module',
-                            name = _('modutram_platform_length'),
+                            key = 'modutram_base_center_module',
+                            name = _('modutram_base_platform_length'),
                             values = { _('tracks'), _('platform') },
                             defaultIndex = 0
                         },
                         {
-                            key = 'modutram_prefered_side_platform',
-                            name = _('modutram_prefered_side_platform'),
-                            values = { _('left'), _('right') },
-                            defaultIndex = 0
-                        },
-                        {
-                            key = 'modutram_traffic_direction',
-                            name = _('modutram_traffic_direction'),
-                            values = { _('left'), _('right') },
-                            defaultIndex = 1
-                        },
-                        {
-                            key = 'modutram_tram_tracks',
-                            name = _('modutram_tram_tracks'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
+                            key = 'modutram_base_vehicle',
+                            name = _('modutram_base_vehicle'),
+                            values = { _("bus"),  _("tram") },
                             defaultIndex = 1,
+                            yearFrom = 1850,
+			                yearTo = TRAM_CATENARY_YEAR_FROM,
                         },
                         {
-                            key = 'modutram_electrification',
-                            name = _('modutram_electrification'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
-                            defaultIndex = 1,
+                            key = 'modutram_base_vehicle',
+                            name = _('modutram_base_vehicle'),
+                            values = { _("bus"),  _("tram"), _("etram") },
+                            defaultIndex = 2,
+                            yearFrom = TRAM_CATENARY_YEAR_FROM,
+			                yearTo = 0,
                         },
                         {
-                            key = 'modutram_bus',
-                            name = _('modutram_bus'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
-                            defaultIndex = 1,
-                        },
-                        {
-                            key = 'modutram_street_connections',
-                            name = _('modutram_street_connections'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
-                            defaultIndex = 1,
-                        },
-                        {
-                            key = 'modutram_platform_passenger_access',
-                            name = _('modutram_platform_passenger_access'),
-                            values = { _('off'), _('left'), _('right'), _('both') },
-                            defaultIndex = 3,
-                        },
-                        {
-                            key = 'modutram_shelter',
-                            name = _('modutram_shelter'),
+                            key = 'modutram_base_shelter',
+                            name = _('modutram_base_shelter'),
                             values = { _('off'), _('small'), _('mid'), _('large') },
                             defaultIndex = 1,
                         },
                         {
-                            key = 'modutram_fences',
-                            name = _('modutram_fences'),
+                            key = 'modutram_base_street_connections',
+                            name = _('modutram_base_street_connections'),
                             uiType = "CHECKBOX",
                             values = { "0", "1" },
                             defaultIndex = 1,
                         },
+                    }
+                }
+            }, {
+                type = 'DYNAMIC',
+                constructionType = 'STREET_STATION',
+                availability = {
+                    yearFrom = 0,
+                    yearTo = 0
+                },
+                description = {
+                    name = _('modular_tram_station_name'),
+                    description = _('modular_tram_station_desc'),
+                    icon = 'ui/modutram_main.tga'
+                },
+                data = {
+                    params = {
                         {
-                            key = 'modutram_lamps',
-                            name = _('modutram_lamps'),
+                            key = 'modutram_base_tracks',
+                            name = _('modutram_base_tracks'),
+                            values = { '1', '2', '3', '4', '5', '6', '7', '8' },
+                            defaultIndex = 1,
+                        },
+                        {
+                            key = 'modutram_base_platform_length',
+                            name = _('modutram_base_platform_length'),
+                            values = { _('18m'), _('36m'), _('54m'), _('72m'), _('90m') },
+                            defaultIndex = 2,
+                        },
+                        {
+                            key = 'modutram_base_center_module',
+                            name = _('modutram_base_platform_length'),
+                            values = { _('tracks'), _('platform') },
+                            defaultIndex = 0
+                        },
+                        {
+                            key = 'modutram_base_vehicle',
+                            name = _('modutram_base_vehicle'),
+                            values = { _("bus"),  _("tram") },
+                            defaultIndex = 1,
+                            yearFrom = 1850,
+			                yearTo = TRAM_CATENARY_YEAR_FROM,
+                        },
+                        {
+                            key = 'modutram_base_vehicle',
+                            name = _('modutram_base_vehicle'),
+                            values = { _("bus"),  _("tram"), _("etram") },
+                            defaultIndex = 2,
+                            yearFrom = TRAM_CATENARY_YEAR_FROM,
+			                yearTo = 0,
+                        },
+                        {
+                            key = 'modutram_base_shelter',
+                            name = _('modutram_base_shelter'),
+                            values = { _('off'), _('small'), _('mid'), _('large') },
+                            defaultIndex = 1,
+                        },
+                        {
+                            key = 'modutram_base_street_connections',
+                            name = _('modutram_base_street_connections'),
                             uiType = "CHECKBOX",
                             values = { "0", "1" },
                             defaultIndex = 1,
                         },
+                    }
+                }
+            }, {
+                type = 'DYNAMIC',
+                constructionType = 'STREET_STATION',
+                availability = {
+                    yearFrom = 0,
+                    yearTo = 0
+                },
+                description = {
+                    name = _('modular_tram_station_name'),
+                    description = _('modular_tram_station_desc'),
+                    icon = 'ui/modutram_main.tga'
+                },
+                data = {
+                    params = {
                         {
-                            key = 'modutram_benches',
-                            name = _('modutram_benches'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
+                            key = 'modutram_base_tracks',
+                            name = _('modutram_base_tracks'),
+                            values = { '1', '2', '3', '4', '5', '6', '7', '8' },
                             defaultIndex = 1,
                         },
                         {
-                            key = 'modutram_billboards',
-                            name = _('modutram_billboards'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
+                            key = 'modutram_base_platform_length',
+                            name = _('modutram_base_platform_length'),
+                            values = { _('18m'), _('36m'), _('54m'), _('72m'), _('90m') },
+                            defaultIndex = 2,
+                        },
+                        {
+                            key = 'modutram_base_vehicle',
+                            name = _('modutram_base_vehicle'),
+                            values = { _("bus"),  _("tram") },
+                            defaultIndex = 1,
+                            yearFrom = 1850,
+			                yearTo = TRAM_CATENARY_YEAR_FROM,
+                        },
+                        {
+                            key = 'modutram_base_vehicle',
+                            name = _('modutram_base_vehicle'),
+                            values = { _("bus"),  _("tram"), _("etram") },
+                            defaultIndex = 2,
+                            yearFrom = TRAM_CATENARY_YEAR_FROM,
+			                yearTo = 0,
+                        },
+                        {
+                            key = 'modutram_base_shelter',
+                            name = _('modutram_base_shelter'),
+                            values = { _('off'), _('small'), _('mid'), _('large') },
                             defaultIndex = 1,
                         },
                         {
-                            key = 'modutram_stop_signs',
-                            name = _('modutram_stop_signs'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
-                            defaultIndex = 1,
-                        },
-                        {
-                            key = 'modutram_station_signs',
-                            name = _('modutram_station_signs'),
-                            uiType = "CHECKBOX",
-                            values = { "0", "1" },
-                            defaultIndex = 1,
-                        },
-                        {
-                            key = 'modutram_destination_display',
-                            name = _('modutram_destination_display'),
+                            key = 'modutram_base_street_connections',
+                            name = _('modutram_base_street_connections'),
                             uiType = "CHECKBOX",
                             values = { "0", "1" },
                             defaultIndex = 1,

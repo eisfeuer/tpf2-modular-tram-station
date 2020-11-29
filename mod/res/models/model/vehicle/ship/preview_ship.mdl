@@ -18,39 +18,14 @@ return {
 			node = {
 				children = {
 					{
-						materials = { "station/road/streetstation/streetstation_1_transparent.mtl",  "station/road/streetstation/streetstation_1.mtl", },
-						mesh = "station/road/streetstation/asset/shelter_era_b_l_1/shelter_era_b_l_1_lod0.msh",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.64999997615814, 0, 0, 1, },
-					},
-					{
-						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
-						mesh = "station/road/streetstation/asset/shelter_era_b_rep_1/shelter_era_b_rep_1_lod0.msh",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.64999997615814, 0, 0, 1, },
-					},
-					{
-						materials = { "station/road/streetstation/streetstation_1.mtl", "station/road/streetstation/streetstation_1_transparent.mtl", },
-						mesh = "station/road/streetstation/asset/shelter_era_b_r_1/shelter_era_b_r_1_lod0.msh",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.64999997615814, 0, 0, 1, },
-					},
-					{
-						materials = { "station/road/streetstation/streetstation_1.mtl", },
-						mesh = "station/road/streetstation/asset/bench_era_b_l_1/bench_era_b_l_1_lod0.msh",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.5, 0, 1, },
-					},
-					{
-						materials = { "station/road/streetstation/streetstation_1.mtl", },
-						mesh = "station/road/streetstation/asset/bench_era_b_r_1/bench_era_b_r_1_lod0.msh",
-						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.5, 0, 1, },
-					},
-					{
-						materials = { "asset/modutram_ads_and_schedules.mtl", },
-						mesh = "asset/modular_tram_station/modutram_schedule_era_b_lod0.msh",
-						name = "schedule_era_a_lod0",
-						transf = {2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1.9, 0.7, 1.5, 1 },
+						materials = { "station/tram/modular_tram_station/modutram_paving.mtl", "station/tram/modular_tram_station/modutram_tactile_paving.mtl", "station/tram/modular_tram_station/modutram_curb.mtl", },
+						mesh = "station/tram/modular_tram_station/modutram_platform_single_access_top_era_c_lod0.msh",
+						name = "platform_single_access_top_era_c_lod0",
+						transf = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, },
 					},
 				},
 				name = "RootNode",
-				transf = { 0, 3, 0, 0, -3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, },
+				transf = { -3, 0, 0, 0, 0, -3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, },
 			},
 			static = false,
 			visibleFrom = 0,

@@ -23,44 +23,48 @@ function ParamRepository:getDefaultTheme()
     return optional(self.capturedParams).defaultTheme or {}
 end
 
+function ParamRepository:hasTramTracks()
+    return self.modutram_base_vehicle > 0
+end
+
+function ParamRepository:isElectrified()
+    return self.modutram_base_vehicle == 2
+end
+
 function ParamRepository:getTracks()
-    return self.modutram_tracks + 1
+    return self.modutram_base_tracks + 1
 end
 
 function ParamRepository:getTracksLeft()
-    if self.modutram_prefered_side_platform == 0 then
-        return math.ceil(self:getTracks() / 2)
-    end
-
     return math.floor(self:getTracks() / 2)
 end
 
 function ParamRepository:getTracksRight()
-    if self.modutram_prefered_side_platform == 1 then
-        return math.ceil(self:getTracks() / 2)
-    end
-
-    return math.floor(self:getTracks() / 2)
+    return math.ceil(self:getTracks() / 2)
 end
 
 function ParamRepository:isLeftHandTraffic()
-    return self.modutram_traffic_direction == 0
+    return false
 end
 
 function ParamRepository:lightingEnabled()
-    return self.modutram_lamps == 1
+    return true
 end
 
 function ParamRepository:fenceEnabled()
-    return self.modutram_fences == 1
+    return true
 end
 
 function ParamRepository:shelterEnabled()
-    return self.modutram_shelter > 0
+    return self.modutram_base_shelter > 0
+end
+
+function ParamRepository:hasPlatformAtCenter()
+    return self.modutram_base_center_module == 1
 end
 
 function ParamRepository:getShelterSize()
-    return self.modutram_shelter
+    return self.modutram_base_shelter
 end
 
 function ParamRepository:getShelterTheme()
@@ -69,15 +73,19 @@ function ParamRepository:getShelterTheme()
         "shelter_medium",
         "shelter_large"
     }
-    return shelterThemes[self.modutram_shelter]
+    return shelterThemes[self.modutram_base_shelter]
 end
 
 function ParamRepository:getLength()
-    return  self.modutram_platform_length
+    return self.modutram_base_platform_length
 end
 
 function ParamRepository:hasEvenLength()
     return self:getLength() % 2 == 1
+end
+
+function ParamRepository:hasEnabledStreetConnections()
+    return self.modutram_base_street_connections > 0
 end
 
 return ParamRepository

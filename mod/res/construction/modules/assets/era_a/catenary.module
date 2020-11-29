@@ -23,7 +23,10 @@ function data()
             value = 999990109,
         },
         metadata = {
-            passenger = true,
+            modutram = {
+                themes = { "era_a" },
+                themeType = "catenary"
+            }
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             local trackType = result.modutram:getModule(slotId):getParentGridModule():getType()

@@ -143,7 +143,10 @@ function data()
         ["lamps"] = "Beleuchtung",
         ["shelters"] = "Unterstände",
         ["signs"] = "Schilder",
-        ["platforms"] = "Bahnsteige"
+        ["platforms"] = "Bahnsteige",
+        -- Test
+        ["tram"] = "Pferde- / Dampfbahn",
+        ["etram"] = "Electr. Straßenbahn"
       },
     }
 end
