@@ -3,7 +3,7 @@ local SHELTER_SEGMENT_WIDTH = 1.3
 function data()
     return {
         cost = {
-            price = 1000,
+            price = 10000,
         },
         category = {
             categories = { "shelters", },
@@ -14,7 +14,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/shelter_small_era_b.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset_shelter",

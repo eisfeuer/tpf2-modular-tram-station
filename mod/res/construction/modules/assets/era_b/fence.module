@@ -10,11 +10,11 @@ function data()
         },
         description = {
             name = _("module_fence_name"),
-            description = "120cm " .. _("era_b"),
+            description = _("era_b"),
             icon = "ui/construction/modules/modular_tram_station/fence_era_b.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset_fence",

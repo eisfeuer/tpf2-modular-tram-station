@@ -4,7 +4,7 @@ local transf = require("transf")
 function data()
     return {
         cost = {
-            price = 1000,
+            price = 10000,
         },
         category = {
             categories = { "Tram", },

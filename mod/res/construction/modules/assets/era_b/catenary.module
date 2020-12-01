@@ -4,7 +4,7 @@ local transf = require("transf")
 function data()
     return {
         cost = {
-            price = 1000,
+            price = 10000,
         },
         category = {
             categories = { "Tram", },
@@ -15,7 +15,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/catenary_era_b.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset_catenary",

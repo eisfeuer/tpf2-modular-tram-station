@@ -10,8 +10,8 @@ function data()
             categories = { "Decoration", },
         },
         description = {
-            name = _("module_bench_name"),
-            description = _("for_double_platform") .. " " .. _("era_a"),
+            name = _("module_benches_name"),
+            description = _("era_a"),
             icon = "ui/construction/modules/modular_tram_station/benches_era_a.tga"
         }, 
         availability = {

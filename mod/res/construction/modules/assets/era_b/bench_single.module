@@ -15,7 +15,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/bench_era_b.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset",
@@ -26,7 +26,10 @@ function data()
             modutram = {
                 themes = { "era_b" },
                 themeType = "bench",
-                themeExcludes = { "destination_display" }
+                themeExcludes = { "destination_display" },
+                themeTranslations = {
+                    era_b = _("era_b")
+                }
             }
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)

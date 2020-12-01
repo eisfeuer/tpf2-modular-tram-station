@@ -15,7 +15,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/destination_display_era_c.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1980,
             yearTo = 0
         },
         type = "modutram_asset_sign",

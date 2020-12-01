@@ -26,7 +26,10 @@ function data()
             modutram = {
                 themes = { "era_a" },
                 themeType = "bench",
-                themeExcludes = { "destination_display" }
+                themeExcludes = { "destination_display" },
+                themeTranslations = {
+                    era_a = _("era_a")
+                }
             },
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)

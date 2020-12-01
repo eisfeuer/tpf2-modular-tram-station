@@ -6,7 +6,7 @@ local makeCollider = require("modutram.utils.makaCollider")
 function data()
     return {
         cost = {
-            price = 20000,
+            price = 30000,
         },
         category = {
             categories = { "Platforms - Left", },
@@ -17,7 +17,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/platform_side_era_c.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1980,
             yearTo = 0
         },
         type = "modutram_platform_left_330cm",
@@ -77,13 +77,14 @@ function data()
         end,
         getModelsFn = function()
             return {{
-                id = 'station/tram/modutram_platform_single_rep_era_c.mdl',
-                transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, 0, 1,
-                }
+                id = "station/tram/modutram_platform_single_rep_era_c.mdl",
+                transf = transf.rotZTransl(0, {x = 0, y = 0, z = 0})
+            }, {
+                id = "station/tram/modular_tram_station/platform_single_side_era_b_no_access.mdl",
+                transf = transf.rotZTransl(math.pi, {x = 0, y = 0, z = 0})
+            }, {
+                id = "station/tram/modular_tram_station/platform_single_side_era_b_no_access.mdl",
+                transf = transf.rotZTransl(0, {x = 0, y = 0, z = 0})
             }}
         end
     }

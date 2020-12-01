@@ -1,5 +1,4 @@
 local modulesutil = require "modulesutil"
-local Transf = require "transf"
 
 local function getStreetTramProperty(gridModule)
     if not gridModule:getOption("hasTramRails") then
@@ -12,18 +11,18 @@ end
 function data()
     return {
         cost = {
-            price = 20000,
+            price = 25000,
         },
         category = {
             categories = { "Tram", },
         },
         description = {
-            name = _("module_street_connection_double_name"),
-            description = _("era_a"),
-            icon = "ui/construction/station/street/platform_entrance.tga"
+            name = _("module_street_connection"),
+            description = _("era_b") .. "\n" .. _("street_connection_desc"),
+            icon = "ui/construction/station/street/platform_entrance_exit_era_c.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset_tram_street_connection",
@@ -32,7 +31,7 @@ function data()
         },
         metadata = {
             modutram = {
-                themes = { "era_a" },
+                themes = { "era_b" },
                 themeType = "tram_street_connection"
             },
         },
@@ -40,16 +39,8 @@ function data()
             local asset = result.modutram:getModule(slotId)
             local gridModule = asset:getParentGridModule()
 
-            table.insert(result.colliders, {
-                params = {
-                  halfExtents = { gridModule:getOption("widthInCm", 1) / 200, 5, 2, },
-                },
-                transf = Transf.mul(transform, Transf.transl({x = 0, y = 5, z = 2})),
-                type = "BOX",
-            })
-
             if gridModule:isBidirectionalRightTrack() then
-                result.modutram:addStreet("modutram_town_xs_new_era_a.lua", getStreetTramProperty(gridModule), {
+                result.modutram:addStreet("modutram_town_xs_new_era_b.lua", getStreetTramProperty(gridModule), {
                     { modulesutil.mul(transform, {0, 0, 0, 1}), modulesutil.mul(transform, {0, 10, 0, 0})},
                     { modulesutil.mul(transform, {0, 10, 0, 1}), modulesutil.mul(transform, {0, 10, 0, 0})}
                 }, {1})
@@ -58,7 +49,7 @@ function data()
             end
 
             if (gridModule:isUpGoingTrack() and asset:getId() == 3) or (gridModule:isDownGoingTrack() and asset:getId() == 4) then
-                result.modutram:addStreet("modutram_town_xs_one_way_new_era_a.lua", getStreetTramProperty(gridModule), {
+                result.modutram:addStreet("modutram_town_xs_one_way_new_era_b.lua", getStreetTramProperty(gridModule), {
                     { modulesutil.mul(transform, {0, 0, 0, 1}), modulesutil.mul(transform, {0, 10, 0, 0})},
                     { modulesutil.mul(transform, {0, 10, 0, 1}), modulesutil.mul(transform, {0, 10, 0, 0})}
                 }, {1})
@@ -67,7 +58,7 @@ function data()
             end
 
             if (gridModule:isUpGoingTrack() and asset:getId() == 4) or (gridModule:isDownGoingTrack() and asset:getId() == 3) then
-                result.modutram:addStreet("modutram_town_xs_one_way_new_era_a.lua", getStreetTramProperty(gridModule), {
+                result.modutram:addStreet("modutram_town_xs_one_way_new_era_b.lua", getStreetTramProperty(gridModule), {
                     { modulesutil.mul(transform, {0, 10, 0, 1}), modulesutil.mul(transform, {0, -10, 0, 0})},
                     { modulesutil.mul(transform, {0, 0, 0, 1}), modulesutil.mul(transform, {0, -10, 0, 0})}
                 }, {0})

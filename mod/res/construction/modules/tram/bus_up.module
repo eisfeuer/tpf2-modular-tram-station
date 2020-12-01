@@ -13,8 +13,8 @@ function data()
             categories = { "Tram", },
         },
         description = {
-            name = _("tram_tracks"),
-            description = _("Up 1000mm"),
+            name = _("module_bus_lane_name"),
+            description = _("track_up") .. "\n" .. _("module_bus_lane_desc"),
             icon = "ui/construction/modules/modular_tram_station/tram_bus_up.tga"
         }, 
         availability = {
@@ -64,15 +64,7 @@ function data()
             end)
         end,
         getModelsFn = function()
-            return {{
-                id = "station/tram/modular_tram_station/tram_track_rep_era_c.mdl",
-                transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    0, 0, 0, 1,
-                }
-            }}
+            return {}
         end
     }
 end

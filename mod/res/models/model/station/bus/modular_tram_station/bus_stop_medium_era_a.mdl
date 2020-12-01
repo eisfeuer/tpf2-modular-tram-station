@@ -86,8 +86,8 @@ return {
 			price = 1200,
 		},
 		description = {
-			description = _("bvg_busstop_only_glass_shelter"),
-			name = _("bvg_busstop"),
+			description = _("mid") .. " " .. _("era_a"),
+			name = _("bus_stop"),
 		},
 		streetTerminal = {
 			cargo = false,

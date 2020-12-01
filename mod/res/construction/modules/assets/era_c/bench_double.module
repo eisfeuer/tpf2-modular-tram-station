@@ -7,12 +7,12 @@ function data()
             categories = { "Decoration", },
         },
         description = {
-            name = _("module_bench_name"),
-            description = _("for_double_platform") .. " " .. _("era_c"),
+            name = _("module_benches_name"),
+            description = _("era_c"),
             icon = "ui/construction/modules/modular_tram_station/benches_era_c.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1980,
             yearTo = 0
         },
         type = "modutram_asset",

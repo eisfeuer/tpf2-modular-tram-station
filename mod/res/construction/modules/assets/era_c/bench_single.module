@@ -12,7 +12,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/bench_era_c.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1980,
             yearTo = 0
         },
         type = "modutram_asset",
@@ -22,7 +22,10 @@ function data()
         metadata = {
             modutram = {
                 themes = { "era_c" },
-                themeType = "bench"
+                themeType = "bench",
+                themeTranslations = {
+                    era_c = _("era_c")
+                }
             },
         },
         updateFn = function(result, transform, tag, slotId, addModelFn, params)

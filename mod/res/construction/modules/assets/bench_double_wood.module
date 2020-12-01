@@ -10,7 +10,7 @@ function data()
             categories = { "Decoration", },
         },
         description = {
-            name = _("module_bench_name"),
+            name = _("module_benches_name"),
             description = _("wooden"),
             icon = "ui/construction/modules/modular_tram_station/benches_wood.tga"
         }, 

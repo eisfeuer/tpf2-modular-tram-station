@@ -7,14 +7,14 @@ local makeCollider = require("modutram.utils.makaCollider")
 function data()
     return {
         cost = {
-            price = 20000,
+            price = 25000,
         },
         category = {
             categories = { "Tram", },
         },
         description = {
-            name = _("tram_tracks"),
-            description = _("1000mm"),
+            name = _("module_tram_track_name"),
+            description = _("track_bidirectional_right") .. " " .. "1000mm" .. "\n" .. _("module_tram_track_desc"),
             icon = "ui/construction/modules/modular_tram_station/tram_bidirectional.tga"
         }, 
         availability = {
@@ -103,23 +103,7 @@ function data()
             end)
         end,
         getModelsFn = function()
-            return {{
-                id = "station/tram/modular_tram_station/tram_track_rep_era_c.mdl",
-                transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    -1.5, 0, 0, 1,
-                }
-            }, {
-                id = "station/tram/modular_tram_station/tram_track_rep_era_c.mdl",
-                transf = {
-                    1, 0, 0, 0,
-                    0, 1, 0, 0,
-                    0, 0, 1, 0,
-                    1.5, 0, 0, 1,
-                }
-            }}
+            return {}
         end
     }
 end

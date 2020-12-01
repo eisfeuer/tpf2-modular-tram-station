@@ -6,7 +6,7 @@ local makeCollider = require("modutram.utils.makaCollider")
 function data()
     return {
         cost = {
-            price = 20000,
+            price = 50000,
         },
         category = {
             categories = { "Platforms - Island", },
@@ -17,7 +17,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/platform_island_era_c.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1980,
             yearTo = 0
         },
         type = "modutram_platform_island_550cm",
@@ -106,6 +106,18 @@ function data()
                     )
                 end
             end)
+        end,
+        getModelsFn = function()
+            return {{
+                id = "station/tram/modutram_platform_double_rep_era_c.mdl",
+                transf = transf.rotZTransl(0, {x = 0, y = 0, z = 0})
+            }, {
+                id = "station/tram/modutram_platform_double_noaccess_era_b.mdl",
+                transf = transf.rotZTransl(math.pi, {x = 0, y = -9, z = 0})
+            }, {
+                id = "station/tram/modutram_platform_double_noaccess_era_b.mdl",
+                transf = transf.rotZTransl(0, {x = 0, y = 9, z = 0})
+            }}
         end
     }
 end

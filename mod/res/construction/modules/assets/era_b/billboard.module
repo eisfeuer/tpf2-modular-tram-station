@@ -8,11 +8,11 @@ function data()
         },
         description = {
             name = _("module_billboard_name"),
-            description = _("era_b") .. " " .. _("poster_1"),
+            description = _("era_b"),
             icon = "ui/construction/modules/modular_tram_station/ad_era_b.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset",

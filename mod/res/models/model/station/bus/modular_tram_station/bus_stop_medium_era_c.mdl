@@ -90,8 +90,8 @@ function data()
                 price = 1200,
             },
             description = {
-                description = _("Small bus/tram stop for passengers, to be placed on the sidewalk."),
-                name = _("Bus/tram stop"),
+                description = _("mid") .. " " .. _("era_c"),
+                name = _("bus_stop"),
             },
             streetTerminal = {
                 cargo = false,

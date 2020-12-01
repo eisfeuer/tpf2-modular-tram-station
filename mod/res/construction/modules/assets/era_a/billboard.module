@@ -8,7 +8,7 @@ function data()
         },
         description = {
             name = _("module_billboard_name"),
-            description = _("era_a") .. " " .. _("poster_1"),
+            description = _("era_a"),
             icon = "ui/construction/modules/modular_tram_station/ad_era_a.tga"
         }, 
         availability = {

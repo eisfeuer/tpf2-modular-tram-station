@@ -14,7 +14,7 @@ function data()
             icon = "ui/construction/modules/modular_tram_station/lighting_era_b.tga"
         }, 
         availability = {
-            yearFrom = 0,
+            yearFrom = 1920,
             yearTo = 0
         },
         type = "modutram_asset_lighting",

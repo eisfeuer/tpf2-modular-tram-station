@@ -6,14 +6,14 @@ local makeCollider = require("modutram.utils.makaCollider")
 function data()
     return {
         cost = {
-            price = 20000,
+            price = 10000,
         },
         category = {
             categories = { "Platforms - Left", },
         },
         description = {
             name = _("module_platform_access_name"),
-            description = _("era_a"),
+            description = _("era_a") .. "\n" .. _("ramp_module_desc"),
             icon = "ui/construction/modules/modular_tram_station/platform_side_ramp_era_a.tga"
         }, 
         availability = {

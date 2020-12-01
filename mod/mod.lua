@@ -60,7 +60,7 @@ function data()
             minorVersion = 0,
             severityAdd = "NONE",
             severityRemove = "NONE",
-            name = _("Modular Tram Station (v2)"),
+            name = _("Modular Tram Station"),
             description = _("modular_tram_station_desc"),
             tags = { "Tram Station" },
             authors = {
@@ -75,7 +75,7 @@ function data()
 
             local modulesForModularTramStation = {}
             local modulesInGame = api.res.moduleRep.getAll()
-            local themeRepository = ThemeRepository:new{defaultTheme = 'era_c', paramName = _("theme_param"), tooltip = _("theme_param_tooltip")}
+            local themeRepository = ThemeRepository:new{defaultTheme = 'era_c', paramName = _("modutram_theme"), tooltip = _("modutram_theme_tooltip")}
 
             for _, moduleFileName in ipairs(modulesInGame) do
                 local module = api.res.moduleRep.get(api.res.moduleRep.find(moduleFileName))
@@ -107,7 +107,7 @@ function data()
                     themeParam.yearFrom = themeParamTemplate.yearFrom
                     themeParam.yearTo = themeParamTemplate.yearTo
                     themeParam.defaultIndex = themeParamTemplate.defaultIndex
-                    themeParam.uiType = 2
+                    themeParam.uiType = 0
         
                     params[#params+1] = themeParam 
                 end
