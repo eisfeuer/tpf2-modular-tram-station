@@ -48,12 +48,12 @@ function data()
                     addModelFn("station/tram/modular_tram_station/platform_double_access_btm_era_a.mdl", transf.rotZTransl(0, {x = 0, y = module.config.gridModuleLength / 2, z = 0}))
                     
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.5, z = 0}, 0, {x = -1.5, y = 4.5, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 2.0, z = 0}, 0, {x = -1.5, y = 6, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.0, z = 0}, 0, {x = -1.5, y = 8, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 2.0, z = 0.15}, 0, {x = -1.5, y = 6, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.0, z = 0}, 0, {x = -1.5, y = 8, z = 0.15}))
 
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.5, z = 0}, 0, {x = 1.5, y = 4.5, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 2.0, z = 0}, 0, {x = 1.5, y = 6, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.0, z = 0}, 0, {x = 1.5, y = 8, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 2.0, z = 0.15}, 0, {x = 1.5, y = 6, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 1.0, z = 0}, 0, {x = 1.5, y = 8, z = 0.15}))
                 else
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 4.5, z = 0}, 0, {x = -1.5, y = 4.5, z = 0}))
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = 4.5, z = 0}, 0, {x = 1.5, y = 4.5, z = 0}))
@@ -84,12 +84,12 @@ function data()
                     addModelFn("station/tram/modular_tram_station/platform_double_access_top_era_a.mdl", transf.transl({x = 0, y = -module.config.gridModuleLength / 2, z = 0}))
 
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.5, z = 0}, 0, {x = -1.5, y = -4.5, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -2.0, z = 0}, 0, {x = -1.5, y = -6, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.0, z = 0}, 0, {x = -1.5, y = -8, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -2.0, z = 0.15}, 0, {x = -1.5, y = -6, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.0, z = 0}, 0, {x = -1.5, y = -8, z = 0.15}))
 
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.5, z = 0}, 0, {x = 1.5, y = -4.5, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -2.0, z = 0}, 0, {x = 1.5, y = -6, z = 0}))
-                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.0, z = 0}, 0, {x = 1.5, y = -8, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -2.0, z = 0.15}, 0, {x = 1.5, y = -6, z = 0}))
+                    addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 0, y = -1.0, z = 0}, 0, {x = 1.5, y = -8, z = 0.15}))
 
                     addModelFn("station/tram/modular_tram_station/path/passenger_lane.mdl", transf.scaleXYZRotZTransl({x = 3, y = 0, z = 0}, 0, {x = -1.5, y = -4.5, z = 0}))
                 else

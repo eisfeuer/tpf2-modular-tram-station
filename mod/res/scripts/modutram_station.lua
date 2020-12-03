@@ -86,8 +86,6 @@ function Station:get_data()
             }
         }
 
-        --require('inspect').inspect(self.models)
-
         for i, terminal_group in ipairs(self.terminal_groups) do
             table.insert(result.terminalGroups, terminal_group:as_terminal_group_item())
             terminal_group:add_to_model_collection(self.models)
