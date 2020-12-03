@@ -64,7 +64,7 @@ function data()
         ["bus_stop"] = "Bus Stop"
       },
       de = {
-        ["Modular Tram Station"] = "Modulere Straßenbahnhaltestelle",
+        ["Modular Tram Station"] = "Modulare Straßenbahnhaltestelle",
         ["modular_tram_station_name"] = "Straßenbahnhaltestelle",
         ["modular_tram_station_desc"] = "Modulare Haltestelle für Straßenbahnen und Bus-Rapid-Transit-Systeme.",
         -- Templates
