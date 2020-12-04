@@ -1,7 +1,7 @@
 local Theme = require("modutram.theme.Theme")
-local ParamRespository = require("utils.ParamRepository")
-local SidePlatform = require("templates.partials.side_platform")
-local Tracks = require("templates.partials.tracks")
+local ParamRespository = require("modular_tram_station.utils.ParamRepository")
+local SidePlatform = require("modular_tram_station.templates.partials.side_platform")
+local Tracks = require("modular_tram_station.templates.partials.tracks")
 
 return function (params)
     local params = ParamRespository:new(params)

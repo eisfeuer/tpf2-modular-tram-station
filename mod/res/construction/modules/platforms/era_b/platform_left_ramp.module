@@ -1,7 +1,7 @@
 local makeGroundFaceFromGridModule = require("modutram.utils.makeGroundFaceFromGridModule")
 local makeLot = require("modutram.utils.makeLot")
 local transf = require("transf")
-local makeCollider = require("modutram.utils.makaCollider")
+local makeCollider = require("modutram.utils.makeCollider")
 
 function data()
     return {

@@ -1,4 +1,4 @@
-local lighting = require("modules.lighting")
+local lighting = require("modular_tram_station.modules.lighting")
 
 function data()
     return {

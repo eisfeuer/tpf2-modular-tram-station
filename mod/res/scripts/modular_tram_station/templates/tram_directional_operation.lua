@@ -1,9 +1,9 @@
 local Theme = require("modutram.theme.Theme")
-local ParamRespository = require("utils.ParamRepository")
+local ParamRespository = require("modular_tram_station.utils.ParamRepository")
 
-local IslandPlatform = require("templates.partials.island_platform")
-local SidePlatform = require("templates.partials.side_platform")
-local Tracks = require("templates.partials.tracks")
+local IslandPlatform = require("modular_tram_station.templates.partials.island_platform")
+local SidePlatform = require("modular_tram_station.templates.partials.side_platform")
+local Tracks = require("modular_tram_station.templates.partials.tracks")
 
 local function placeLeftTracksAndPlatformsRecursive(result, theme, params, tracksLeft, gridX, xPos)
     if tracksLeft == 0 then

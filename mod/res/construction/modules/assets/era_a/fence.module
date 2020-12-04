@@ -1,4 +1,4 @@
-local fence = require("modules.fence")
+local fence = require("modular_tram_station.modules.fence")
 
 function data()
     return {

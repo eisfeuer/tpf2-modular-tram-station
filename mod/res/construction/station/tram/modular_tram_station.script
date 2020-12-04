@@ -1,7 +1,7 @@
 local Modutram = require("modutram.modutram")
-local tramLineOperationTemplate = require("templates.tram_line_operation")
-local tramDirectionalOperation = require("templates.tram_directional_operation")
-local tramOnewayOperation = require("templates.tram_oneway_operation")
+local tramLineOperationTemplate = require("modular_tram_station.templates.tram_line_operation")
+local tramDirectionalOperation = require("modular_tram_station.templates.tram_directional_operation")
+local tramOnewayOperation = require("modular_tram_station.templates.tram_oneway_operation")
 
 function data()
     return {

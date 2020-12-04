@@ -1,5 +1,5 @@
 local transf = require("transf")
-local destinationDisplay = require("modules.destination_display")
+local destinationDisplay = require("modular_tram_station.modules.destination_display")
 
 function data()
     return {

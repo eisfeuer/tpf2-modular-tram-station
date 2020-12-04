@@ -1,5 +1,5 @@
 local transf = require("transf")
-local bench = require("modules.bench")
+local bench = require("modular_tram_station.modules.bench")
 
 function data()
     return {
