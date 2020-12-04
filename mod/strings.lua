@@ -61,7 +61,14 @@ function data()
         ["module_sign_name"] = "Sign",
         ["module_station_sign_name"] = "Station name sign",
         -- Bus Stops
-        ["bus_stop"] = "Bus Stop"
+        ["bus_stop"] = "Bus Stop",
+        -- Streets
+        ["street_era_a_desc"] = "Two-lane street with modern catenary poles (speed limit %2%).",
+        ["street_era_b_desc"] = "Two-lane street with usual catenary poles (speed limit %2%).",
+        ["street_era_c_desc"] = "Two-lane street with modern catenary poles (speed limit %2%).",
+        ["oneway_era_a_desc"] = "One-way street with modern historical poles (speed limit %2%).",
+        ["oneway_era_b_desc"] = "One-way street with usual catenary poles (speed limit %2%).",
+        ["oneway_era_c_desc"] = "One-way street with modern catenary poles (speed limit %2%)."
       },
       de = {
         ["Modular Tram Station"] = "Modulare Straßenbahnhaltestelle",
@@ -125,7 +132,14 @@ function data()
         ["module_sign_name"] = "Haltestellenschild",
         ["module_station_sign_name"] = "Schild mit Stationsnamen",
         -- Bus Stops
-        ["bus_stop"] = "Bushaltestelle"
+        ["bus_stop"] = "Bushaltestelle",
+        -- Streets
+        ["street_era_a_desc"] = "Zweispurige Straße mit historischen Masten (Geschwindigkeit %2%)..",
+        ["street_era_b_desc"] = "Zweispurige Straße mit normalen Masten (Geschwindigkeit %2%).",
+        ["street_era_c_desc"] = "Zweispurige Straße mit modernen Masten (Geschwindigkeit %2%).",
+        ["oneway_era_a_desc"] = "Einbahnstraße mit historischen Masten (Geschwindigkeit %2%).",
+        ["oneway_era_b_desc"] = "Einbahnstraße mit normalen Masten (Geschwindigkeit %2%).",
+        ["oneway_era_c_desc"] = "Einbahnstraße mit modernen Masten (Geschwindigkeit %2%)."
       },
     }
 end

@@ -34,6 +34,26 @@ function data()
         updateFn = function(result, transform, tag, slotId, addModelFn, params)
             local gridModule = result.modutram:getModule(slotId)
 
+            gridModule:addAssetSlot(result, 1, "modutram_asset_catenary", transf.mul(transform, transf.transl({x = 0, y = 0, z = 1})))
+
+            if not gridModule:hasNeighborTop() then
+                gridModule:addAssetSlot(
+                    result,
+                    3, 
+                    "modutram_asset_tram_street_connection",
+                    transf.mul(transform, transf.transl({x = 0, y = result.modutram.config.gridModuleLength / 2, z = 0})),
+                    {gridModule:getOption("widthInCm", 1) / 200, gridModule:getOption("widthInCm", 1) / 200, 0, 10})
+            end
+
+            if not gridModule:hasNeighborBottom() then
+                gridModule:addAssetSlot(
+                    result,
+                    4, 
+                    "modutram_asset_tram_street_connection",
+                    transf.mul(transform, transf.rotZTransl(math.pi, {x = 0, y = -result.modutram.config.gridModuleLength / 2, z = 0})),
+                    {gridModule:getOption("widthInCm", 1) / 200, gridModule:getOption("widthInCm", 1) / 200, 0, 10})
+            end
+
             local groundFace = makeGroundFaceFromGridModule(gridModule, transform)
             makeLot(result, groundFace)
             makeCollider(result, gridModule)
