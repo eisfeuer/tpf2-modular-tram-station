@@ -1,0 +1,38 @@
+A modular station for trams and bus rapid transit.
+Like the vanilla station, this tram stop can be built with modules. The programme logic behind this tram stop is implemented by me. There should be no conflicts with other station mods.
+Modules of this tram station cannot be used with the MOTRAS, the Vanilla or any other mod station.
+This station can be extended by modules or module groups (themes) built by other modders.
+It‘s possible to build an own station based on the built in Modutram framework. The documentation is currently WIP (Incomplete and bad english – available at https://github.com/eisfeuer/modutram)
+
+Building notes:
+All vanilla streets are too thick to connect this station to your streets. Please use thinner streets included in this mod or from another mod (e.g. RTP or Marc's Street and Trampack)
+You should build the complete station (place all the modules you want) before connecting the station to the roads. If you want to reconstruct the station later, you may have to tear down the connecting roads and reconnect the station after reconstruction.
+Some modules may disappear in the building configuration menu. In this case, please exit the building configuration menu and open the building configuration again. After you have done this, the missing modules should appear.
+
+Please don't report a bug in the comments. I've created a separate board for bugs and problems.
+You will find it here: https://steamcommunity.com/workshop/filedetails/discussion/2340888876/2996548763040253781/
+
+Suggest a new feature here:
+https://steamcommunity.com/workshop/filedetails/discussion/2340888876/2996548763040265374/
+Suggest a theme here: https://steamcommunity.com/workshop/filedetails/discussion/2340888876/2996548763040275435/
+
+Features:
+- Modular platforms in three epochs that stylistically match the epochs in the game
+- Further styles can be loaded as extensions
+- Platforms can be decorated with various decorative modules
+- Tram and bus tracks (train tracks are buildible but there are currently no matching platforms)
+- Three templates (for each era) and the possibility to build from scratch
+- Small and medium shelters are buildible as simple bus stops
+
+Limitations:
+- 31 modules can be placed in any direction from the centre module
+- You can build maximal 80m from the centre perpendicular to the tracks
+
+Non Workshop download or older versions of this mod you will find here:
+https://www.transportfever.net/filebase/index.php?entry/5795-modulare-stra%C3%9Fenbahnhaltestelle/
+
+Version 2.4
+
+License: CC-BY-NC
+BY EISFEUER
+Origin: https://www.transportfever.net/filebase/index.php?entry/5795-modulare-stra%C3%9Fenbahnhaltestelle/

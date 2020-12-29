@@ -1,0 +1,42 @@
+Modulare Haltestelle für Straßenbahnen und Bus-Rapid-Transit-Systeme.
+Die Straßenbahnhaltestelle wird aus Modulen (ähnlich der Vanilla-Bahnhöfe) gebaut. Die Logik und Implementierung der Station und der Module ist eine komplett eigene, sodass keine Konflikte mit anderen Mod-Bahnhöfen bestehen sollten.
+
+Die Module können in MOTRAS, den UG-Bahnhöfen und anderen Mod-Bahnhöfen, die auf die UG-Bahnhöfe basieren nicht verwendet werden.
+
+Diese Station kann und darf durch Module anderer Modder erweitert werden. Des weiteren ist es möglich eigene Modul-Gruppen (Themes) zu erstellen.
+Auch ist es möglich eigene Bahnhöfe mit Hilfe des enthaltenen Modutram-Frameworks zu erstellen.
+Eine Dokumentation ist momentan im Bau (sie ist noch nicht ganz vollständig und im schlechten Englisch, aber wer sich die schon mal anschauen will: https://github.com/eisfeuer/modutram)
+
+Hinweis zum Bau:
+Die Vanilla-Straßen sind zu breit um sie als Verbindungsstraßen zu benutzen. Verwendet die in der Mod enthaltenen
+Straßen oder verwendet Straßen aus einer anderen Mod (Z.B. RTP oder Marcs Straßen und Trampaket)
+Ihr solltet zuerst eine Haltestelle komplett fertig bauen, bevor ihr sie an die Straße anschließt. Es ist häufig danach nicht mehr möglich die Haltestelle zu verändern. Sollte ihr die Haltestelle später doch noch mal verändern wollen, müsst ihr einfach die Anschlussstraßen abreißen und nach der Änderung wieder bauen.
+Es kann sein, dass einige Module im Baumenü fehlen. Wenn das der Fall ist, müsst ihr das Baumenü schließen und erneut öffnen. Die fehlenden Module sollten dann da sein.
+
+Bitte Bugs nicht in dem Kommentarbereich melden. Ich habe ein separates Board dafür erstellt.
+Es ist hier zu finden: https://steamcommunity.com/workshop/filedetails/discussion/2340888876/2996548763040253781/
+
+Neue Featurevorschläge gerne hier:
+https://steamcommunity.com/workshop/filedetails/discussion/2340888876/2996548763040265374/
+Neue Vorschläge für Themes gerne hier: https://steamcommunity.com/workshop/filedetails/discussion/2340888876/2996548763040275435/
+
+Features:
+- Modulare Bahnsteige in drei Epochen, die stilistisch zu den Epochen im Spiel passen
+- Weitere Stile können als Erweiterung dazugeladen werden
+- Bahnsteige können mit verschiedenen Dekoelementen verziert werden
+- Straßenbahngleise und Busspuren (Bahngleise sind auch baubar, es gibt aber keine passenden Bahnsteige)
+- Drei verschiedene Vorlagen (für jede Epoche) und Eigenbauoption
+- Kleine und mittelgroße Unterstände als unabhängige Bushaltestellen verfügbar
+
+Limits:
+- Vom Mittelmodul aus können in jede Richtung maximal 31 Module platziert werden
+- Quer zu den Gleisen ist eine Länge vom Mittelpunkt aus (in beide Richtungen) von maximal 80m möglich
+
+Download einer Nicht-Workshop Version oder älterer Versionen dieser Mod:
+https://www.transportfever.net/filebase/index.php?entry/5795-modulare-stra%C3%9Fenbahnhaltestelle/
+
+Version 2.4
+
+Lizenz: CC-BY-NC
+Von EISFEUER
+Origin: https://www.transportfever.net/filebase/index.php?entry/5795-modulare-stra%C3%9Fenbahnhaltestelle/
