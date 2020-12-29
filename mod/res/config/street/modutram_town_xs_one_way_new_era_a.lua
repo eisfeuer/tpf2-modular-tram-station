@@ -17,7 +17,7 @@ return {
 	name = _("Small one-way street"),
 	desc = _("street_era_a_desc"),
 	icon = "ui/streets/modular_tram_station/oneway_era_a.tga",
-	categories = { "one-way" },
+	categories = { "modular_tram_station" },
 	borderGroundTex = "street_border.lua",
 	materials = {
 		streetPaving = {

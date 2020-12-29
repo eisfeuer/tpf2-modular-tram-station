@@ -12,6 +12,7 @@ function data()
             yearTo = 0
         },
         params = {},
+        categories = { "modular_tram_station" },
         constructionTemplates = {
             {
                 type = 'DYNAMIC',
