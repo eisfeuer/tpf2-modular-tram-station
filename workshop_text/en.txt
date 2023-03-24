@@ -31,7 +31,7 @@ Limitations:
 Non Workshop download or older versions of this mod you will find here:
 https://www.transportfever.net/filebase/index.php?entry/5795-modulare-stra%C3%9Fenbahnhaltestelle/
 
-Version 2.4
+Version 2.5
 
 License: CC-BY-NC
 BY EISFEUER

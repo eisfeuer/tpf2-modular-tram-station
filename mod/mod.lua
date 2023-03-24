@@ -8,7 +8,7 @@ local function addTrackModules()
         local mod = api.type.ModuleDesc.new()
         local track = api.res.trackTypeRep.get(api.res.trackTypeRep.find(trackName))
 
-        for __, catenary in pairs({false, true}) do
+        for __, catenary in pairs({ false, true }) do
             mod.fileName = "modutram_" .. tostring(trackName) .. (catenary and "catenary" or "")
 
             mod.availability.yearFrom = track.yearFrom
@@ -19,7 +19,7 @@ local function addTrackModules()
             mod.description.description = track.desc .. (catenary and _(" (with catenary)") or "")
             mod.description.icon = track.icon
             if mod.description.icon ~= "" then
-                local icons = { 
+                local icons = {
                     ["standard.lua"] = "ui/tracks/standard.tga",
                     ["high_speed.lua"] = "ui/tracks/high_speed.tga"
                 }
@@ -57,7 +57,7 @@ end
 function data()
     return {
         info = {
-            minorVersion = 4,
+            minorVersion = 6,
             severityAdd = "NONE",
             severityRemove = "NONE",
             name = _("Modular Tram Station"),
@@ -70,12 +70,12 @@ function data()
                 },
             },
         },
-        postRunFn = function ()
+        postRunFn = function()
             addTrackModules()
 
             local modulesForModularTramStation = {}
             local modulesInGame = api.res.moduleRep.getAll()
-            local themeRepository = ThemeRepository:new{defaultTheme = 'era_c', paramName = _("modutram_theme"), tooltip = _("modutram_theme_tooltip")}
+            local themeRepository = ThemeRepository:new { defaultTheme = 'era_c', paramName = _("modutram_theme"), tooltip = _("modutram_theme_tooltip") }
 
             for _, moduleFileName in ipairs(modulesInGame) do
                 local module = api.res.moduleRep.get(api.res.moduleRep.find(moduleFileName))
@@ -96,7 +96,7 @@ function data()
             for i, template in pairs(modutram.constructionTemplates) do
                 local dynamicConstructionTemplate = api.type.DynamicConstructionTemplate.new()
                 local params = template.data.params
-    
+
                 for _, themeParamTemplate in pairs(themeParams) do
                     local themeParam = api.type.ScriptParam.new()
 
@@ -108,19 +108,18 @@ function data()
                     themeParam.yearTo = themeParamTemplate.yearTo
                     themeParam.defaultIndex = themeParamTemplate.defaultIndex
                     themeParam.uiType = 0
-        
-                    params[#params+1] = themeParam 
+
+                    params[#params + 1] = themeParam
                 end
-    
+
                 dynamicConstructionTemplate.params = params
-                modutram.constructionTemplates[i].data = dynamicConstructionTemplate 
+                modutram.constructionTemplates[i].data = dynamicConstructionTemplate
             end
 
             modutram.createTemplateScript.fileName = "construction/station/tram/modular_tram_station.createTemplateFn"
-            modutram.createTemplateScript.params = {themes = themeRepository:getRepositoryTable(), defaultTheme = themeRepository:getDefaultTheme() }
+            modutram.createTemplateScript.params = { themes = themeRepository:getRepositoryTable(), defaultTheme = themeRepository:getDefaultTheme() }
             modutram.updateScript.fileName = "construction/station/tram/modular_tram_station.updateFn"
-            modutram.updateScript.params = {modules = modulesForModularTramStation}
+            modutram.updateScript.params = { modules = modulesForModularTramStation }
         end
     }
-    end
-    
+end
