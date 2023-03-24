@@ -35,7 +35,7 @@ Limits:
 Download einer Nicht-Workshop Version oder älterer Versionen dieser Mod:
 https://www.transportfever.net/filebase/index.php?entry/5795-modulare-stra%C3%9Fenbahnhaltestelle/
 
-Version 2.4
+Version 2.5
 
 Lizenz: CC-BY-NC
 Von EISFEUER
