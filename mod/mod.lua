@@ -57,7 +57,7 @@ end
 function data()
     return {
         info = {
-            minorVersion = 6,
+            minorVersion = 7,
             severityAdd = "NONE",
             severityRemove = "NONE",
             name = _("Modular Tram Station"),
