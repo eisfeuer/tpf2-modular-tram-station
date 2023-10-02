@@ -16,23 +16,39 @@ end
 local function buildSitePlatformAssets(theme, params, gridY)
     local collection = AssetCollection:new{}
 
-    if params:fenceEnabled() then
+    if params:fenceEnabled() and theme:has("fence") then
         collection:addModule(6, theme:get("fence"))
     end
 
-    if params:lightingEnabled() then
+    if params:lightingEnabled() and theme:has("lighting") then
         collection:addModule(5, theme:get("lighting"))
     end
 
     if hasBenches(params, gridY) then
         if gridY > 0 then
-            collection:addModule(8, theme:get("billboard_small"))
-            collection:addModule(7, theme:get("benches"))
-            collection:addModule(15, theme:get("station_name_sign"))
+            if (theme:has("billboard_small")) then
+                collection:addModule(8, theme:get("billboard_small"))
+            end
+
+            if (theme:has("benches")) then
+                collection:addModule(7, theme:get("benches"))
+            end
+
+            if (theme:has("station_name_sign")) then
+                collection:addModule(15, theme:get("station_name_sign"))
+            end
         else
-            collection:addModule(7, theme:get("billboard_small"))
-            collection:addModule(8, theme:get("benches"))
-            collection:addModule(16, theme:get("station_name_sign"))
+            if (theme:has("billboard_small")) then
+                collection:addModule(7, theme:get("billboard_small"))
+            end
+
+            if (theme:has("benches")) then
+                collection:addModule(8, theme:get("benches"))
+            end
+
+            if (theme:has("station_name_sign")) then
+                collection:addModule(16, theme:get("station_name_sign"))
+            end
         end
     end
 
@@ -59,11 +75,11 @@ local function buildSitePlatformAssets(theme, params, gridY)
         end
     end
 
-    if gridY == -math.floor(params:getLength() / 2) then
+    if theme:has("bus_station_sign") and gridY == -math.floor(params:getLength() / 2) then
         collection:addModule(9, theme:get("bus_station_sign"))
     end
 
-    if gridY == math.ceil(params:getLength() / 2) then
+    if theme:has("bus_station_sign") and gridY == math.ceil(params:getLength() / 2) then
         collection:addModule(14, theme:get("bus_station_sign"))
     end
 
